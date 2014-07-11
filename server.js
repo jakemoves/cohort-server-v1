@@ -35,12 +35,15 @@ app.get('/', function(req, res){
     });
     res.write("retry: 10000\n");
     clients.push(res);
-    console.log('new client: ' + clients.length);
+    console.log('new client: ' + (clients.length-1));
 });
 
 app.post('/broadcast', function(req, res) {
     console.log(req.text);
-	broadcast(req.text);
+    broadcast(req.text);
+    res.writeHead(200);
+    res.write("broadcast to " + clients.length + " clients");
+    res.send();
 });
 
 // timer.setInterval(emitHeartbeat, '', '1s');
