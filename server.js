@@ -1,11 +1,11 @@
 var http = require('http'),
 	express = require('express'),
-	NanoTimer = require('nanotimer'),
+	//NanoTimer = require('nanotimer'),
 	bodyParser = require('body-parser'),
   	interval = 1000,
  	port = 8000,
   	id = 0,
-  	timer = new NanoTimer(),
+  	//timer = new NanoTimer(),
   	clients = [];
 
 var app = express();
@@ -26,7 +26,7 @@ app.use(function(req, res, next){
   }
 });
 
-app.get('/', function(req, res){
+app.get('/listen', function(req, res){
 	res.writeHead(200, {
  		'Transfer-Encoding': 'chunked', 
  		'Content-Type': 'text/event-stream',
@@ -44,6 +44,14 @@ app.post('/broadcast', function(req, res) {
     res.writeHead(200);
     res.write("broadcast to " + clients.length + " clients");
     res.send();
+});
+
+app.get('/test', function(req, res){
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+  });
+  res.write("<DOCTYPE !html><html><head></head><body>Server is running</body></html>");
+  res.send();
 });
 
 // timer.setInterval(emitHeartbeat, '', '1s');
