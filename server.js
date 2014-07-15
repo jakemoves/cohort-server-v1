@@ -1,11 +1,11 @@
 var http = require('http'),
 	express = require('express'),
-	//NanoTimer = require('nanotimer'),
+	NanoTimer = require('nanotimer'),
 	bodyParser = require('body-parser'),
   	interval = 1000,
  	port = 8000,
   	id = 0,
-  	//timer = new NanoTimer(),
+  	timer = new NanoTimer(),
   	clients = [];
 
 var app = express();
@@ -33,17 +33,19 @@ app.get('/listen', function(req, res){
  		'Cache-Control': 'no-cache',
         'Connection': 'keep-alive'
     });
-    res.write("retry: 10000\n");
+    res.write("retry: 3000\n");
     clients.push(res);
     console.log('new client: ' + (clients.length-1));
 });
 
 app.post('/broadcast', function(req, res) {
-    console.log(req.text);
     broadcast(req.text);
     res.writeHead(200);
-    res.write("broadcast to " + clients.length + " clients");
+    console.log(req.text);
+    var log = "broadcast to " + clients.length + " clients"
+    res.write(log);
     res.send();
+    console.log(log);
 });
 
 app.get('/test', function(req, res){
@@ -54,8 +56,7 @@ app.get('/test', function(req, res){
   res.send();
 });
 
-// timer.setInterval(emitHeartbeat, '', '1s');
-
+timer.setInterval(emitHeartbeat, '', '20s');
 
 function emitHeartbeat(){
 	var heartbeatMsg = '{"id": ' + (++id) + ', "body":"' + (new Date().getTime()) + '"}';
@@ -68,7 +69,7 @@ function broadcast(msg){
 	if(clients != 'undefined' && clients.length > 0){
 		for(var i = 0; i < clients.length; i++){
 			clients[i].write(event);
-			console.log("broadcast to client " + i);
+			//console.log("broadcast to client " + i);
 		}
 	}
 }
