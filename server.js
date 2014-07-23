@@ -69,8 +69,17 @@ app.get('/simulate', function(req, res){
   res.send();
   console.log(log);
   // send curtain-up after 10s
-  timer.setTimeout(sendCurtainUp, '', '10s');
+  timer.setTimeout(sendCurtainUp, [res, req], '10s');
 });
+
+function sendCurtainUp(res, req){
+  broadcast("curtain-up");
+  console.log(req.text);
+  var log = "broadcast curtain-up to " + clients.length + " clients"
+  res.write(log);
+  res.send();
+  console.log(log);
+}
 
 app.get('/simulate/end', function(req, res){
   broadcast('{ "action": "curtain-down" }');
@@ -78,21 +87,10 @@ app.get('/simulate/end', function(req, res){
   console.log(req.text);
   var log = "broadcast curtain-down to " + clients.length + " clients"
   res.write(log);
-  res.send();
   console.log(log);
   // send curtain-up after 10s
-  timer.setTimeout(sendCurtainUp, [res], '10s');
+  timer.setTimeout(sendCurtainUp, [res, req], '10s');
 });
-
-function sendCurtainUp(res){
-  broadcast("curtain-up");
-  res.writeHead(200);
-  console.log(req.text);
-  var log = "broadcast curtain-up to " + clients.length + " clients"
-  res.write(log);
-  res.send();
-  console.log(log);
-}
 
 timer.setInterval(emitHeartbeat, '', '20s');
 
