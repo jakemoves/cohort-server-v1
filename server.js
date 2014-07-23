@@ -10,7 +10,7 @@ var http = require('http'),
 
 var app = express();
 
-var server = app.listen(port, function(){
+var server = app.listen(process.env.PORT || port, function(){
 	console.log('Streaming events on port ' + port);
 });
 
