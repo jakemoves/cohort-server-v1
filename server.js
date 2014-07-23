@@ -61,7 +61,7 @@ app.get('/test', function(req, res){
 
 app.get('/simulate', function(req, res){
   // send we-have-the-house
-  broadcast("we-have-the-house");
+  broadcast({ '{"action": "we-have-the-house" }');
   res.writeHead(200);
   console.log(req.text);
   var log = "broadcast we-have-the-house to " + clients.length + " clients"
@@ -73,7 +73,7 @@ app.get('/simulate', function(req, res){
 });
 
 app.get('/simulate/end', function(req, res){
-  broadcast("curtain-down");
+  broadcast('{ "action": "curtain-down" }');
   res.writeHead(200);
   console.log(req.text);
   var log = "broadcast curtain-down to " + clients.length + " clients"
