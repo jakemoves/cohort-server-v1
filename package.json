@@ -6,5 +6,9 @@
     "dependencies": {
     	"express": "4.x",
         "nanotimer": "~0.3.1"
+    },
+    "repository": {
+    	"type": "git",
+    	"url": "https://github.com/jakemoves/jqrs-server.git"
     }
 }

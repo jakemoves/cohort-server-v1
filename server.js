@@ -59,7 +59,7 @@ app.get('/test', function(req, res){
 timer.setInterval(emitHeartbeat, '', '20s');
 
 function emitHeartbeat(){
-	var heartbeatMsg = '{"id": ' + (++id) + ', "body":"' + (new Date().getTime()) + '"}';
+	var heartbeatMsg = '{ "id": ' + (++id) + ', "body":"' + (new Date().getTime()) + '", "isHeartbeat":"true" }';
 	//console.log(heartbeatMsg);
 	broadcast(heartbeatMsg);
 }
