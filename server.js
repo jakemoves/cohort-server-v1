@@ -61,7 +61,7 @@ app.get('/test', function(req, res){
 
 app.get('/simulate', function(req, res){
   // send we-have-the-house
-  broadcast({ '{"action": "we-have-the-house" }');
+  broadcast('{"action": "we-have-the-house" }');
   res.writeHead(200);
   console.log(req.text);
   var log = "broadcast we-have-the-house to " + clients.length + " clients"
