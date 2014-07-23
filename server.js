@@ -3,7 +3,7 @@ var http = require('http'),
 	NanoTimer = require('nanotimer'),
 	bodyParser = require('body-parser'),
   	interval = 1000,
- 	port = 8000,
+ 	  port = 8000,
   	id = 0,
   	timer = new NanoTimer(),
   	clients = [];
@@ -55,6 +55,17 @@ app.get('/test', function(req, res){
   res.write("<DOCTYPE !html><html><head></head><body>Server is running</body></html>");
   res.send();
 });
+
+app.get('/simulate', function(req, res){
+  // send we-have-the-house
+  broadcast("we-have-the-house");
+  // send curtain-up after 10s
+  timer.setTimeout(sendCurtainUp, '', '10s');
+});
+
+function sendCurtainUp(){
+  broadcast("curtain-up");
+}
 
 timer.setInterval(emitHeartbeat, '', '20s');
 
