@@ -3,17 +3,18 @@ var http = require('http'),
 	NanoTimer = require('nanotimer'),
 	bodyParser = require('body-parser'),
   	interval = 1000,
- 	  port,
+ 	  port = 0,
   	id = 0,
   	timer = new NanoTimer(),
   	clients = [];
 
 var app = express();
 
-port = (process.env.PORT || 8000);
+port = Number(process.env.PORT || 8000);
+//port = 8000;
 
 var server = app.listen(port, function(){
-	console.log('Streaming events');
+	console.log('Streaming events on port ' + port);
 });
 
 // for handling text/plain POST bodies
