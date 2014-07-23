@@ -73,7 +73,7 @@ app.get('/simulate', function(req, res){
 });
 
 function sendCurtainUp(res, req){
-  broadcast("curtain-up");
+  broadcast('{ "action": "curtain-up" }');
   console.log(req.text);
   var log = "broadcast curtain-up to " + clients.length + " clients"
   res.write(log);
