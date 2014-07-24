@@ -59,7 +59,7 @@ app.get('/test', function(req, res){
   res.send();
 });
 
-app.get('/simulate', function(req, res){
+app.get('/simulate-start', function(req, res){
   // send we-have-the-house
   broadcast('{"action": "we-have-the-house" }');
   res.writeHead(200);
@@ -69,7 +69,7 @@ app.get('/simulate', function(req, res){
   res.send();
   console.log(log);
   // send curtain-up after 10s
-  timer.setTimeout(sendCurtainUp, [res, req], '10s');
+  timer.setTimeout(sendCurtainUp, [res, req], '15s');
 });
 
 function sendCurtainUp(res, req){
@@ -81,15 +81,13 @@ function sendCurtainUp(res, req){
   console.log(log);
 }
 
-app.get('/simulate/end', function(req, res){
+app.get('/simulate-end', function(req, res){
   broadcast('{ "action": "curtain-down" }');
   res.writeHead(200);
   console.log(req.text);
   var log = "broadcast curtain-down to " + clients.length + " clients"
   res.write(log);
   console.log(log);
-  // send curtain-up after 10s
-  timer.setTimeout(sendCurtainUp, [res, req], '10s');
 });
 
 timer.setInterval(emitHeartbeat, '', '20s');
