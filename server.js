@@ -90,7 +90,7 @@ app.get('/simulate-end', function(req, res){
   console.log(log);
 });
 
-timer.setInterval(emitHeartbeat, '', '20s');
+timer.setInterval(emitHeartbeat, '', '10s');
 
 function emitHeartbeat(){
 	var heartbeatMsg = '{ "id": ' + (++id) + ', "body":"' + (new Date().getTime()) + '", "isHeartbeat":"true" }';
