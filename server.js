@@ -60,22 +60,36 @@ app.get('/test', function(req, res){
 });
 
 app.get('/simulate-start', function(req, res){
+  //curtain-up
+  sendCurtainUp(res, req);
+
+  timer.setTimeout(sendGoSound1, [res, req], '5s');
+  
   // send we-have-the-house
-  broadcast('{"action": "we-have-the-house" }');
-  res.writeHead(200);
-  console.log(req.text);
-  var log = "broadcast we-have-the-house to " + clients.length + " clients"
-  res.write(log);
-  res.send();
-  console.log(log);
-  // send curtain-up after 10s
-  timer.setTimeout(sendCurtainUp, [res, req], '15s');
+  // broadcast('{"action": "we-have-the-house" }');
+  // res.writeHead(200);
+  // console.log(req.text);
+  // var log = "broadcast we-have-the-house to " + clients.length + " clients"
+  // res.write(log);
+  // res.send();
+  // console.log(log);
+  // // send curtain-up after 10s
+  // timer.setTimeout(sendCurtainUp, [res, req], '15s');
 });
 
 function sendCurtainUp(res, req){
   broadcast('{ "action": "curtain-up" }');
   console.log(req.text);
   var log = "broadcast curtain-up to " + clients.length + " clients"
+  res.write(log);
+  res.send();
+  console.log(log);
+}
+
+function sendGoSound1(res, req){
+  broadcast('{ "action": "sound-1-go" }');
+  console.log(req.text);
+  var log = "broadcast sound-1-go to " + clients.length + " clients"
   res.write(log);
   res.send();
   console.log(log);
