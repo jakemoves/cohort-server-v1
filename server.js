@@ -64,6 +64,10 @@ app.get('/simulate-start', function(req, res){
   sendCurtainUp(res, req);
 
   timer.setTimeout(sendGoSound1, [res, req], '5s');
+
+  timer.setTimeout(sendGoSound2, [res, req], '700s');
+  timer.setTimeout(sendGoSound3, [res, req], '1400s');
+  timer.setTimeout(sendGoSound4, [res, req], '2100s');
 });
 
 function sendCurtainUp(res, req){
@@ -72,6 +76,18 @@ function sendCurtainUp(res, req){
 
 function sendGoSound1(res, req){
   broadcast('{ "action": "sound-1-go" }');
+}
+
+function sendGoSound2(res, req){
+  broadcast('{ "action": "sound-2-go" }');
+}
+
+function sendGoSound3(res, req){
+  broadcast('{ "action": "sound-3-go" }');
+} 
+
+function sendGoSound4(res, req){
+  broadcast('{ "action": "sound-4-go" }');
 }
 
 app.get('/simulate-end', function(req, res){
