@@ -37,8 +37,16 @@ app.get('/listen', function(req, res){
         'Connection': 'keep-alive'
     });
     res.write("retry: 3000\n");
-    clients.push(res);
-    console.log('new client: ' + (clients.length-1));
+
+    (function(clientId) {
+        clients.push(res); // <- Add this client to those we consider "attached"
+        clientIndex = (clients.length-1);
+        console.log('new client: ' + clientIndex);
+        req.on("close", function(){
+            delete clients[clientIndex];
+            console.log('removed client: ' + clientIndex);
+        });  // <- Remove this client when they disconnect
+    })
 });
 
 app.post('/broadcast', function(req, res) {
