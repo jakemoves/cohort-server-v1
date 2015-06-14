@@ -38,15 +38,13 @@ app.get('/listen', function(req, res){
     });
     res.write("retry: 3000\n");
 
-    (function(clientId) {
-        clients.push(res); // <- Add this client to those we consider "attached"
-        clientIndex = (clients.length-1);
-        console.log('new client: ' + clientIndex);
-        req.on("close", function(){
-            delete clients[clientIndex];
-            console.log('removed client: ' + clientIndex);
-        });  // <- Remove this client when they disconnect
-    })
+    clients.push(res); // <- Add this client to those we consider "attached"
+    clientIndex = (clients.length-1);
+    console.log('new client: ' + clientIndex);
+    req.on("close", function(){
+      clients[clientIndex] == null;
+      console.log('removed client: ' + clientIndex);
+    });  // <- Remove this client when they disconnect
 });
 
 app.post('/broadcast', function(req, res) {
@@ -114,8 +112,10 @@ function broadcast(msg){
 	var event = 'event: message\ndata: ' + msg + '\n\n';
 	if(clients != 'undefined' && clients.length > 0){
 		for(var i = 0; i < clients.length; i++){
-			clients[i].write(event);
-			//console.log("broadcast to client " + i);
+      if(clients[i] != null){
+			   clients[i].write(event);
+			   //console.log("broadcast to client " + i);
+       }
 		}
 	}
 }
