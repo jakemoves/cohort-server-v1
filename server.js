@@ -47,10 +47,12 @@ app.get('/listen', function(req, res){
       clients[clientIndex] == null;
       console.log('removed client: ' + clientIndex);
     });  // <- Remove this client when they disconnect
+
+    //console.log('finished /listen');
 });
 
 app.post('/broadcast', jsonParser, function(req, res) {
-    broadcast(req.body);
+    broadcast("cohortMessage", req.body);
     res.writeHead(200);
     console.log(req.body);
     var log = "broadcast to " + clients.length + " clients"
@@ -78,26 +80,6 @@ app.get('/simulate-start', function(req, res){
   timer.setTimeout(sendGoSound4, [res, req], '2100s');
 });
 
-function sendCurtainUp(res, req){
-  broadcast('{ "action": "curtain-up" }');
-}
-
-function sendGoSound1(res, req){
-  broadcast('{ "action": "sound-1-go" }');
-}
-
-function sendGoSound2(res, req){
-  broadcast('{ "action": "sound-2-go" }');
-}
-
-function sendGoSound3(res, req){
-  broadcast('{ "action": "sound-3-go" }');
-} 
-
-function sendGoSound4(res, req){
-  broadcast('{ "action": "sound-4-go" }');
-}
-
 app.get('/simulate-end', function(req, res){
   broadcast('{ "action": "curtain-down" }');
 });
@@ -105,13 +87,17 @@ app.get('/simulate-end', function(req, res){
 timer.setInterval(emitHeartbeat, '', '10s');
 
 function emitHeartbeat(){
-	var heartbeatMsg = '{ "id": ' + (++id) + ', "body":"' + (new Date().getTime()) + '", "isHeartbeat":"true" }';
-	//console.log(heartbeatMsg);
-	broadcast(heartbeatMsg);
+	var heartbeatMsg = {
+    "id": (++id),
+    "time": (new Date().getTime())
+  };
+
+	//console.log("heartbeatMsg: \n" + heartbeatMsg);
+	broadcast("heartbeat", heartbeatMsg);
 }
 
-function broadcast(msg){
-	var event = 'event: message\ndata: ' + msg + '\n\n';
+function broadcast(eventName, msg){
+	var event = "event: " + eventName + "\ndata: " + JSON.stringify(msg) + "\n\n";
 	if(clients != 'undefined' && clients.length > 0){
 		for(var i = 0; i < clients.length; i++){
       if(clients[i] != null){
