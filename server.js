@@ -18,16 +18,18 @@ var server = app.listen(port, function(){
 });
 
 // for handling text/plain POST bodies
-app.use(function(req, res, next){
-  if (req.is('text/*')) {
-    req.text = '';
-    req.setEncoding('utf8');
-    req.on('data', function(chunk){ req.text += chunk });
-    req.on('end', next);
-  } else {
-    next();
-  }
-});
+// app.use(function(req, res, next){
+//   if (req.is('text/*')) {
+//     req.text = '';
+//     req.setEncoding('utf8');
+//     req.on('data', function(chunk){ req.text += chunk });
+//     req.on('end', next);
+//   } else {
+//     next();
+//   }
+// });
+
+var jsonParser = bodyParser.json();
 
 app.get('/listen', function(req, res){
 	res.writeHead(200, {
@@ -47,10 +49,10 @@ app.get('/listen', function(req, res){
     });  // <- Remove this client when they disconnect
 });
 
-app.post('/broadcast', function(req, res) {
-    broadcast(req.text);
+app.post('/broadcast', jsonParser, function(req, res) {
+    broadcast(req.body);
     res.writeHead(200);
-    console.log(req.text);
+    console.log(req.body);
     var log = "broadcast to " + clients.length + " clients"
     res.write(log);
     res.send();
