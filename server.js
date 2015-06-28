@@ -70,18 +70,8 @@ app.get('/test', function(req, res){
 });
 
 app.get('/simulate-start', function(req, res){
-  //curtain-up
-  sendCurtainUp(res, req);
-
-  timer.setTimeout(sendGoSound1, [res, req], '5s');
-
-  timer.setTimeout(sendGoSound2, [res, req], '700s');
-  timer.setTimeout(sendGoSound3, [res, req], '1400s');
-  timer.setTimeout(sendGoSound4, [res, req], '2100s');
-});
-
-app.get('/simulate-end', function(req, res){
-  broadcast('{ "action": "curtain-down" }');
+  var msg = { "action": "episode-1-go" };
+  broadcast("cohortMessage", msg)
 });
 
 timer.setInterval(emitHeartbeat, '', '10s');
@@ -106,22 +96,4 @@ function broadcast(eventName, msg){
        }
 		}
 	}
-}
-
-// NOT USED RIGHT NOW
-function validateJSON(jsonString){
-    try {
-        var o = JSON.parse(jsonString);
-
-        // Handle non-exception-throwing cases:
-        // Neither JSON.parse(false) or JSON.parse(1234) throw errors, hence the type-checking,
-        // but... JSON.parse(null) returns 'null', and typeof null === "object", 
-        // so we must check for that, too.
-        if (o && typeof o === "object" && o !== null) {
-            return true;
-        }
-    }
-    catch (e) { }
-
-    return false;
 }
