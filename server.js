@@ -71,7 +71,13 @@ app.get('/test', function(req, res){
 
 app.get('/simulate-start', function(req, res){
   var msg = { "action": "episode-1-go" };
-  broadcast("cohortMessage", msg)
+  broadcast("cohortMessage", msg);
+
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+  });
+  res.write("<DOCTYPE !html><html><head></head><body>Sent simulated event start signal.</body></html>");
+  res.send();
 });
 
 timer.setInterval(emitHeartbeat, '', '10s');
