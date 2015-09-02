@@ -62,6 +62,11 @@ app.get('/test', function(req, res){
 app.get('/simulate-start', function(req, res){
   //curtain-up
   sendCurtainUp(res, req);
+  res.writeHead(200, {
+    'Content-Type': 'text/html',
+  });
+  res.write("<DOCTYPE !html><html><head></head><body>Sent simulated start signal.</body></html>");
+  res.send();
 
   timer.setTimeout(sendGoSound1, [res, req], '5s');
 
