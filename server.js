@@ -55,7 +55,7 @@ app.post('/broadcast', jsonParser, function(req, res) {
     broadcast("cohortMessage", req.body);
     res.writeHead(200);
     console.log(req.body);
-    var log = {"response": "broadcast to " + clients.length + " clients"}
+    var log = "broadcast to " + clients.length + " clients"
     res.write(log);
     res.send();
     console.log(log);
