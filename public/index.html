@@ -13,9 +13,18 @@
 	<script type="text/javascript">
 		
 		if (!!window.EventSource){
-			var source = new EventSource("http://cohort-server-dev.herokuapp.com/listen");
-			console.log("subscribed to event source");
+			var source = new EventSource("/listen");
 		}
+
+		source.addEventListener('open', function(e) {
+  			console.log("opened sse connection");
+		}, false);
+
+		source.addEventListener('error', function(e) {
+  			if (e.readyState == EventSource.CLOSED) {
+    			console.log("closed sse connection");
+  			}
+		}, false);
 
 		source.addEventListener('message', function(e) {
   			console.log(e.data);
