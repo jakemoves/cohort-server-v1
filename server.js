@@ -14,6 +14,8 @@ var app = express();
 port = Number(process.env.PORT || 8000);
 //port = 8000;
 
+app.use(express.static('public'));
+
 var server = app.listen(port, function(){
 	console.log('Streaming events on port ' + port);
 });

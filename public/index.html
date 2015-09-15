@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<title>Cohort Web Test</title>
+	
+	<meta name="description" content="">
+	
+  <!-- Mobile-friendly viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript">
+		if (!!window.EventSource){
+			var source = new EventSource("http://cohort-server-dev.herokuapp.com/listen");
+			console.log("hello");
+		} else {
+		  	console.log("nope");
+		}
+	</script>
+	
+</head>
+<body>
+	<main role="main">
+		<h1>Cohort Web Test</h1>
+    </main>
+</body>
+</html>
