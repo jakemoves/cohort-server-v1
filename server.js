@@ -1,5 +1,6 @@
 var http = require('http'),
 	express = require('express'),
+  cors = require('cors'),
 	NanoTimer = require('nanotimer'),
 	bodyParser = require('body-parser'),
   	interval = 1000,

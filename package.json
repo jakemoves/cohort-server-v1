@@ -5,7 +5,8 @@
     "author": "Jacob Niedzwiecki <jake@jacob-n.com>",
     "dependencies": {
     	"express": "4.x",
-        "nanotimer": "~0.3.1"
+        "nanotimer": "~0.3.1",
+        "cors": "2.7.x"
     },
     "repository": {
     	"type": "git",
