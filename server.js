@@ -96,7 +96,8 @@ function emitHeartbeat(){
 }
 
 function broadcast(eventName, msg){
-	var event = "event: " + eventName + "\ndata: " + JSON.stringify(msg) + "\n\n";
+	//var event = "event: " + eventName + "\ndata: " + JSON.stringify(msg) + "\n\n";
+  var event = "event: " + eventName + "\ndata: test\n\n";
 	if(clients != 'undefined' && clients.length > 0){
 		for(var i = 0; i < clients.length; i++){
       if(clients[i] != null){

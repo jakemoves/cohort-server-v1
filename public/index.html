@@ -27,7 +27,7 @@
 		source.addEventListener('message', function(e) {
 			console.log("received sse");
   			var data = JSON.parse(e.data);
-  			console.log(data);
+  			console.log(data.id, data.msg);
 		}, false);
 
 	</script>
