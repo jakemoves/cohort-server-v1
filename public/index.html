@@ -16,8 +16,7 @@
 	audio.src = 'media/flux-web-v2.mp3';
 
 	var load = function(){
-		audio.play();
-		audio.pause();
+		audio.load();
 		console.log("audio loaded")
 	}
 
@@ -55,7 +54,7 @@
 <body>
 	<main role="main">
 		<h1>Cohort Web Test</h1>
-		<!-- <button id = "b1" onclick="load()"> GO! </button> -->
+		<button id = "b1" onclick="load()"> GO! </button>
     </main>
 </body>
 </html>
