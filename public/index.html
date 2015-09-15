@@ -26,8 +26,16 @@
 
 		source.addEventListener('message', function(e) {
 			console.log("received sse");
-  			var data = JSON.parse(e.data);
-  			console.log(data.id, data.msg);
+			console.log(data);
+  			// var data = JSON.parse(e.data);
+  			// console.log(data.id, data.msg);
+		}, false);
+
+		source.addEventListener('cohortMessage', function(e) {
+			console.log("received sse");
+			console.log(data);
+  			// var data = JSON.parse(e.data);
+  			// console.log(data.id, data.msg);
 		}, false);
 
 	</script>
