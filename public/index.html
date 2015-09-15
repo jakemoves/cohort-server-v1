@@ -3,15 +3,24 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	
+
 	<title>Cohort Web Test</title>
-	
+
 	<meta name="description" content="">
-	
+
   <!-- Mobile-friendly viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript">
-		
+
+	var audio = document.createElement('audio');
+	audio.src = 'media/flux-web-v2.mp3';
+
+	var load = function(){
+		audio.play();
+		audio.pause();
+		console.log("audio loaded")
+	}
+
 		source = new EventSource("/listen");
 
 		source.addEventListener('open', function(e) {
@@ -25,6 +34,7 @@
 		}, false);
 
 		source.addEventListener('message', function(e) {
+
 			console.log("received sse");
 			console.log(data);
   			// var data = JSON.parse(e.data);
@@ -32,6 +42,7 @@
 		}, false);
 
 		source.addEventListener('cohortMessage', function(e) {
+			audio.play();
 			console.log("received sse");
 			console.log(e);
   			// var data = JSON.parse(e.data);
@@ -39,11 +50,12 @@
 		}, false);
 
 	</script>
-	
+
 </head>
 <body>
 	<main role="main">
 		<h1>Cohort Web Test</h1>
+		<!-- <button id = "b1" onclick="load()"> GO! </button> -->
     </main>
 </body>
 </html>
