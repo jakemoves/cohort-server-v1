@@ -12,20 +12,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript">
 		
-		window.source = new EventSource("/listen");
+		source = new EventSource("/listen");
 
-		window.source.addEventListener('open', function(e) {
+		source.addEventListener('open', function(e) {
   			console.log("opened sse connection");
 		}, false);
 
-		window.source.addEventListener('error', function(e) {
+		source.addEventListener('error', function(e) {
   			if (e.readyState == EventSource.CLOSED) {
     			console.log("closed sse connection");
   			}
 		}, false);
 
-		window.source.addEventListener('message', function(e) {
-  			console.log(e.data);
+		source.addEventListener('message', function(e) {
+			console.log("received sse");
+  			var data = JSON.parse(e.data);
+  			console.log(data);
 		}, false);
 
 	</script>
