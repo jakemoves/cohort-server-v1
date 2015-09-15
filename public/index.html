@@ -11,12 +11,16 @@
   <!-- Mobile-friendly viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript">
+		
 		if (!!window.EventSource){
 			var source = new EventSource("http://cohort-server-dev.herokuapp.com/listen");
-			console.log("hello");
-		} else {
-		  	console.log("nope");
+			console.log("subscribed to event source");
 		}
+
+		source.addEventListener('message', function(e) {
+  			console.log(e.data);
+		}, false);
+
 	</script>
 	
 </head>
