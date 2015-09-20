@@ -15,14 +15,22 @@
 	var audio = document.createElement('audio');
 	audio.src = 'media/corners.mp3';
 
-	// var audioOne = document.createElement('audio');
-	// audioOne.src = 'media/simpleflux.mp3';
-	//
-	// var audioOne = document.createElement('audio');
-	// audioOne.src = 'media/simpleflux.mp3';
-	//
-	// var audioOne = document.createElement('audio');
-	// audioOne.src = 'media/simpleflux.mp3';
+	var audioScoreTwo = document.createElement('audio2');
+	audioScoreTwo.src = 'media/simpleflux.mp3';
+
+	var audioScoreThree = document.createElement('audio3');
+	audioScoreThree.src = 'media/chipmelt.mp3';
+
+	var audioScoreFour = document.createElement('audio4');
+	audioScoreFour.src = 'media/ship.mp3';
+
+	var audioScoreFive = document.createElement('audio5');
+	audioScoreFive.src = 'media/simpleflux.mp3';
+
+	var audioScoreSix = document.createElement('audio6');
+	audioScoreSix.src = 'media/simpleflux.mp3';
+
+
 
 	var load = function(){
 		audio.load();
@@ -42,7 +50,7 @@
 		}, false);
 
 		source.addEventListener('message', function(e) {
-
+// audio.play();
 			console.log("received sse");
 			console.log(data);
   			// var data = JSON.parse(e.data);
@@ -50,11 +58,34 @@
 		}, false);
 
 		source.addEventListener('cohortMessage', function(e) {
-			audio.play();
-			console.log("received sse");
+
+// var x = MessageEvent.data['"action"'];
+// 			switch(x){
+// 	      case "episode-1-go": audio.play();
+// 	      break;
+//
+// 	      case "episode-2-go": audioScoreTwo.play();
+// 	      break;
+//
+// 	      case "episode-3-go": audioScoreThree.play();
+// 	      break;
+//
+// 	      case "episode-4-go": audioScoreFour.play();
+// 	      break;
+//
+// 	      case "episode-5-go": audioScoreFive.play();
+// 	      break;
+//
+// 	      case "episode-6-go": audioScoreSix.play();
+// 	      break;
+//
+// 	      default: console.log("no music");
+// 	    }
+
+			console.log("received SSE");
 			console.log(e);
-  			// var data = JSON.parse(e.data);
-  			// console.log(data.id, data.msg);
+  			var data = JSON.parse(e.data);
+  			console.log(data.id, data.msg);
 		}, false);
 
 	</script>
