@@ -61,14 +61,18 @@
 		}, false);
 
 		source.addEventListener('cohortMessage', function(e) {
+
 			//if tf is still false, play audio
-if(tf===false){
+
 console.log("received SSE");
 			console.log(e);
   			var data = JSON.parse(e.data);
   			console.log(data.id, data.msg);
-				tf=true;
+
 				var x = data["action"];
+
+				if(tf===false){
+						tf=true;
 							switch(x){
 					      case "episode-1-go": audio.play();
 					      break;
@@ -88,16 +92,50 @@ console.log("received SSE");
 					      case "episode-6-go": audioScoreSix.play();
 					      break;
 
+
 					      default: console.log("no music");
 					    }
 
-		}}, false);
+						};
+
+							if(x === "pause"){
+								for(var i =0; i < allAudio.length; i ++){
+									allAudio[i].pause();
+									tf=false
+									console.log('paused');
+
+								};
+
+							};
+
+							if(x === "stop"){
+								for(var i =0; i < allAudio.length; i ++){
+									if(allAudio[i].duration > 0 && !allAudio[i].paused){
+										allAudio[i].pause();
+										allAudio[i].currentTime = 0;
+										console.log('stopped');
+									} else {
+									allAudio[i].currentTime = 0;
+									console.log('stopped');
+									}
+
+									tf=false
+
+							}
+						}
+
+
+		}, false);
 //---returns tf = false when audio has finished. Loops through an array of all the audios
 for(var i =0; i < allAudio.length; i ++){
+
 		allAudio[i].addEventListener("ended", function(){
 			tf=false;
 			console.log("ended");
-		});
+			});
+
+
+
 };
 	</script>
 
