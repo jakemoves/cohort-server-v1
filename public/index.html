@@ -15,27 +15,30 @@
 	var audio = document.createElement('audio');
 	audio.src = 'media/corners.mp3';
 
-	var audioScoreTwo = document.createElement('audio2');
-	audioScoreTwo.src = 'media/simpleflux.mp3';
+	var audioScoreTwo = document.createElement('audio');
+	audioScoreTwo.src = 'media/test.mp3';
 
-	var audioScoreThree = document.createElement('audio3');
+	var audioScoreThree = document.createElement('audio');
 	audioScoreThree.src = 'media/chipmelt.mp3';
 
-	var audioScoreFour = document.createElement('audio4');
+	var audioScoreFour = document.createElement('audio');
 	audioScoreFour.src = 'media/ship.mp3';
 
-	var audioScoreFive = document.createElement('audio5');
+	var audioScoreFive = document.createElement('audio');
 	audioScoreFive.src = 'media/simpleflux.mp3';
 
-	var audioScoreSix = document.createElement('audio6');
+	var audioScoreSix = document.createElement('audio');
 	audioScoreSix.src = 'media/simpleflux.mp3';
 
+	var allAudio = [audio, audioScoreTwo, audioScoreThree, audioScoreFour, audioScoreFive, audioScoreSix];
 
+//--setting up boolean to only have one audio playback at a time
+	var tf = false;
 
-	var load = function(){
-		audio.load();
-		console.log("audio loaded")
-	}
+	// var load = function(){
+	// 	audio.load();
+	// 	console.log("audio loaded")
+	// }
 
 		source = new EventSource("/listen");
 
@@ -50,7 +53,7 @@
 		}, false);
 
 		source.addEventListener('message', function(e) {
-	// audio.play();
+// audio.play();
 			console.log("received sse");
 			console.log(data);
 				// var data = JSON.parse(e.data);
@@ -58,35 +61,44 @@
 		}, false);
 
 		source.addEventListener('cohortMessage', function(e) {
-audio.play();
-	// var x = MessageEvent.data['"action"'];
-	// 			switch(x){
-	// 	      case "episode-1-go": audio.play();
-	// 	      break;
-	//
-	// 	      case "episode-2-go": audioScoreTwo.play();
-	// 	      break;
-	//
-	// 	      case "episode-3-go": audioScoreThree.play();
-	// 	      break;
-	//
-	// 	      case "episode-4-go": audioScoreFour.play();
-	// 	      break;
-	//
-	// 	      case "episode-5-go": audioScoreFive.play();
-	// 	      break;
-	//
-	// 	      case "episode-6-go": audioScoreSix.play();
-	// 	      break;
-	//
-	// 	      default: console.log("no music");
-	// 	    }
-
-			console.log("received SSE");
+			//if tf is still false, play audio
+if(tf===false){
+console.log("received SSE");
 			console.log(e);
 				var data = JSON.parse(e.data);
 				console.log(data.id, data.msg);
-		}, false);
+				tf=true;
+				var x = data["action"];
+							switch(x){
+								case "episode-1-go": audio.play();
+								break;
+
+								case "episode-2-go": audioScoreTwo.play();
+								break;
+
+								case "episode-3-go": audioScoreThree.play();
+								break;
+
+								case "episode-4-go": audioScoreFour.play();
+								break;
+
+								case "episode-5-go": audioScoreFive.play();
+								break;
+
+								case "episode-6-go": audioScoreSix.play();
+								break;
+
+								default: console.log("no music");
+							}
+
+		}}, false);
+//---returns tf = false when audio has finished. Loops through an array of all the audios
+for(var i =0; i < allAudio.length; i ++){
+		allAudio[i].addEventListener("ended", function(){
+			tf=false;
+			console.log("ended");
+		});
+};
 
 	</script>
 
