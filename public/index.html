@@ -11,7 +11,6 @@
   <!-- Mobile-friendly viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript">
-
 	var audio = document.createElement('audio');
 	audio.src = 'media/corners.mp3';
 
@@ -43,63 +42,100 @@
 		source = new EventSource("/listen");
 
 		source.addEventListener('open', function(e) {
-				console.log("opened sse connection");
+  			console.log("opened sse connection");
 		}, false);
 
 		source.addEventListener('error', function(e) {
-				if (e.readyState == EventSource.CLOSED) {
-					console.log("closed sse connection");
-				}
+  			if (e.readyState == EventSource.CLOSED) {
+    			console.log("closed sse connection");
+  			}
 		}, false);
 
 		source.addEventListener('message', function(e) {
 // audio.play();
 			console.log("received sse");
 			console.log(data);
-				// var data = JSON.parse(e.data);
-				// console.log(data.id, data.msg);
+  			// var data = JSON.parse(e.data);
+  			// console.log(data.id, data.msg);
 		}, false);
 
 		source.addEventListener('cohortMessage', function(e) {
+
 			//if tf is still false, play audio
-if(tf===false){
+
 console.log("received SSE");
 			console.log(e);
-				var data = JSON.parse(e.data);
-				console.log(data.id, data.msg);
-				tf=true;
+  			var data = JSON.parse(e.data);
+  			console.log(data.id, data.msg);
+
 				var x = data["action"];
+
+				if(tf===false){
+						tf=true;
 							switch(x){
-								case "episode-1-go": audio.play();
-								break;
+					      case "episode-1-go": audio.play();
+					      break;
 
-								case "episode-2-go": audioScoreTwo.play();
-								break;
+					      case "episode-2-go": audioScoreTwo.play();
+					      break;
 
-								case "episode-3-go": audioScoreThree.play();
-								break;
+					      case "episode-3-go": audioScoreThree.play();
+					      break;
 
-								case "episode-4-go": audioScoreFour.play();
-								break;
+					      case "episode-4-go": audioScoreFour.play();
+					      break;
 
-								case "episode-5-go": audioScoreFive.play();
-								break;
+					      case "episode-5-go": audioScoreFive.play();
+					      break;
 
-								case "episode-6-go": audioScoreSix.play();
-								break;
+					      case "episode-6-go": audioScoreSix.play();
+					      break;
 
-								default: console.log("no music");
+
+					      default: console.log("no music");
+					    }
+
+						};
+
+							if(x === "pause"){
+								for(var i =0; i < allAudio.length; i ++){
+									allAudio[i].pause();
+									tf=false
+									console.log('paused');
+
+								};
+
+							};
+
+							if(x === "stop"){
+								for(var i =0; i < allAudio.length; i ++){
+									if(allAudio[i].duration > 0 && !allAudio[i].paused){
+										allAudio[i].pause();
+										allAudio[i].currentTime = 0;
+										console.log('stopped');
+									} else {
+									allAudio[i].currentTime = 0;
+									console.log('stopped');
+									}
+
+									tf=false
+
 							}
+						}
 
-		}}, false);
+
+		}, false);
 //---returns tf = false when audio has finished. Loops through an array of all the audios
 for(var i =0; i < allAudio.length; i ++){
+
 		allAudio[i].addEventListener("ended", function(){
 			tf=false;
 			console.log("ended");
-		});
-};
+			});
 
+
+
+};
 	</script>
 
 </head>
