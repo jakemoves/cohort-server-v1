@@ -63,7 +63,7 @@
 
 			//if tf is still false, play audio
 
-console.log("received SSE");
+			console.log("received SSE");
 			console.log(e);
   			var data = JSON.parse(e.data);
   			console.log(data.id, data.msg);
@@ -91,8 +91,7 @@ console.log("received SSE");
 					      case "episode-6-go": audioScoreSix.play();
 					      break;
 
-
-					      default: console.log("no music");
+								default: console.log("no music");
 					    }
 
 						};
@@ -142,7 +141,7 @@ for(var i =0; i < allAudio.length; i ++){
 <body>
 	<main role="main">
 		<h1>Cohort Web Test</h1>
-		<button id = "b1" onclick="load()"> GO! </button>
+		<!-- <button id = "b1" onclick="load()"> GO! </button> -->
     </main>
 </body>
 </html>
