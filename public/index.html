@@ -63,7 +63,7 @@
 
 			//if tf is still false, play audio
 
-			console.log("received SSE");
+console.log("received SSE");
 			console.log(e);
   			var data = JSON.parse(e.data);
   			console.log(data.id, data.msg);
@@ -91,7 +91,8 @@
 					      case "episode-6-go": audioScoreSix.play();
 					      break;
 
-								default: console.log("no music");
+
+					      default: console.log("no music");
 					    }
 
 						};
