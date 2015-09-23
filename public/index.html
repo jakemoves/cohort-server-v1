@@ -15,7 +15,7 @@
 	audio.src = 'http://webspace.ocad.ca/~lg14ig/media/corners.mp3';
 
 	var audioScoreTwo = document.createElement('audio');
-	audioScoreTwo.src = 'http://webspace.ocad.ca/~lg14ig/media/test.mp3';
+	audioScoreTwo.src = '/media/test.mp3';
 
 	var audioScoreThree = document.createElement('audio');
 	audioScoreThree.src = 'http://webspace.ocad.ca/~lg14ig/media/chip melt.mp3';
@@ -34,10 +34,12 @@
 //--setting up boolean to only have one audio playback at a time
 	var tf = false;
 
-	// var load = function(){
-	// 	audio.load();
-	// 	console.log("audio loaded")
-	// }
+	var load = function(){
+		for(var i =0; i< allAudio.length; i++){
+		allAudio[i].load();
+	}
+		console.log("audio loaded")
+	};
 
 		source = new EventSource("/listen");
 
