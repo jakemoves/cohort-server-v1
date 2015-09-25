@@ -1,24 +1,96 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-
-	<title>Cohort Web Test</title>
-
-	<meta name="description" content="">
-
-  <!-- Mobile-friendly viewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>FluxDelux</title>
 
 
-</head>
-<body>
-	<main role="main">
-		<h1>Cohort Web Test</h1>
-		<button id = "b1" onclick="load()"> GO! </button>
-    </main>
 
-		<script src ="fluxdelux.js"></script>
-</body>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="flux.css" rel="stylesheet">
+
+
+  </head>
+    <body>
+        <div id = "playerLayer">
+            <div class="alert alert-success" role="alert">FluxDelux is running!</div>
+
+        </div>
+
+        <span id="loading">
+          <img src="img/loading.png" width ="45%" height = "45%">
+        </span>
+<!--
+        <div id = "prepScreen">
+          <p> Welcome to FluxDelux.<br> Once you're at the Flux location with comfy shoes on, headphones in hand, hit the "Standby" button to await your FluxDelux instructions.</p>
+          <button type="button" class="btn btn-primary">Standby</button>
+          <div> -->
+
+
+
+
+    <div class = "container-fluid">
+        <div class = "row">
+           <div id="logo" class = "col-xs-12">
+             <embed src="img/fluxlogoblue2.svg" type="image/svg+xml"></embed>
+           </div>
+        </div>
+    </div>
+
+    <div class = "container-fluid">
+          <div class = "row">
+            <div class = "embed-responsive embed-responsive-16by9">
+              <iframe  class="embed-responsive-item"
+                src="https://www.youtube.com/embed/SJwnv3CgTGw?rel=0&amp;showinfo=0">
+              </iframe>
+             </div>
+          </div>
+
+
+          <div class = "row">
+              <div class = "col-xs-12">
+                <h4 id = 'info'>
+                   Welcome to FluxDelux.<br> Once you're at the Flux location with comfy shoes on, headphones in hand, hit the "Standby" button to await your FluxDelux instructions.
+                </h4>
+              </div>
+          </div>
+
+          <div class = "row">
+              <!-- <div class = "col-md-4 col-xs-12"> -->
+                  <button id = "b1" class="btn btn-default btn-block" onclick="load()"> Standby </button>
+              <!-- </div> -->
+          </div>
+
+
+
+
+
+          <div class = "row">
+              <div class = "col-xs-12">
+                <h6 id='footer'>
+                  <small>  &#169; 2015 <a href = "http://peggybakerdance.com/">Peggy Baker Dance Projects</a>,<a href = "https://www.youtube.com/watch?v=GqcaSqmvz_U"> Luke Garwood</a>, <a href= "http://jacob-n.com/"> Jacob Niedzwiecki</a></small>
+                </h6>
+              </div>
+
+              <div id = "longLogo" class="col-xs-12">
+                <embed src = "img/bottom.svg" type ="image/svg+xml"></embed>
+
+              </div>
+
+          </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/fluxdelux.js"></script>
+
+    </script>
+  </body>
 </html>
