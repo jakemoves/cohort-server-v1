@@ -1,5 +1,6 @@
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
+var playerLayer = document.getElementById("playerLayer")
 
 var audio = document.createElement('audio');
 audio.src = 'http://webspace.ocad.ca/~lg14ig/media/corners.mp3';
@@ -133,6 +134,9 @@ for(var i =0; i < allAudio.length; i ++){
 
 $("#b1").click(function(){
   info.innerHTML = "Fantastic, you are now in queue. Please wait for audio instructions.";
-  b1.innerHTML = "You are now standying by!"
+  
+  b1.innerHTML = "You are now standying by!";
+
+  playerLayer.style.visibility = "visible";
 
 })
