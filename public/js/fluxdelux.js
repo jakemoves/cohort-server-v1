@@ -53,7 +53,7 @@ var load = function(){
 
   source.addEventListener('cohortMessage', function(e) {
 
-    //if tf is still false, play audio
+    //if tf is still false,  play audio
 
 console.log("received SSE");
     console.log(e);
