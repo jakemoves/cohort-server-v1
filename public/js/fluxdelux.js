@@ -1,16 +1,16 @@
 
 //GROUP ASSIGNS A PERSON TO BE EITHER RED OR BLUE
-var group = function(){
-  var ranNum = Math.random()*(2-1)+1;
-
-  if(ranNum > 1.5){
-    return  2
-  } else {
-    return 1
-  };
-}
-group();
-console.log(group());
+// var group = function(){
+//   var ranNum = Math.random()*(2-1)+1;
+//
+//   if(ranNum > 1.5){
+//     return  2
+//   } else {
+//     return 1
+//   };
+// }
+// group();
+// console.log(group());
 
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
@@ -91,7 +91,7 @@ console.log("received SSE");
       if(tf===false){
         tf=true;
 
-          if(group() === 1){
+          // if(group() === 1){
 
             switch(x){
               case "episode-1-go": audio.play();
@@ -115,34 +115,34 @@ console.log("received SSE");
 
               default: console.log("no music");
             }
-          }
+          // }
 
-          if(group() === 2){
-            switch(x){
-              case "episode-1-go": audio.play();
-              break;
+          // if(group() === 2){
+          //   switch(x){
+          //     case "episode-1-go": audio.play();
+          //     break;
+          //
+          //     case "episode-2-go": cornersR.play();
+          //     break;
+          //
+          //     case "episode-3-go": chipmeltR.play();
+          //     break;
+          //
+          //     case "episode-4-go": shipR.play();
+          //     break;
+          //
+          //     case "episode-5-go": hulaR.play();
+          //     break;
+          //
+          //     case "episode-6-go": orbitalsR.play();
+          //     break;
+          //
+          //
+          //     default: console.log("no music");
+          //   }
+          //
 
-              case "episode-2-go": cornersR.play();
-              break;
-
-              case "episode-3-go": chipmeltR.play();
-              break;
-
-              case "episode-4-go": shipR.play();
-              break;
-
-              case "episode-5-go": hulaR.play();
-              break;
-
-              case "episode-6-go": orbitalsR.play();
-              break;
-
-
-              default: console.log("no music");
-            }
-
-
-          }
+          // }
 
           };
 
