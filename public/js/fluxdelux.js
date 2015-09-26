@@ -1,26 +1,51 @@
+
+//GROUP ASSIGNS A PERSON TO BE EITHER RED OR BLUE
+var group = function(){
+  var ranNum = Math.random()*(2-1)+1;
+
+  if(ranNum > 1.5){
+    return  2
+  } else {
+    return 1
+  };
+}
+group();
+console.log(group());
+
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
 var playerLayer = document.getElementById("playerLayer")
 
 var audio = document.createElement('audio');
-audio.src = 'http://webspace.ocad.ca/~lg14ig/media/corners.mp3';
+audio.src = 'http://webspace.ocad.ca/~lg14ig/media/simpleflux.mp3';
 
-var audioScoreTwo = document.createElement('audio');
-audioScoreTwo.src = '/media/test.mp3';
 
-var audioScoreThree = document.createElement('audio');
-audioScoreThree.src = 'http://webspace.ocad.ca/~lg14ig/media/chip melt.mp3';
+var cornersB = document.createElement('audio');
+cornersB.src = 'http://webspace.ocad.ca/~lg14ig/media/cornersblue.mp3';
+var cornersR = document.createElement('audio');
+cornersR.src = 'http://webspace.ocad.ca/~lg14ig/media/cornersred.mp3';
 
-var audioScoreFour = document.createElement('audio');
-audioScoreFour.src = 'http://webspace.ocad.ca/~lg14ig/media/ship.mp3';
+var chipmeltB = document.createElement('audio');
+chipmeltB.src = 'http://webspace.ocad.ca/~lg14ig/media/chipmeltblue.mp3';
+var chipmeltR = document.createElement('audio');
+chipmeltR.src = 'http://webspace.ocad.ca/~lg14ig/media/chipmeltred.mp3';
 
-var audioScoreFive = document.createElement('audio');
-audioScoreFive.src = 'http://webspace.ocad.ca/~lg14ig/media/simpleflux.mp3';
+var hulaB = document.createElement('audio');
+hulaB.src = 'http://webspace.ocad.ca/~lg14ig/media/hulablue.mp3';
+var hulaR = document.createElement('audio');
+hulaR.src = 'http://webspace.ocad.ca/~lg14ig/media/hulared.mp3';
 
-var audioScoreSix = document.createElement('audio');
- audioScoreSix.src = 'http://webspace.ocad.ca/~lg14ig/media/simpleflux.mp3';
+var shipB = document.createElement('audio');
+shipB.src = 'http://webspace.ocad.ca/~lg14ig/media/shipblue.mp3';
+var shipR= document.createElement('audio');
+shipR.src = 'http://webspace.ocad.ca/~lg14ig/media/shipred.mp3';
 
-var allAudio = [audio, audioScoreTwo, audioScoreThree, audioScoreFour, audioScoreFive, audioScoreSix];
+ var orbitalsB = document.createElement('audio');
+ orbitalsB.src = 'http://webspace.ocad.ca/~lg14ig/media/orbitalsblue.mp3';
+ var orbitalsR = document.createElement('audio');
+  orbitalsR.src = 'http://webspace.ocad.ca/~lg14ig/media/orbitalsred.mp3';
+
+var allAudio = [audio, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipR, orbitalsB, orbitalsR];
 
 //--setting up boolean to only have one audio playback at a time
 var tf = false;
@@ -66,30 +91,61 @@ console.log("received SSE");
       if(tf===false){
         tf=true;
 
+          if(group() === 1){
+
             switch(x){
               case "episode-1-go": audio.play();
               break;
 
-              case "episode-2-go": audioScoreTwo.play();
+              case "episode-2-go": cornersB.play();
               break;
 
-              case "episode-3-go": audioScoreThree.play();
+              case "episode-3-go": chipmeltB.play();
               break;
 
-              case "episode-4-go": audioScoreFour.play();
+              case "episode-4-go": shipB.play();
               break;
 
-              case "episode-5-go": audioScoreFive.play();
+              case "episode-5-go": hulaB.play();
               break;
 
-              case "episode-6-go": audioScoreSix.play();
+              case "episode-6-go": orbitalsB.play();
+              break;
+
+
+              default: console.log("no music");
+            }
+          }
+
+          if(group() === 2){
+            switch(x){
+              case "episode-1-go": audio.play();
+              break;
+
+              case "episode-2-go": cornersR.play();
+              break;
+
+              case "episode-3-go": chipmeltR.play();
+              break;
+
+              case "episode-4-go": shipR.play();
+              break;
+
+              case "episode-5-go": hulaR.play();
+              break;
+
+              case "episode-6-go": orbitalsR.play();
               break;
 
 
               default: console.log("no music");
             }
 
+
+          }
+
           };
+
 
             if(x === "pause"){
               for(var i =0; i < allAudio.length; i ++){
@@ -134,7 +190,7 @@ for(var i =0; i < allAudio.length; i ++){
 
 $("#b1").click(function(){
   info.innerHTML = "Fantastic, you are now in queue. Please wait for audio instructions.";
-  
+
   b1.innerHTML = "You are now standying by!";
 
   playerLayer.style.visibility = "visible";
