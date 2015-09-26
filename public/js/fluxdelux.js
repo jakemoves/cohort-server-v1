@@ -1,20 +1,20 @@
 
 //GROUP ASSIGNS A PERSON TO BE EITHER RED OR BLUE
-// var group = function(){
-//   var ranNum = Math.random()*(2-1)+1;
-//
-//   if(ranNum > 1.5){
-//     return  2
-//   } else {
-//     return 1
-//   };
-// }
-// group();
-// console.log(group());
+var group = function(){
+  var ranNum = Math.random()*(2-1)+1;
+
+  if(ranNum > 1.5){
+    return  2
+  } else {
+    return 1
+  };
+}
+var redblue = group();
+console.log(redblue);
 
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
-var playerLayer = document.getElementById("playerLayer")
+var playerLayer = document.getElementById("playerLayer");
 
 var audio = document.createElement('audio');
 audio.src = 'http://webspace.ocad.ca/~lg14ig/media/simpleflux.mp3';
@@ -91,7 +91,7 @@ console.log("received SSE");
       if(tf===false){
         tf=true;
 
-          // if(group() === 1){
+          if(redblue === 1){
 
             switch(x){
               case "episode-1-go": audio.play();
@@ -115,34 +115,32 @@ console.log("received SSE");
 
               default: console.log("no music");
             }
-          // }
+          } else {
+            switch(x){
+              case "episode-1-go": audio.play();
+              break;
 
-          // if(group() === 2){
-          //   switch(x){
-          //     case "episode-1-go": audio.play();
-          //     break;
-          //
-          //     case "episode-2-go": cornersR.play();
-          //     break;
-          //
-          //     case "episode-3-go": chipmeltR.play();
-          //     break;
-          //
-          //     case "episode-4-go": shipR.play();
-          //     break;
-          //
-          //     case "episode-5-go": hulaR.play();
-          //     break;
-          //
-          //     case "episode-6-go": orbitalsR.play();
-          //     break;
-          //
-          //
-          //     default: console.log("no music");
-          //   }
-          //
+              case "episode-2-go": cornersR.play();
+              break;
 
-          // }
+              case "episode-3-go": chipmeltR.play();
+              break;
+
+              case "episode-4-go": shipR.play();
+              break;
+
+              case "episode-5-go": hulaR.play();
+              break;
+
+              case "episode-6-go": orbitalsR.play();
+              break;
+
+
+              default: console.log("no music");
+            }
+
+
+          }
 
           };
 
@@ -150,7 +148,7 @@ console.log("received SSE");
             if(x === "pause"){
               for(var i =0; i < allAudio.length; i ++){
                 allAudio[i].pause();
-                tf=false
+                tf=false;
                 console.log('paused');
 
               };
@@ -168,7 +166,7 @@ console.log("received SSE");
                 console.log('stopped');
                 }
 
-                tf=false
+                tf=false;
 
             }
           }
