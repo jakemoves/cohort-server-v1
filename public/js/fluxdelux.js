@@ -87,7 +87,7 @@ console.log("received SSE");
       console.log(data.id, data.msg);
 
       var x = data["action"];
-
+setTimeout(function(){
       if(tf===false){
         tf=true;
 
@@ -170,6 +170,7 @@ console.log("received SSE");
 
             }
           }
+        }, 5000);
 
 
 
