@@ -1,12 +1,12 @@
 
-//GROUP ASSIGNS A PERSON TO BE EITHER RED OR BLUE
+//GROUP() ASSIGNS A PERSON TO BE EITHER RED OR BLUE
 var group = function(){
   var ranNum = Math.random()*(2-1)+1;
 
   if(ranNum > 1.5){
-    return  2
+    return  2;
   } else {
-    return 1
+    return 1;
   };
 }
 var redblue = group();
@@ -189,8 +189,8 @@ for(var i =0; i < allAudio.length; i ++){
 $("#b1").click(function(){
   info.innerHTML = "Fantastic, you are now in queue. Please wait for audio instructions.";
 
-  b1.innerHTML = "You are now standying by!";
+  b1.innerHTML = "You are now checked-in!";
 
   playerLayer.style.visibility = "visible";
 
-})
+});

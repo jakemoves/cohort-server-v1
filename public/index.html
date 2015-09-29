@@ -16,6 +16,8 @@
 
   </head>
     <body>
+      <div id = "wrapper">
+        <div id="head">
         <div id = "playerLayer">
             <!-- <div class="alert alert-success" role="alert">FluxDelux is running!</div> -->
 
@@ -40,8 +42,8 @@
            </div>
         </div>
     </div>
-
-    <div class = "container-fluid">
+</div>
+    <!-- <div class = "container-fluid">
           <div class = "row">
             <div class = "embed-responsive embed-responsive-16by9">
 							<iframe  class="embed-responsive-item"
@@ -49,40 +51,43 @@
 								</iframe>
 
              </div>
-          </div>
+          </div> -->
 
-
+<div id = "content">
           <div class = "row">
               <div class = "col-xs-12">
                 <h4 id = 'info'>
-                    Welcome! Once you're at the Flux location with comfy shoes on, headphones in hand, hit the "Standby" button below to await your FluxDelux instructions.
+                    Welcome! Once you're at the Flux location, and you've entered onto the gym floor, hit the "Check-In" button below to await your FluxDelux instructions.
                 </h4>
               </div>
           </div>
 
           <div class = "row">
               <!-- <div class = "col-md-4 col-xs-12"> -->
-                  <button id = "b1" class="btn btn-default btn-block" onclick="load()"> Standby </button>
+                  <button id = "b1" class="btn btn-default btn-block" onclick="load()"> Check-In </button>
               <!-- </div> -->
           </div>
 
+</div>
 
 
-
-
+<div id = "footer">
           <div class = "row">
               <div class = "col-xs-12">
-                <h6 id='footer'>
+                <footer>
                   <small>  &#169; 2015 <a href = "http://peggybakerdance.com/">Peggy Baker Dance Projects</a>,<a href = "https://www.youtube.com/watch?v=GqcaSqmvz_U"> Luke Garwood</a>, <a href= "http://jacob-n.com/"> Jacob Niedzwiecki</a></small>
-                </h6>
-              </div>
+
+              <!-- </div> -->
 
               <div id = "longLogo" class="col-xs-12">
                 <embed src = "img/bottom.svg" type ="image/svg+xml"></embed>
 
               </div>
-
+              </footer>
           </div>
+        </div>
+      </div>
+  </div>
 
 
 
@@ -92,6 +97,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/fluxdelux.js"></script>
 
+</div>
     </script>
   </body>
 </html>
