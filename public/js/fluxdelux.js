@@ -190,10 +190,10 @@ for(var i =0; i < allAudio.length; i ++){
 
 for(var i =0; i < allAudio.length; i ++){
 
-  allAudio[i].onplay = function(){
+  allAudio[i].addEventListener("play", function(){
     info.innerHTML = "Audio instructions are now streaming";
     b1.innerHTML = " ";
-  };
+  });
 
 
 
