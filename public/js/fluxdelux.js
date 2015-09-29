@@ -180,14 +180,28 @@ for(var i =0; i < allAudio.length; i ++){
   allAudio[i].addEventListener("ended", function(){
     tf=false;
     console.log("ended");
+    info.innerHTML = "If you'd like to stay for another score, please wait. If not, thank you for playing FluxDelux, you can now make your way to the exit";
     });
 
 
 
 };
 
+for(var i =0; i < allAudio.length; i ++){
+
+  allAudio[i].onplay = function(){
+    info.innerHTML = "Audio instructions are now streaming";
+    b1.innerHTML = " ";
+  };
+
+
+
+};
+
+
+
 $("#b1").click(function(){
-  info.innerHTML = "Fantastic, you are now in queue. Please wait for audio instructions.";
+  info.innerHTML = "Fantastic, you are now in queue. Please put on your headphones and wait for audio instructions.";
 
   b1.innerHTML = "You are now checked-in!";
 
