@@ -17,7 +17,7 @@ var b1 = document.getElementById("b1");
 var playerLayer = document.getElementById("playerLayer");
 
 var audio = document.createElement('audio');
-audio.src = 'http://webspace.ocad.ca/~lg14ig/media/simpleflux.mp3';
+audio.src = 'http://webspace.ocad.ca/~lg14ig/media/test.mp3';
 
 
 var cornersB = document.createElement('audio');
@@ -161,6 +161,7 @@ setTimeout(function(){
                   allAudio[i].pause();
                   allAudio[i].currentTime = 0;
                   console.log('stopped');
+
                 } else {
                 allAudio[i].currentTime = 0;
                 console.log('stopped');
