@@ -17,7 +17,7 @@ var b1 = document.getElementById("b1");
 var playerLayer = document.getElementById("playerLayer");
 
 var audio = document.createElement('audio');
-audio.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
+audio.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
 
 
 var cornersB = document.createElement('audio');
