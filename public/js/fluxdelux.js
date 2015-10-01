@@ -17,33 +17,33 @@ var b1 = document.getElementById("b1");
 var playerLayer = document.getElementById("playerLayer");
 
 var audio = document.createElement('audio');
-audio.src = 'http://webspace.ocad.ca/~lg14ig/media/test.mp3';
+audio.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/simpleflux.mp3';
 
 
 var cornersB = document.createElement('audio');
-cornersB.src = 'http://webspace.ocad.ca/~lg14ig/media/cornersblue.mp3';
+cornersB.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/cornersblue.mp3';
 var cornersR = document.createElement('audio');
-cornersR.src = 'http://webspace.ocad.ca/~lg14ig/media/cornersred.mp3';
+cornersR.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/cornersred.mp3';
 
 var chipmeltB = document.createElement('audio');
-chipmeltB.src = 'http://webspace.ocad.ca/~lg14ig/media/chipmeltblue.mp3';
+chipmeltB.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/chipmeltblue.mp3';
 var chipmeltR = document.createElement('audio');
-chipmeltR.src = 'http://webspace.ocad.ca/~lg14ig/media/chipmeltred.mp3';
+chipmeltR.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/chipmeltred.mp3';
 
 var hulaB = document.createElement('audio');
-hulaB.src = 'http://webspace.ocad.ca/~lg14ig/media/hulablue.mp3';
+hulaB.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/hulablue.mp3';
 var hulaR = document.createElement('audio');
-hulaR.src = 'http://webspace.ocad.ca/~lg14ig/media/hulared.mp3';
+hulaR.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/hulared.mp3';
 
 var shipB = document.createElement('audio');
-shipB.src = 'http://webspace.ocad.ca/~lg14ig/media/shipblue.mp3';
+shipB.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/shipblue.mp3';
 var shipR= document.createElement('audio');
-shipR.src = 'http://webspace.ocad.ca/~lg14ig/media/shipred.mp3';
+shipR.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/shipred.mp3';
 
  var orbitalsB = document.createElement('audio');
- orbitalsB.src = 'http://webspace.ocad.ca/~lg14ig/media/orbitalsblue.mp3';
+ orbitalsB.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/orbitalsblue.mp3';
  var orbitalsR = document.createElement('audio');
-  orbitalsR.src = 'http://webspace.ocad.ca/~lg14ig/media/orbitalsred.mp3';
+  orbitalsR.src = 'https://s3-us-west-2.amazonaws.com/fluxdeluxmedia/orbitalsred.mp3';
 
 var allAudio = [audio, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipR, orbitalsB, orbitalsR];
 

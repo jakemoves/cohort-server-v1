@@ -69,3 +69,10 @@ button {
   z-index: 1;
 
 }
+embed{
+	width:100%
+}
+
+a{
+  text-decoration: underline;
+}
