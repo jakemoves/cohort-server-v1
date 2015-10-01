@@ -166,7 +166,7 @@ setTimeout(function(){
                 } else {
                 allAudio[i].currentTime = 0;
                 console.log('stopped');
-                $("audio").remove():
+                $("audio").remove();
                 }
 
                 tf=false;
