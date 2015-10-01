@@ -161,10 +161,12 @@ setTimeout(function(){
                   allAudio[i].pause();
                   allAudio[i].currentTime = 0;
                   console.log('stopped');
+                  $("audio").remove();
 
                 } else {
                 allAudio[i].currentTime = 0;
                 console.log('stopped');
+                $("audio").remove():
                 }
 
                 tf=false;
@@ -182,6 +184,11 @@ for(var i =0; i < allAudio.length; i ++){
   allAudio[i].addEventListener("ended", function(){
     tf=false;
     console.log("ended");
+
+        $("audio").remove();
+
+
+
     info.innerHTML = "If you'd like to stay for another score, please wait. If not, thank you for playing FluxDelux, you can now make your way to the exit";
     });
 
