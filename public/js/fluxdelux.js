@@ -223,7 +223,7 @@ for(var i =0; i < allAudio.length; i ++){
 }
 
 
-
+// MOST AGREE THIS IS A BETTER WAY, BUT STILL NOT GREAT WAY OF PUTTING AN EVENTLISTENER ON AN ARRAY
 
 for(var p =0; p < allAudio.length; p ++){
   (function(p){
@@ -237,6 +237,17 @@ for(var p =0; p < allAudio.length; p ++){
 
 };
 
+for(var q =0; q < allAudio.length; q ++){
+  (function(q){
+    allAudio[q].addEventListener("waiting", function(){
+
+    info.innerHTML = "Audio instructions are delayed";
+  console.log("stalled");
+
+  }, false);
+})(q);
+
+};
 
 
 
