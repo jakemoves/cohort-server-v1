@@ -7,17 +7,20 @@ var group = function(){
     return  2;
   } else {
     return 1;
-  };
-}
+  }
+};
 var redblue = group();
 console.log(redblue);
+
+var Me;
 
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
 var playerLayer = document.getElementById("playerLayer");
 
-var audio = document.createElement('audio');
-audio.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
+var simple = document.createElement('audio');
+simple.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
+
 
 
 var cornersB = document.createElement('audio');
@@ -45,7 +48,7 @@ shipR.src = 'https://s3.amazonaws.com/fluxdelux.org/shipred.mp3';
  var orbitalsR = document.createElement('audio');
   orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitalsred.mp3';
 
-var allAudio = [audio, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipR, orbitalsB, orbitalsR];
+var allAudio = [simple, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipR, orbitalsB, orbitalsR];
 
 //--setting up boolean to only have one audio playback at a time
 var tf = false;
@@ -54,7 +57,7 @@ var load = function(){
   for(var i =0; i< allAudio.length; i++){
   allAudio[i].load();
 }
-  console.log("audio loaded")
+  console.log("audio loaded");
 };
 
   source = new EventSource("/listen");
@@ -86,18 +89,22 @@ console.log("received SSE");
       var data = JSON.parse(e.data);
       console.log(data.id, data.msg);
 
-      var x = data["action"];
+      var x = data.action;
+
 setTimeout(function(){
       if(tf===false){
-        tf=true;
+
+          tf=true;
 
           if(redblue === 1){
 
             switch(x){
-              case "episode-1-go": audio.play();
+              case "episode-1-go": simple.play();
+              Me = simple;
               break;
 
               case "episode-2-go": cornersB.play();
+              Me = cornersB;
               break;
 
               case "episode-3-go": chipmeltB.play();
@@ -117,10 +124,12 @@ setTimeout(function(){
             }
           } else {
             switch(x){
-              case "episode-1-go": audio.play();
+              case "episode-1-go": simple.play();
+              Me = simple;
               break;
 
               case "episode-2-go": cornersR.play();
+              Me = cornersR;
               break;
 
               case "episode-3-go": chipmeltR.play();
@@ -142,70 +151,92 @@ setTimeout(function(){
 
           }
 
-          };
+          }
 
 
             if(x === "pause"){
-              for(var i =0; i < allAudio.length; i ++){
-                allAudio[i].pause();
-                tf=false;
+              // for(var i =0; i < allAudio.length; i ++){
+              //   allAudio[i].pause();
+              //   tf=false;
+              Me.pause();
                 console.log('paused');
 
-              };
+              // }
 
-            };
+            }
 
             if(x === "stop"){
-              for(var i =0; i < allAudio.length; i ++){
-                if(allAudio[i].duration > 0 && !allAudio[i].paused){
-                  allAudio[i].pause();
-                  allAudio[i].currentTime = 0;
-                  console.log('stopped');
-                  $("audio").remove();
-
-                } else {
-                allAudio[i].currentTime = 0;
-                console.log('stopped');
-                $("audio").remove();
-                }
+              // for(var p =0; p < allAudio.length; p ++){
+              //   if(allAudio[p].duration > 0 && !allAudio[p].paused){
+                //   allAudio[p].pause();
+                //   allAudio[p].currentTime = 0;
+                //   console.log('stopped');
+                //   $("audio").remove();
+                //
+                // } else {
+                // allAudio[p].currentTime = 0;
+                // console.log('stopped');
+                // $("audio").remove();
+                // }
+                if(Me.duration > 0 && !Me.paused){
+                Me.pause();
+                Me.currentTime = 0;
+              }
+              $('audio').remove();
 
                 tf=false;
 
-            }
+            // }
           }
+
+
+
         }, 5000);
+
+
 
 
 
   }, false);
 //---returns tf = false when audio has finished. Loops through an array of all the audios
-for(var i =0; i < allAudio.length; i ++){
-
-  allAudio[i].addEventListener("ended", function(){
-    tf=false;
-    console.log("ended");
-
-        $("audio").remove();
 
 
 
-    info.innerHTML = "If you'd like to stay for another score, please wait. If not, thank you for playing FluxDelux, you can now make your way to the exit";
-    });
 
-
-
-};
+// Me.addEventListener("ended", function(){
+//       tf=false;
+//       console.log("ended");
+//       $("audio").remove();
+//       info.innerHTML = "If you'd like to stay for another score, please wait. If not, thank you for playing FluxDelux, you can now make your way to the exit";
+//     }, false);
 
 for(var i =0; i < allAudio.length; i ++){
 
-  allAudio[i].addEventListener("play", function(){
+    allAudio[i].addEventListener("ended", function(){
+      tf=false;
+      console.log("ended");
+      $("audio").remove();
+      info.innerHTML = "If you'd like to stay for another score, please wait. If not, thank you for playing FluxDelux, you can now make your way to the exit";
+    }, false);
+
+
+}
+
+
+
+
+for(var p =0; p < allAudio.length; p ++){
+  (function(p){
+    allAudio[p].addEventListener("play", function(){
+
     info.innerHTML = "Audio instructions are now streaming";
     b1.innerHTML = " ";
-  });
 
-
+  }, false);
+})(p);
 
 };
+
 
 
 
