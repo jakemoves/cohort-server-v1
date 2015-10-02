@@ -1,6 +1,6 @@
 
 //GROUP() ASSIGNS A PERSON TO BE EITHER RED OR BLUE
-var group = function(){
+function group(){
   var ranNum = Math.random()*(2-1)+1;
 
   if(ranNum > 1.5){
@@ -13,52 +13,70 @@ var redblue = group();
 console.log(redblue);
 
 var Me;
+var Index;
+
 
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
 var playerLayer = document.getElementById("playerLayer");
 
+
 var simple = document.createElement('audio');
 simple.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
-
-
+simple.preload = "none";
 
 var cornersB = document.createElement('audio');
 cornersB.src = 'https://s3.amazonaws.com/fluxdelux.org/cornersblue.mp3';
+cornersB.preload = "none";
 var cornersR = document.createElement('audio');
 cornersR.src = 'https://s3.amazonaws.com/fluxdelux.org/cornersred.mp3';
+cornersR.preload = "none";
 
 var chipmeltB = document.createElement('audio');
 chipmeltB.src = 'https://s3.amazonaws.com/fluxdelux.org/chipmeltblue.mp3';
+chipmeltB.preload = "none";
 var chipmeltR = document.createElement('audio');
 chipmeltR.src = 'https://s3.amazonaws.com/fluxdelux.org/chipmeltred.mp3';
+chipmeltR.preload = "none";
 
 var hulaB = document.createElement('audio');
 hulaB.src = 'https://s3.amazonaws.com/fluxdelux.org/hulablue.mp3';
+hulaB.preload = "none";
 var hulaR = document.createElement('audio');
 hulaR.src = 'https://s3.amazonaws.com/fluxdelux.org/hulared.mp3';
+hulaR.preload = "none";
 
 var shipB = document.createElement('audio');
 shipB.src = 'https://s3.amazonaws.com/fluxdelux.org/shipblue.mp3';
+shipB.preload = "none";
 var shipR= document.createElement('audio');
 shipR.src = 'https://s3.amazonaws.com/fluxdelux.org/shipred.mp3';
+shipR.preload = "none";
 
  var orbitalsB = document.createElement('audio');
  orbitalsB.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitalsblue.mp3';
+ orbitalsB.preload = "none";
  var orbitalsR = document.createElement('audio');
   orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitalsred.mp3';
+orbitalsR.preload = "none";
 
-var allAudio = [simple, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipR, orbitalsB, orbitalsR];
+var Corners = [cornersB, cornersR];
+var Chipmelt = [chipmeltB, chipmeltR];
+var Hula = [hulaB, hulaR];
+var Ship = [shipB, shipR];
+var Orbitals = [orbitalsB, orbitalsR];
+
+var allAudio = [simple, Corners, Chipmelt, Hula, Ship, Orbitals];
 
 //--setting up boolean to only have one audio playback at a time
 var tf = false;
 
-var load = function(){
-  for(var i =0; i< allAudio.length; i++){
-  allAudio[i].load();
-}
-  console.log("audio loaded");
-};
+// var load = function(){
+//   for(var i =0; i< allAudio.length; i++){
+//   allAudio[i].load();
+// }
+//   console.log("audio loaded");
+// };
 
   source = new EventSource("/listen");
 
@@ -91,6 +109,28 @@ console.log("received SSE");
 
       var x = data.action;
 
+        switch(x){
+          case "0": return Index = 0;
+          break;
+
+          case "1": return Index = 1;
+          break;
+
+          case "2": return Index = 2;
+          break;
+
+          case "3": return Index = 3;
+          break;
+
+          case "4": return Index = 4;
+          break;
+
+          case "5": return Index = 5;
+          break;
+          
+          default: console.log('no Index')
+        }
+
 setTimeout(function(){
       if(tf===false){
 
@@ -99,7 +139,9 @@ setTimeout(function(){
           if(redblue === 1){
 
             switch(x){
-              case "episode-1-go": simple.play();
+              case "episode-1-go":   $(allAudio[1,2,3,4,5,6,7,8,9,10]).remove();
+              simple.play();
+
               Me = simple;
               break;
 
@@ -124,7 +166,9 @@ setTimeout(function(){
             }
           } else {
             switch(x){
-              case "episode-1-go": simple.play();
+              case "episode-1-go":$(allAudio[1,2,3,4,5,6,7,8,9,10]).remove();
+              simple.play();
+
               Me = simple;
               break;
 
@@ -200,7 +244,11 @@ setTimeout(function(){
   }, false);
 //---returns tf = false when audio has finished. Loops through an array of all the audios
 
-
+var load = function(){
+  console.log(Index);
+  allAudio[Index].load();
+  console.log("audio loaded");
+}
 
 
 // Me.addEventListener("ended", function(){
@@ -210,6 +258,7 @@ setTimeout(function(){
 //       info.innerHTML = "If you'd like to stay for another score, please wait. If not, thank you for playing FluxDelux, you can now make your way to the exit";
 //     }, false);
 
+//LISTEN FOR WHEN AUDIO HAS ENDED AND UPDATE UI
 for(var i =0; i < allAudio.length; i ++){
 
     allAudio[i].addEventListener("ended", function(){
@@ -249,7 +298,7 @@ for(var q =0; q < allAudio.length; q ++){
 
 };
 
-
+//CHECK-IN FUNCTION
 
 $("#b1").click(function(){
   info.innerHTML = "Fantastic, you are now in queue. Please put on your headphones and wait for audio instructions.";
