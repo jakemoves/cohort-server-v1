@@ -1,6 +1,16 @@
+var GroupEnum = {
+    BLUE: 1,
+    RED: 2,
+    properties: {
+        1: {name: "blue", value: 1},
+        2: {name: "red", value: 2}
+    }
+};
+
+var numberOfEpisodes = 7;
 
 //GROUP() ASSIGNS A PERSON TO BE EITHER RED OR BLUE
-function group() {
+function assignGroup() {
     var ranNum = Math.random() * (2 - 1) + 1;
 
     if (ranNum > 1.5) {
@@ -9,11 +19,13 @@ function group() {
         return 1;
     }
 }
-var redblue = group();
-console.log(redblue);
+
+var participantGroup = assignGroup();
+
+console.log("participantGroup: " + GroupEnum.properties[participantGroup].name);
 
 //ME SETS UP THE STOP AND PAUSE
-var Me;
+var currentEpisodeAudio;
 //INDEX CAPTURES THE "PRELOAD" SSE NUMBER
 var Index;
 
@@ -24,9 +36,16 @@ var b1 = document.getElementById("b1");
 
 //LOADING ALL THE AUDIO ELEMENTS
 //SIMPLEFLUX IS REPLACED WITH A SHORT TEST.MP3 THATS ONLY 30s LONG
-var simple = document.createElement('audio');
-simple.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
-simple.preload = "none";
+var test = document.createElement('audio');
+test.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
+test.preload = "none";
+
+var simpleFluxB = document.createElement('audio');
+simpleFluxB.src = 'https://s3.amazonaws.com/fluxdelux.org/simplefluxblue.mp3';
+simpleFluxB.preload = "none";
+var simpleFluxR = document.createElement('audio');
+simpleFluxR.src = 'https://s3.amazonaws.com/fluxdelux.org/simplefluxred.mp3';
+simpleFluxR.preload = "none";
 
 var cornersB = document.createElement('audio');
 cornersB.src = 'https://s3.amazonaws.com/fluxdelux.org/cornersblue.mp3';
@@ -65,10 +84,10 @@ orbitalsR.preload = "none";
 
 //SETTING UP ARRAY OF ALL THE AUDIO FILES FOR FUTUR FOR LOOPS
 
-var allAudio = [simple, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipB, orbitalsB, orbitalsR];
+var allAudio = [test, simpleFluxB, simpleFluxR, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipB, orbitalsB, orbitalsR];
 
 //--setting up boolean to only have one audio playback at a time
-var tf = false;
+var audioIsPlaying = false;
 
 // I HAD A LOT OF FOR LOOPS BEFORE..AND THEN THE INTERNET TOLD ME IT WAS BAD..I STILL HAVE A COUPLE
 // var load = function(){
@@ -82,37 +101,41 @@ var tf = false;
 var load = function () {
     switch (Index) {
         case 0:
-            simple.load();
+            test.load();
             break;
 
         case 1:
-            cornersB.load();
-            cornersR.load();
-
+            simpleFluxB.load();
+            simpleFluxR.load();
             break;
 
         case 2:
+            cornersB.load();
+            cornersR.load();
+            break;
+
+        case 3:
             chipmeltB.load();
             chipmeltR.load();
             break;
 
-        case 3:
+        case 4:
             shipB.load();
             shipR.load();
             break;
 
-        case 4:
+        case 5:
             hulaB.load();
             hulaR.load();
             break;
 
-        case 5:
+        case 6:
             orbitalsB.load();
             orbitalsR.load();
             break;
 
         default:
-            console.log("no load");
+            console.log("could not load audio for index " + Index);
     }
 
     console.log("audio loaded");
@@ -145,189 +168,166 @@ source.addEventListener('message', function (e) {
 
 source.addEventListener('cohortMessage', function (e) {
 
-    //if tf is still false, play audio
-
     console.log("received SSE");
     console.log(e);
     //COLLECTING JSON DATA AND READING ACTION
     var data = JSON.parse(e.data);
-    console.log(data.id, data.msg);
+    console.log("SSE data: " + data);
 
     var x = data.action;
+    var actionAsArray = data.action.split("-");
+    var cue = 
+    { 
+        type: actionAsArray[0],
+        index: parseInt(actionAsArray[1], 10),
+        action: actionAsArray[2]
+    }
 
-//SETTING UP A FUNCTION TO MAKE BUTTON VISIBLE WHEN RECIEVING A PRELOAD SSE
+    // make sure our index is a valid integer
+    if(isNaN(cue.index)){
+        console.log("could not parse cue due to invalid index: " + actionAsArray[1]);
+        cue = nil;
+    } else {
+        console.log("parsed cue: " + cue);
+    }
+
+    //SETTING UP A FUNCTION TO MAKE BUTTON VISIBLE WHEN RECIEVING A PRELOAD SSE
     function buttonVisible() {
         b1.style.visibility = "visible";
     }
-//IF WE SEND {"action": "x"} change value of index accordingly
-    switch (x) {
-        case "0":
-            buttonVisible();
-            Index = 0;
-            return Index;
+    //IF WE SEND {"action": "episode-X-load"} change value of index accordingly
+    if(cue){
+        if(cue.type === "episode"){
 
+            // check if index is in bounds
+            if(cue.index < numberOfEpisodes){
+                switch(cue.action){
+                    case "load":
+                        Index = cue.index;
+                        buttonVisible();
+                        console.log("episode number: " + Index);
+                        break;
+                    
+                    case "go":
+                        console.log("starting episode " + cue.index + " in 5 seconds");
+                        setTimeout(function () {
+                            if (!audioIsPlaying) {
+                                audioIsPlaying = true;
+                                if (participantGroup === GroupEnum.BLUE) {
+                                    //NOT SURE IF THE "currentEpisodeAudio" IS NECCESSARY BUT IT WAS MY WAY OF REDUCING FOR LOOPS
+                                    switch (cue.index) {
+                                        case 0:
+                                            test.play();
+                                            currentEpisodeAudio = test;
+                                            break;
 
-        case "1":
-            buttonVisible();
-            Index = 1;
-            return Index;
+                                        case 1:
+                                            simpleFluxB.play();
+                                            currentEpisodeAudio = simpleFluxB;
+                                            break;
 
+                                        case 2:
+                                            cornersB.play();
+                                            currentEpisodeAudio = cornersB;
+                                            break;
 
-        case "2":
-            buttonVisible();
-            Index = 2;
-            return Index;
+                                        case 3:
+                                            chipmeltB.play();
+                                            currentEpisodeAudio = chipmeltB;
+                                            break;
 
-        case "3":
-            buttonVisible();
-            Index = 3;
-            return Index;
+                                        case 4:
+                                            shipB.play();
+                                            currentEpisodeAudio = shipB;
+                                            break;
 
-        case "4":
-            buttonVisible();
-            Index = 4;
-            return Index;
+                                        case 5:
+                                            hulaB.play();
+                                            currentEpisodeAudio = hulaB;
+                                            break;
 
-        case "5":
-            buttonVisible();
-            Index = 5;
-            return Index;
+                                        case 6:
+                                            orbitalsB.play();
+                                            currentEpisodeAudio = orbitalsB;
+                                            break;
 
-        default:
-            console.log('no Index');
-    }
-//SETTING UP DELAY, AND THEN BOOLEAN TO MAKE SURE ONLY ONE FILE PLAYS
-    setTimeout(function () {
-        if (tf === false) {
+                                        default:
+                                            console.log("no music for cue index " + cue.index);
+                                    }
+                                } else if(participantGroup === GroupEnum.RED){
+                                    switch (cue.index) {
+                                        case 0:
+                                            test.play();
+                                            currentEpisodeAudio = test;
+                                            break;
 
-            tf = true;
+                                        case 1:
+                                            simpleFluxR.play();
+                                            currentEpisodeAudio = simpleFluxR;
+                                            break;
 
-            if (redblue === 1) {
-//NOT SURE IF THE "Me" IS NECCESSARY BUT IT WAS MY WAY OF REDUCING FOR LOOPS
-                switch (x) {
-                    case "episode-1-go":
-                        simple.play();
-                        Me = simple;
+                                        case 2:
+                                            cornersR.play();
+                                            currentEpisodeAudio = cornersR;
+                                            break;
+
+                                        case 3:
+                                            chipmeltR.play();
+                                            currentEpisodeAudio = chipmeltR;
+                                            break;
+
+                                        case 4:
+                                            shipR.play();
+                                            currentEpisodeAudio = shipR;
+                                            break;
+
+                                        case 5:
+                                            hulaR.play();
+                                            currentEpisodeAudio = hulaR;
+                                            break;
+
+                                        case 6:
+                                            orbitalsR.play();
+                                            currentEpisodeAudio = orbitalsR;
+                                            break;
+
+                                        default:
+                                            console.log("no music for cue index " + cue.index);
+                                    }
+                                } else {
+                                    console.log("participant has no group assigned");
+                                }
+                            }
+                        //END OF DELAY SET UP..SET TO 5s
+                        }, 5000);
+                        break;
+                    
+                    case "pause":
+                        currentEpisodeAudio.pause();
+                        audioIsPlaying = false;
+                        console.log('paused');
                         break;
 
-                    case "episode-2-go":
-                        cornersB.play();
-                        Me = cornersB;
+                    case "stop":
+                        if (currentEpisodeAudio.duration > 0 && !currentEpisodeAudio.paused) {
+                            currentEpisodeAudio.pause();
+                            currentEpisodeAudio.currentTime = 0;
+                        }
+                        //THIS WAS MY ATTEMPT AT GETTING RID OF SOME STUFF FROM THE DOM..DON'T THINK IT HELPED AND IS NOW PROBABLY NOT NECCESSARY..UNLESS
+                        //SOMEONE STAYS ALL NIGHT AND REFUSES TO REFRESH THEIR BROWSER
+                        $('audio').remove();
+                        audioIsPlaying = false;
                         break;
 
-                    case "episode-3-go":
-                        chipmeltB.play();
-                        Me = chipmeltB;
-                        break;
-
-                    case "episode-4-go":
-                        shipB.play();
-                        Me = shipB;
-                        break;
-
-                    case "episode-5-go":
-                        hulaB.play();
-                        Me = hulaB;
-                        break;
-
-                    case "episode-6-go":
-                        orbitalsB.play();
-                        Me = orbitalsB;
-                        break;
-
-
-                    default:
-                        console.log("no music");
+                    default: 
+                        console.log("invalid cue action: " + cue.action);
                 }
             } else {
-                switch (x) {
-                    case "episode-1-go":
-                        simple.play();
-                        Me = simple;
-                        break;
-
-                    case "episode-2-go":
-                        cornersR.play();
-                        Me = cornersR;
-                        break;
-
-                    case "episode-3-go":
-                        chipmeltR.play();
-                        Me = chipmeltR;
-                        break;
-
-                    case "episode-4-go":
-                        shipR.play();
-                        Me = shipR;
-                        break;
-
-                    case "episode-5-go":
-                        hulaR.play();
-                        Me = hulaR;
-                        break;
-
-                    case "episode-6-go":
-                        orbitalsR.play();
-                        Me= orbitalsR;
-                        break;
-
-
-                    default:
-                        console.log("no music");
-                }
-
-
+                console.log("there is no episode for that number");
             }
-
+            
         }
-
-//HERE IS THE FOR LOOP "Me" GETS RID OF. THIS IS A PAUSE FEATURE
-        if (x === "pause") {
-            // for(var i =0; i < allAudio.length; i ++){
-            //   allAudio[i].pause();
-            //   tf=false;
-            Me.pause();
-            console.log('paused');
-
-            // }
-
-        }
-
-//STOPS AUDIO AND RESETS AUDIO TO BEGINNING
-        if (x === "stop") {
-            // for(var p =0; p < allAudio.length; p ++){
-            //   if(allAudio[p].duration > 0 && !allAudio[p].paused){
-            //   allAudio[p].pause();
-            //   allAudio[p].currentTime = 0;
-            //   console.log('stopped');
-            //   $("audio").remove();
-            //
-            // } else {
-            // allAudio[p].currentTime = 0;
-            // console.log('stopped');
-            // $("audio").remove();
-            // }
-            if (Me.duration > 0 && !Me.paused) {
-                Me.pause();
-                Me.currentTime = 0;
-            }
-            //THIS WAS MY ATTEMPT AT GETTING RID OF SOME STUFF FROM THE DOM..DON'T THINK IT HELPED AND IS NOW PROBABLY NOT NECCESSARY..UNLESS
-            //SOMEONE STAYS ALL NIGHT AND REFUSES TO REFRESH THEIR BROWSER
-            $('audio').remove();
-
-            tf = false;
-
-            // }
-        }
-
-
-//END OF DELAY SET UP..SET TO 5s
-    }, 5000);
-
-
-
-
-
+    }
 }, false);
 
 
@@ -336,7 +336,7 @@ source.addEventListener('cohortMessage', function (e) {
 for (var i = 0; i < allAudio.length; i++) {
 
     allAudio[i].addEventListener("ended", function () {
-        tf = false;
+        audioIsPlaying = false;
         console.log("ended");
         $("audio").remove();
         info.innerHTML = "If you'd like to stay for another score, please wait to check-in again.<br> If not, thank you for playing <i>FluxDelux</i>, you can now close your browser and make your way to the exit.<br> Enjoy the rest of Nuit Blanche!";
@@ -378,9 +378,5 @@ for (var q = 0; q < allAudio.length; q++) {
 
 $("#b1").click(function () {
     info.innerHTML = "Fantastic, you are now in queue. Please put on your headphones and wait for audio instructions.";
-
     b1.style.visibility = "hidden";
-
-
-
 });
