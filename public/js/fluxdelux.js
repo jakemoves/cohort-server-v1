@@ -22,19 +22,19 @@ var episodes = [
     },
     {
         "name":  "chipmelt",
-        "displayName": "Simple Flux"
+        "displayName": "Chip Melt"
     },
     {
         "name": "hulalasso",
-        "displayName": "Simple Flux"
+        "displayName": "Hula Lasso"
     },
     {
         "name": "ship",
-        "displayName": "Simple Flux"
+        "displayName": "Ship"
     },
     {
         "name": "orbitals",
-        "displayName": "Simple Flux"
+        "displayName": "Orbitals"
     }
 ]
 
@@ -174,6 +174,7 @@ var checkin = function(){
         participantIsCheckedIn = true;
         info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><h4>move into the open space along a curving path<br />be careful not to bump or brush against anyone else<br />vary your speed whenever you want<br />pause and be still whenever the impulse strikes you<br />follow beside or behind others when you want<br />copy, repeat, and experiment with movements that you see around you, whenever you want</h4>"
         $('#check-in').css('display', 'none');
+
     } else if(passcode === "gogogo"){
       console.log("go");
       pageTwo.style.visibility = "visible";
@@ -245,11 +246,14 @@ var subscribeToServerSentEvents = function(){
                 // check if index is in bounds
                 if(cue.index < numberOfEpisodes){
                     switch(cue.action){
-                        case "load":
+
+
+                        case "load":  if(audioIsPlaying === false ){
                             Index = cue.index;
                             info.innerHTML = "<h4>Please tap the button below to confirm you're ready!</h4>"
                             $('#episode-confirm').css('display', 'block');
                             console.log("episode number: " + Index);
+                          }
                             break;
 
                         case "go":
