@@ -3,8 +3,7 @@ var chControlBoard = {
 	postdata: "",
 	validateCue : function(){
 		console.log("checking cue validity");
-		postData = 'episode' + '-' + $('#control-episode').val() + '-' + $('#control-action').val();
-		console.log(postData);
+		chControlBoard.postData = 'episode' + '-' + $('#control-episode').val() + '-' + $('#control-action').val();
 	}
 }
 
@@ -22,7 +21,9 @@ var disarm = function(){
 }
 
 var fire = function(){
+	console.log(chControlBoard.postData);
 	var data = { "action" : chControlBoard.postData};
+	//console.log(data);
 	$.ajax({
 		method: "POST",
 		url: chControlBoard.url,
