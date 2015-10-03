@@ -73,7 +73,7 @@ app.get('/test', function(req, res){
 });
 
 app.get('/simulate-start', function(req, res){
-  var msg = { "action": "episode-1-go" };
+  var msg = { "action": "episode-3-go" };
   broadcast("cohortMessage", msg);
 
   res.writeHead(200, {
