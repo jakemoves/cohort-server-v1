@@ -6,7 +6,7 @@ body{
 
 }
 
-p {
+body, p {
   color: #FAFDFE;
 }
 
@@ -112,4 +112,19 @@ a:visited {
 
 #long-logo {
   margin-left: -40px;
+}
+
+
+/*
+  
+  Control board 
+  
+  */
+
+#fire-cancel-buttons {
+  display: none;
+}
+
+#server-response {
+  margin-top: 25px;
 }
