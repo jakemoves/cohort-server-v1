@@ -10,7 +10,7 @@ p {
   color: #FAFDFE;
 }
 
-#info {
+h4 {
   text-align: center;
   color: #FAFDFE;
   z-index: 100;
@@ -22,6 +22,7 @@ p {
 
 button {
   margin-top: 25px;
+  margin-bottom: 20px;
 }
 
 #b2, #b3 {
@@ -98,10 +99,10 @@ a:hover{
 }
 
 a:visited {
-  color: #8c96d5;
+  color: #F0D87A;
 }
 
-#episode-confirm, #check-out {
+#episode-confirm, #check-out, #survey {
   display: none;
 }
 

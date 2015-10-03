@@ -7,7 +7,38 @@ var GroupEnum = {
     }
 };
 
-var numberOfEpisodes = 7;
+var episodes = [
+    {
+        "name": "test",
+        "displayName": "Test Episode"
+    },
+    {
+        "name": "simpleflux",
+        "displayName": "Simple Flux" 
+    },
+    {
+        "name": "corners",
+        "displayName": "Corners"
+    },
+    {
+        "name":  "chipmelt",
+        "displayName": "Simple Flux"
+    }, 
+    {
+        "name": "hulalasso",
+        "displayName": "Simple Flux" 
+    },
+    {   
+        "name": "ship",
+        "displayName": "Simple Flux"
+    },
+    {
+        "name": "orbitals",
+        "displayName": "Simple Flux" 
+    }
+]
+
+var numberOfEpisodes = episodes.length;
 var source;
 
 var participantGroup = assignGroup();
@@ -150,6 +181,8 @@ var checkout = function(){
     source.close();
     info.innerHTML = "<h4>Welcome to <i>FluxDelux</i>!</h4><h4>If you're in our space at the <a href=\"https://www.google.ca/maps?client=safari&rls=en&q=trinity+community+recreation+centre&oe=UTF-8&gfe_rd=cr&um=1&ie=UTF-8&sa=X&ved=0CAcQ_AUoAWoVChMIhtr7--elyAIVyXE-Ch1fyQw1\">Trinity Community Recreation Center</a>, enter the check-in passcode.</h4>"
     $('#check-out').css('display', 'none');
+    $('#survey').css('display', 'block');
+    $('#check-in').css('display', 'block');
 }
 
 var subscribeToServerSentEvents = function(){
@@ -215,6 +248,7 @@ var subscribeToServerSentEvents = function(){
                         
                         case "go":
                             console.log("starting episode " + cue.index + " in 5 seconds");
+                            info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
                             setTimeout(function () {
                                 if (!audioIsPlaying) {
                                     audioIsPlaying = true;
@@ -357,7 +391,7 @@ for (var p = 0; p < allAudio.length; p++) {
     (function (p) {
         allAudio[p].addEventListener("play", function () {
 
-            info.innerHTML = "<h4>Audio instructions are now streaming</h4>";
+            info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
             // b1.style.visibility = "hidden";
 
         }, false);
