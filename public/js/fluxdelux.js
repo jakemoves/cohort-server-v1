@@ -461,10 +461,10 @@ playerLayer.style.visibility = "visible";
 })
 $("#b6").on("click", function(){
 
-  setTimeout(function(){
+  // setTimeout(function(){
   cornersB.play();
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-  }, 5000)
+  // }, 5000)
 playerLayer.style.visibility = "visible";
 })
 $("#b7").on("click", function(){
