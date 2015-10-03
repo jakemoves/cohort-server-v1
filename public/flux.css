@@ -6,11 +6,14 @@ body{
 
 }
 
+p {
+  color: #FAFDFE;
+}
+
 #info {
   text-align: center;
   color: #FAFDFE;
-
- z-index: 100;
+  z-index: 100;
 }
 
 #logo, #longLogo{
@@ -21,7 +24,18 @@ button {
   margin-top: 25px;
 }
 
-#footer{
+#b2, #b3 {
+  background-color: #f0c829;
+  border-color: #f0c829;
+  color: #072b69;
+  font-weight: bold;
+}
+
+.footer {
+  margin-top: 25px;
+}
+
+/*#footer{
   color: #FAFDFE;
   width:100%;
 	height:100px;
@@ -29,7 +43,7 @@ button {
 	bottom:0;
 	left:0;
 
-}
+}*/
 
 /*#playerLayer {
   position: fixed;
@@ -75,9 +89,26 @@ embed{
 
 a{
   color: #f0c829;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-#b1{
-  visibility: hidden;
+a:hover{
+  color: #f0c829;
+  text-decoration: underline
+}
+
+a:visited {
+  color: #8c96d5;
+}
+
+#episode-confirm, #check-out {
+  display: none;
+}
+
+#check-in, #check-out {
+  margin-top: 25px;
+}
+
+#long-logo {
+  margin-left: -40px;
 }

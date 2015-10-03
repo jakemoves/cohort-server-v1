@@ -1,62 +1,57 @@
 <!DOCTYPE html>
+
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>FluxDelux</title>
 
-
-
-    <!-- Bootstrap -->
+    <title>FluxDelux</title><!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="flux.css" rel="stylesheet">
+</head>
 
-
-  </head>
-    <body>
-      <div id = "wrapper">
+<body>
+    <div id="wrapper">
         <!-- <div id="head">
         <div id = "playerLayer">
             <!<div class="alert alert-success" role="alert">FluxDelux is running!</div> -->
+    </div>--&gt; <span id="loading"><img height="45%" src="img/loading.png"
+    width="45%"></span>
 
-        </div> -->
-
-        <span id="loading">
-          <img src="img/loading.png" width ="45%" height = "45%">
-        </span>
-
-
-
-
-
-    <div class = "container-fluid">
-        <div class = "row">
-           <div id="logo" class = "col-xs-12">
-             <embed src="img/fluxlogoblue2.svg" type="image/svg+xml"></embed>
-           </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" id="logo">
+                <embed src="img/fluxlogoblue2.svg" type="image/svg+xml">
+            </div>
         </div>
     </div>
-</div>
-<!-- THIS IS THE VIDEO BELOW. KEPT IT HERE JUST IN CASE -->
+
+    <!-- THIS IS THE VIDEO BELOW. KEPT IT HERE JUST IN CASE -->
     <!-- <div class = "container-fluid">
           <div class = "row">
             <div class = "embed-responsive embed-responsive-16by9">
-							<iframe  class="embed-responsive-item"
-                	src="https://www.youtube.com/embed/SJwnv3CgTGw?rel=0&amp;showinfo=0">
-								</iframe>
+                            <iframe  class="embed-responsive-item"
+                    src="https://www.youtube.com/embed/SJwnv3CgTGw?rel=0&amp;showinfo=0">
+                                </iframe>
 
              </div>
           </div> -->
 
-<div id = "content">
-          <div class = "row">
-              <div class = "col-xs-12">
+    <div class="container" id="content">
+        <div class="row">
+            <div class="col-xs-12">
                 <!-- ON NUIT BLANCHE, UN COMMENT ME AND MY BUTTON FRIEND BELOW -->
-                <h4 id = 'info'>
-                    Welcome to <i> FluxDelux</i>! If you're not quite at the Trinity Community Recreation Centre yet, close this browser and come back to visit us when you are.<br>If you are here, and you're on the gym floor ready to move, hit the "Check-In" button when it appears below to await your FluxDelux instructions.
-                </h4>
+
+                <div id='info'>
+                    <h4>Welcome to <i>FluxDelux</i>!</h4>
+                    <h4>If you're in our space at the <a href=
+                    "https://www.google.ca/maps?client=safari&rls=en&q=trinity+community+recreation+centre&oe=UTF-8&gfe_rd=cr&um=1&ie=UTF-8&sa=X&ved=0CAcQ_AUoAWoVChMIhtr7--elyAIVyXE-Ch1fyQw1">
+                    Trinity Community Recreation Center</a>, enter the check-in
+                    passcode.</h4>
+                </div>
+
                 <!-- BEFORE NUIT BLANCHE -->
                 <!-- <h4 id = 'info'>
                   Thanks for visiting <i>FluxDelux</i>.<br>
@@ -69,45 +64,63 @@ For more information, please visit us at  <a href = "peggybakerdance.com"> peggy
 
 
                 </h4> -->
+            </div>
+        </div>
+        
+        <div class="row" id="check-in">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="passcode" placeholder="Passcode">
+            </div>
+          </form>
+          <button class="btn btn-default btn-block btn-lg" id="b2" onclick="checkin()">Check In</button>
+        </div>
+
+        <div class="row" id="episode-confirm">
+            <button class="btn btn-default btn-block" id="b1" onclick=
+            "load()">I'm ready</button>
+        </div>
+
+        <div class="row" id="check-out">
+            <button class="btn btn-default btn-block btn-lg" id="b3" onclick=
+            "checkout()">Check Out</button>
+        </div>
+
+
+    </div>
+
+    <div class="container-fluid footer">
+        <div class="row">
+            <div class="col-xs-12">
+              <p class="small">&#169; 2015 <a href=
+              "http://peggybakerdance.com/">Peggy Baker Dance
+              Projects</a>,<a href=
+              "https://www.youtube.com/watch?v=GqcaSqmvz_U">Luke
+              Garwood</a>, <a href="http://jacob-n.com/">Jacob
+              Niedzwiecki</a></p>
+
+              <div class="col-xs-12" id="long-logo">
+                  <embed src="img/bottom.svg" type="image/svg+xml">
               </div>
-          </div>
-
-          <div class = "row">
-
-                  <button id = "b1" class="btn btn-default btn-block" onclick="load()"> Check-In </button>
-
-          </div>
-
-</div>
-
-
-<div id = "footer">
-          <div class = "row">
-              <div class = "col-xs-12">
-                <footer>
-                  <small>  &#169; 2015 <a href = "http://peggybakerdance.com/">Peggy Baker Dance Projects</a>,<a href = "https://www.youtube.com/watch?v=GqcaSqmvz_U"> Luke Garwood</a>, <a href= "http://jacob-n.com/"> Jacob Niedzwiecki</a></small>
-
-
-
-              <div id = "longLogo" class="col-xs-12">
-                <embed src = "img/bottom.svg" type ="image/svg+xml"></embed>
-
-              </div>
-              </footer>
           </div>
         </div>
       </div>
-  </div>
+    </div>
 
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="js/bootstrap.min.js"></script> <script src="js/fluxdelux.js"></script> 
 
+     <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+      ga('create', 'UA-41442660-5', 'auto');
+      ga('send', 'pageview');
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/fluxdelux.js"></script>
-
-</div>
     </script>
-  </body>
+</body>
 </html>
