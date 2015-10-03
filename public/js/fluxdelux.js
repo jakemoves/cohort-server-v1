@@ -11,17 +11,19 @@ function group() {
 }
 var redblue = group();
 console.log(redblue);
+
 //ME SETS UP THE STOP AND PAUSE
 var Me;
-//INDEX SETS UP
+//INDEX CAPTURES THE "PRELOAD" SSE NUMBER
 var Index;
 
 
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
-var playerLayer = document.getElementById("playerLayer");
+// var playerLayer = document.getElementById("playerLayer");
 
-
+//LOADING ALL THE AUDIO ELEMENTS
+//SIMPLEFLUX IS REPLACED WITH A SHORT TEST.MP3 THATS ONLY 30s LONG
 var simple = document.createElement('audio');
 simple.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
 simple.preload = "none";
@@ -61,23 +63,22 @@ var orbitalsR = document.createElement('audio');
 orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitalsred.mp3';
 orbitalsR.preload = "none";
 
-// var Corners = [cornersB, cornersR];
-// var Chipmelt = [chipmeltB, chipmeltR];
-// var Hula = [hulaB, hulaR];
-// var Ship = [shipB, shipR];
-// var Orbitals = [orbitalsB, orbitalsR];
+//SETTING UP ARRAY OF ALL THE AUDIO FILES FOR FUTUR FOR LOOPS
 
 var allAudio = [simple, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipB, orbitalsB, orbitalsR];
 
 //--setting up boolean to only have one audio playback at a time
 var tf = false;
 
+// I HAD A LOT OF FOR LOOPS BEFORE..AND THEN THE INTERNET TOLD ME IT WAS BAD..I STILL HAVE A COUPLE
 // var load = function(){
 //   for(var i =0; i< allAudio.length; i++){
 //   allAudio[i].load();
 // }
 //   console.log("audio loaded");
 // };
+
+//LOAD FUNCTION FIRES ON BUTTON CLICK. SOUND FILE GETS LOADED ACCORDING TO WHICH "PRELOAD" NUMBER WE SEND
 var load = function () {
     switch (Index) {
         case 0:
@@ -115,12 +116,13 @@ var load = function () {
     }
 
     console.log("audio loaded");
-
+//CHANGE UI AFTER USER CHECKS IN
     info.innerHTML = "Fantastic, you are now in queue. Please put your headphones on and wait for audio instructions.";
-    b1.innerHTML = "Checked-in!";
+    //I NOW HAVE THE BUTTON HIDING SO THAT USERS DON'T KEEP PRESSING IT AND LOADING THE AUDIO AGAIN AND AGAIN.
+    // b1.innerHTML = "Checked-in!";
 };
 
-
+//THIS IS FROM YOUR CODE
 source = new EventSource("/listen");
 
 source.addEventListener('open', function (e) {
@@ -134,7 +136,7 @@ source.addEventListener('error', function (e) {
 }, false);
 
 source.addEventListener('message', function (e) {
-    // audio.play();
+
     console.log("received sse");
     console.log(data);
     // var data = JSON.parse(e.data);
@@ -147,15 +149,17 @@ source.addEventListener('cohortMessage', function (e) {
 
     console.log("received SSE");
     console.log(e);
+    //COLLECTING JSON DATA AND READING ACTION
     var data = JSON.parse(e.data);
     console.log(data.id, data.msg);
 
     var x = data.action;
 
+//SETTING UP A FUNCTION TO MAKE BUTTON VISIBLE WHEN RECIEVING A PRELOAD SSE
     function buttonVisible() {
         b1.style.visibility = "visible";
     }
-
+//IF WE SEND {"action": "x"} change value of index accordingly
     switch (x) {
         case "0":
             buttonVisible();
@@ -192,18 +196,17 @@ source.addEventListener('cohortMessage', function (e) {
         default:
             console.log('no Index');
     }
-
+//SETTING UP DELAY, AND THEN BOOLEAN TO MAKE SURE ONLY ONE FILE PLAYS
     setTimeout(function () {
         if (tf === false) {
 
             tf = true;
 
             if (redblue === 1) {
-
+//NOT SURE IF THE "Me" IS NECCESSARY BUT IT WAS MY WAY OF REDUCING FOR LOOPS
                 switch (x) {
                     case "episode-1-go":
                         simple.play();
-
                         Me = simple;
                         break;
 
@@ -214,18 +217,22 @@ source.addEventListener('cohortMessage', function (e) {
 
                     case "episode-3-go":
                         chipmeltB.play();
+                        Me = chipmeltB;
                         break;
 
                     case "episode-4-go":
                         shipB.play();
+                        Me = shipB;
                         break;
 
                     case "episode-5-go":
                         hulaB.play();
+                        Me = hulaB;
                         break;
 
                     case "episode-6-go":
                         orbitalsB.play();
+                        Me = orbitalsB;
                         break;
 
 
@@ -236,7 +243,6 @@ source.addEventListener('cohortMessage', function (e) {
                 switch (x) {
                     case "episode-1-go":
                         simple.play();
-
                         Me = simple;
                         break;
 
@@ -247,18 +253,22 @@ source.addEventListener('cohortMessage', function (e) {
 
                     case "episode-3-go":
                         chipmeltR.play();
+                        Me = chipmeltR;
                         break;
 
                     case "episode-4-go":
                         shipR.play();
+                        Me = shipR;
                         break;
 
                     case "episode-5-go":
                         hulaR.play();
+                        Me = hulaR;
                         break;
 
                     case "episode-6-go":
                         orbitalsR.play();
+                        Me= orbitalsR;
                         break;
 
 
@@ -271,7 +281,7 @@ source.addEventListener('cohortMessage', function (e) {
 
         }
 
-
+//HERE IS THE FOR LOOP "Me" GETS RID OF. THIS IS A PAUSE FEATURE
         if (x === "pause") {
             // for(var i =0; i < allAudio.length; i ++){
             //   allAudio[i].pause();
@@ -283,6 +293,7 @@ source.addEventListener('cohortMessage', function (e) {
 
         }
 
+//STOPS AUDIO AND RESETS AUDIO TO BEGINNING
         if (x === "stop") {
             // for(var p =0; p < allAudio.length; p ++){
             //   if(allAudio[p].duration > 0 && !allAudio[p].paused){
@@ -300,6 +311,8 @@ source.addEventListener('cohortMessage', function (e) {
                 Me.pause();
                 Me.currentTime = 0;
             }
+            //THIS WAS MY ATTEMPT AT GETTING RID OF SOME STUFF FROM THE DOM..DON'T THINK IT HELPED AND IS NOW PROBABLY NOT NECCESSARY..UNLESS
+            //SOMEONE STAYS ALL NIGHT AND REFUSES TO REFRESH THEIR BROWSER
             $('audio').remove();
 
             tf = false;
@@ -308,7 +321,7 @@ source.addEventListener('cohortMessage', function (e) {
         }
 
 
-
+//END OF DELAY SET UP..SET TO 5s
     }, 5000);
 
 
@@ -316,60 +329,18 @@ source.addEventListener('cohortMessage', function (e) {
 
 
 }, false);
-//---returns tf = false when audio has finished. Loops through an array of all the audios
-
-// var load = function(){
-//   switch(Index){
-//     case 0: simple.load();
-//     break;
-//
-//     case 1: cornersB.load();
-//               cornersR.load();
-//
-//     break;
-//
-//     case 2: chipmeltB.load();
-//               chipmeltR.load();
-//     break;
-//
-//     case 3: shipB.load();
-//               shipR.load();
-//     break;
-//
-//     case 4: hulaB.load();
-//               hulaR.load();
-//     break;
-//
-//     case 5: orbitalsB.load();
-//               orbitalsR.load();
-//     break;
-//
-//     default: console.log("no load")
-//   }
-//
-//   console.log("audio loaded");
-//
-//   info.innerHTML ="Fantastic, you are now in queue. Please put your headphones on and wait for audio instructions."
-//   b1.innerHTML = "Checked-in!"
-// }
 
 
-// Me.addEventListener("ended", function(){
-//       tf=false;
-//       console.log("ended");
-//       $("audio").remove();
-//       info.innerHTML = "If you'd like to stay for another score, please wait. If not, thank you for playing FluxDelux, you can now make your way to the exit";
-//     }, false);
 
-//LISTEN FOR WHEN AUDIO HAS ENDED AND UPDATE UI
+//LISTEN FOR WHEN AUDIO HAS ENDED AND UPDATE UI....I TRIED DOING THIS WITHOUT PLACING A FUNCTION INSIDE A FOR LOOP BUT..
 for (var i = 0; i < allAudio.length; i++) {
 
     allAudio[i].addEventListener("ended", function () {
         tf = false;
         console.log("ended");
         $("audio").remove();
-        info.innerHTML = "If you'd like to stay for another score, please wait. If not, thank you for playing FluxDelux, you can now make your way to the exit";
-
+        info.innerHTML = "If you'd like to stay for another score, please wait to check-in again.<br> If not, thank you for playing <i>FluxDelux</i>, you can now close your browser and make your way to the exit.<br> Enjoy the rest of Nuit Blanche!";
+b1.innerHTML = "Check-In"
     }, false);
 
 
@@ -383,13 +354,14 @@ for (var p = 0; p < allAudio.length; p++) {
         allAudio[p].addEventListener("play", function () {
 
             info.innerHTML = "Audio instructions are now streaming";
-            b1.style.visibility = "hidden";
+            // b1.style.visibility = "hidden";
 
         }, false);
     })(p);
 
 }
 
+//THIS IS IN CASE THE AUDIO WAS WAITING..WHICH INDICATES THAT THE VIDEO IS NOT LOADED BUT MAY LOAD IN THE FUTUR..IT MAY ALSO NOT.
 for (var q = 0; q < allAudio.length; q++) {
     (function (q) {
         allAudio[q].addEventListener("waiting", function () {
@@ -407,21 +379,8 @@ for (var q = 0; q < allAudio.length; q++) {
 $("#b1").click(function () {
     info.innerHTML = "Fantastic, you are now in queue. Please put on your headphones and wait for audio instructions.";
 
-    b1.innerHTML = "You are now checked-in!";
-
-    playerLayer.style.visibility = "visible";
-
-});
+    b1.style.visibility = "hidden";
 
 
-
-
-
-$("#b1").click(function () {
-    info.innerHTML = "Fantastic, you are now in queue. Please put on your headphones and wait for audio instructions.";
-
-    b1.innerHTML = "You are now checked-in!";
-
-    playerLayer.style.visibility = "visible";
 
 });
