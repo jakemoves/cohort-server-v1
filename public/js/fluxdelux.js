@@ -21,20 +21,24 @@ var episodes = [
         "displayName": "Corners"
     },
     {
-        "name":  "chipmelt",
-        "displayName": "Chip Melt"
+      "name": "ship",
+      "displayName": "Ship"
+
     },
     {
-        "name": "hulalasso",
-        "displayName": "Hula Lasso"
+      "name":  "chipmelt",
+      "displayName": "Chip Melt"
+
     },
     {
-        "name": "ship",
-        "displayName": "Ship"
+      "name": "orbitals",
+      "displayName": "Orbitals"
+
     },
     {
-        "name": "orbitals",
-        "displayName": "Orbitals"
+      "name": "hulalasso",
+      "displayName": "Hula Lasso"
+
     }
 ]
 
@@ -137,24 +141,26 @@ var load = function () {
             break;
 
         case 3:
-            chipmeltB.load();
-            chipmeltR.load();
+        shipB.load();
+        shipR.load();
+
             break;
 
         case 4:
-            shipB.load();
-            shipR.load();
+        chipmeltB.load();
+        chipmeltR.load();
+
             break;
 
         case 5:
-            hulaB.load();
-            hulaR.load();
-            break;
+        orbitalsB.load();
+        orbitalsR.load();
+          break;
 
         case 6:
-            orbitalsB.load();
-            orbitalsR.load();
-            break;
+        hulaB.load();
+        hulaR.load();
+          break;
 
         default:
             console.log("could not load audio for index " + Index);
@@ -169,13 +175,13 @@ var load = function () {
 
 var checkin = function(){
     var passcode = $('#passcode').val();
-    if(passcode === "nbto"){
+    if(passcode === "NBTO"){
         subscribeToServerSentEvents();
         participantIsCheckedIn = true;
         info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><h4>move into the open space along a curving path<br />be careful not to bump or brush against anyone else<br />vary your speed whenever you want<br />pause and be still whenever the impulse strikes you<br />follow beside or behind others when you want<br />copy, repeat, and experiment with movements that you see around you, whenever you want</h4>"
         $('#check-in').css('display', 'none');
 
-    } else if(passcode === "gogogo"){
+    } else if(passcode === "backup"){
       console.log("go");
       pageTwo.style.visibility = "visible";
 
@@ -281,24 +287,27 @@ var subscribeToServerSentEvents = function(){
                                                 break;
 
                                             case 3:
-                                                chipmeltB.play();
-                                                currentEpisodeAudio = chipmeltB;
-                                                break;
+                                            shipB.play();
+                                            currentEpisodeAudio = shipB;
+
+                                            break;
 
                                             case 4:
-                                                shipB.play();
-                                                currentEpisodeAudio = shipB;
-                                                break;
+                                            chipmeltB.play();
+                                            currentEpisodeAudio = chipmeltB;
+
+                                            break;
 
                                             case 5:
-                                                hulaB.play();
-                                                currentEpisodeAudio = hulaB;
-                                                break;
+                                            orbitalsB.play();
+                                            currentEpisodeAudio = orbitalsB;
+
+                                            break;
 
                                             case 6:
-                                                orbitalsB.play();
-                                                currentEpisodeAudio = orbitalsB;
-                                                break;
+                                            hulaB.play();
+                                            currentEpisodeAudio = hulaB;
+                                            break;
 
                                             default:
                                                 console.log("no music for cue index " + cue.index);
@@ -321,23 +330,27 @@ var subscribeToServerSentEvents = function(){
                                                 break;
 
                                             case 3:
-                                                chipmeltR.play();
-                                                currentEpisodeAudio = chipmeltR;
+                                            shipR.play();
+                                            currentEpisodeAudio = shipR;
+
                                                 break;
 
                                             case 4:
-                                                shipR.play();
-                                                currentEpisodeAudio = shipR;
+                                            chipmeltR.play();
+                                            currentEpisodeAudio = chipmeltR;
+
                                                 break;
 
                                             case 5:
-                                                hulaR.play();
-                                                currentEpisodeAudio = hulaR;
+                                            orbitalsR.play();
+                                            currentEpisodeAudio = orbitalsR;
+                                            
                                                 break;
 
                                             case 6:
-                                                orbitalsR.play();
-                                                currentEpisodeAudio = orbitalsR;
+                                            hulaR.play();
+                                            currentEpisodeAudio = hulaR;
+
                                                 break;
 
                                             default:
