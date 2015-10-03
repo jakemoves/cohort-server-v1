@@ -113,3 +113,10 @@ a:visited {
 #long-logo {
   margin-left: -40px;
 }
+#emergency{
+  visibility:hidden;
+}
+#page02{
+  visibility: hidden;
+  z-index: 100;
+}
