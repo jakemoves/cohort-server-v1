@@ -441,17 +441,18 @@ function assignGroup() {
     }
 }
 
-function loadScores(){
-  simpleFluxB.load();
-  cornersB.load();
-  chipmeltB.load();
-  shipB.load();
-  hulaB.load();
-  orbitalsB.load();
-}
+// function loadScores(){
+//   simpleFluxB.load();
+//   cornersB.load();
+//   chipmeltB.load();
+//   shipB.load();
+//   hulaB.load();
+//   orbitalsB.load();
+// }
+
 $("#b5").on("click", function(){
   simpleFluxB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming (ignore what its says above)</h2>";
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming (ignore what it says above)</h2>";
 playerLayer.style.visibility = "visible";
 
 })
