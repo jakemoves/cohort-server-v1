@@ -14,7 +14,7 @@ var episodes = [
     },
     {
         "name": "simpleflux",
-        "displayName": "Simple Flux" 
+        "displayName": "Simple Flux"
     },
     {
         "name": "corners",
@@ -22,19 +22,19 @@ var episodes = [
     },
     {
         "name":  "chipmelt",
-        "displayName": "Simple Flux"
-    }, 
+        "displayName": "Chip Melt"
+    },
     {
         "name": "hulalasso",
-        "displayName": "Simple Flux" 
+        "displayName": "Hula Lasso"
     },
-    {   
+    {
         "name": "ship",
-        "displayName": "Simple Flux"
+        "displayName": "Ship"
     },
     {
         "name": "orbitals",
-        "displayName": "Simple Flux" 
+        "displayName": "Orbitals"
     }
 ]
 
@@ -49,7 +49,9 @@ var participantIsCheckedIn = false;
 var currentEpisodeAudio;
 var Index;
 
-
+var playerLayer = document.getElementById('playerLayer');
+var manual = document.getElementById('manual');
+var pageTwo = document.getElementById("page02");
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
 // var playerLayer = document.getElementById("playerLayer");
@@ -172,6 +174,11 @@ var checkin = function(){
         participantIsCheckedIn = true;
         info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><h4>move into the open space along a curving path<br />be careful not to bump or brush against anyone else<br />vary your speed whenever you want<br />pause and be still whenever the impulse strikes you<br />follow beside or behind others when you want<br />copy, repeat, and experiment with movements that you see around you, whenever you want</h4>"
         $('#check-in').css('display', 'none');
+
+    } else if(passcode === "gogogo"){
+      console.log("go");
+      pageTwo.style.visibility = "visible";
+
     } else {
         $('#passcode').attr('placeholder', 'Incorrect passcode');
     }
@@ -217,8 +224,8 @@ var subscribeToServerSentEvents = function(){
 
         var x = data.action;
         var actionAsArray = data.action.split("-");
-        var cue = 
-        { 
+        var cue =
+        {
             type: actionAsArray[0],
             index: parseInt(actionAsArray[1], 10),
             action: actionAsArray[2]
@@ -239,13 +246,16 @@ var subscribeToServerSentEvents = function(){
                 // check if index is in bounds
                 if(cue.index < numberOfEpisodes){
                     switch(cue.action){
-                        case "load":
+
+
+                        case "load":  if(audioIsPlaying === false ){
                             Index = cue.index;
                             info.innerHTML = "<h4>Please tap the button below to confirm you're ready!</h4>"
                             $('#episode-confirm').css('display', 'block');
                             console.log("episode number: " + Index);
+                          }
                             break;
-                        
+
                         case "go":
                             console.log("starting episode " + cue.index + " in 5 seconds");
                             info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
@@ -340,7 +350,7 @@ var subscribeToServerSentEvents = function(){
                             //END OF DELAY SET UP..SET TO 5s
                             }, 5000);
                             break;
-                        
+
                         case "pause":
                             currentEpisodeAudio.pause();
                             audioIsPlaying = false;
@@ -358,13 +368,13 @@ var subscribeToServerSentEvents = function(){
                             audioIsPlaying = false;
                             break;
 
-                        default: 
+                        default:
                             console.log("invalid cue action: " + cue.action);
                     }
                 } else {
                     console.log("there is no episode for that number");
                 }
-                
+
             }
         }
     }, false);
@@ -430,3 +440,44 @@ function assignGroup() {
         return 1;
     }
 }
+
+// function loadScores(){
+//   simpleFluxB.load();
+//   cornersB.load();
+//   chipmeltB.load();
+//   shipB.load();
+//   hulaB.load();
+//   orbitalsB.load();
+// }
+
+$("#b5").on("click", function(){
+  simpleFluxB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming (ignore what it says above)</h2>";
+playerLayer.style.visibility = "visible";
+
+})
+$("#b6").on("click", function(){
+  cornersB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+playerLayer.style.visibility = "visible";
+})
+$("#b7").on("click", function(){
+  chipmeltB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+  playerLayer.style.visibility = "visible";
+})
+$("#b8").on("click", function(){
+  shipB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+  playerLayer.style.visibility = "visible";
+})
+$("#b9").on("click", function(){
+  hulaB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+  playerLayer.style.visibility = "visible";
+})
+$("#b10").on("click", function(){
+  orbitalsB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+  playerLayer.style.visibility = "visible";
+})

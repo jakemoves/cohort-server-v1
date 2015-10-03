@@ -114,10 +114,31 @@ a:visited {
   margin-left: -40px;
 }
 
+#emergency{
+  visibility:hidden;
+}
+#page02{
+  visibility: hidden;
+
+}
+#playerLayer{
+  position: absolute;
+  height:100%;
+  width: 100%;
+
+color: white;
+opacity: 0.1;
+z-index: 100;
+visibility: hidden;
+
+}
+
+
+
 /*
-  
-  Control board 
-  
+
+  Control board
+
   */
 
 #fire-cancel-buttons {
