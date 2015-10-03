@@ -452,10 +452,10 @@ function assignGroup() {
 
 $("#b5").on("click", function(){
 
-  setTimeout(function(){
+
   simpleFluxB.play();
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-}, 5000)
+
 playerLayer.style.visibility = "visible";
 
 })
