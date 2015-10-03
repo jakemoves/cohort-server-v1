@@ -76,3 +76,7 @@ embed{
 a{
   text-decoration: underline;
 }
+
+#b1{
+  visibility: hidden;
+}
