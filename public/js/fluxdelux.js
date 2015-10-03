@@ -49,7 +49,9 @@ var participantIsCheckedIn = false;
 var currentEpisodeAudio;
 var Index;
 
-var pageTwo = document.getElementById("page02")
+var playerLayer = document.getElementById('playerLayer');
+var manual = document.getElementById('manual');
+var pageTwo = document.getElementById("page02");
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
 // var playerLayer = document.getElementById("playerLayer");
@@ -445,21 +447,32 @@ function loadScores(){
 }
 $("#b5").on("click", function(){
   simpleFluxB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming (ignore what its says above)</h2>";
+playerLayer.style.visibility = "visible";
 
 })
 $("#b6").on("click", function(){
   cornersB.play();
-
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+playerLayer.style.visibility = "visible";
 })
 $("#b7").on("click", function(){
   chipmeltB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+  playerLayer.style.visibility = "visible";
 })
 $("#b8").on("click", function(){
   shipB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+  playerLayer.style.visibility = "visible";
 })
 $("#b9").on("click", function(){
   hulaB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+  playerLayer.style.visibility = "visible";
 })
 $("#b10").on("click", function(){
   orbitalsB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+  playerLayer.style.visibility = "visible";
 })
