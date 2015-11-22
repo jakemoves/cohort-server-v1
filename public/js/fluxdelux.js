@@ -292,7 +292,7 @@ var subscribeToServerSentEvents = function(){
 
                         case "load":  if(audioIsPlaying === false ){
                             Index = cue.index;
-                            info.innerHTML = "<h4>Please tap the button below to confirm you're ready!</h4>";
+                            info.innerHTML = "<h4>Please tap the button below to allow audio playback</h4>";
                             $('#episode-confirm').css('display', 'block');
                             console.log("episode number: " + Index);
                           }
