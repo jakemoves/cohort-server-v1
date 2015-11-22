@@ -205,7 +205,7 @@ var checkin = function(){
     if(passcode === "YOW"){
         subscribeToServerSentEvents();
         participantIsCheckedIn = true;
-        info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><h4>move into the open space along a curving path<br />be careful not to bump or brush against anyone else<br />vary your speed whenever you want<br />pause and be still whenever the impulse strikes you<br />follow beside or behind others when you want<br />copy, repeat, and experiment with movements that you see around you, whenever you want</h4>";
+        info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><ul><li>move into the open space along a curving path</li><li>be careful not to bump or brush against anyone else</li><li>vary your speed whenever you want</li><li>pause and be still whenever the impulse strikes you</li><li>follow beside or behind others when you want</li><li>copy, repeat, and experiment with movements that you see around you, whenever you want</li></ul>";
         $('#check-in').css('display', 'none');
 
     } else if(passcode === "backup"){
