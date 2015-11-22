@@ -201,7 +201,7 @@ var load = function () {
 };
 
 var checkin = function(){
-    var passcode = $('#passcode').val();
+    var passcode = $('#passcode').val(); 
     if(passcode === "YOW"){
         subscribeToServerSentEvents();
         participantIsCheckedIn = true;
