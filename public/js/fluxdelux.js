@@ -67,45 +67,45 @@ test.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
 test.preload = "none";
 
 var simpleFluxB = document.createElement('audio');
-simpleFluxB.src = 'https://s3.amazonaws.com/fluxdelux.org/simplefluxblue.mp3';
+simpleFluxB.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
 simpleFluxB.preload = "none";
 var simpleFluxR = document.createElement('audio');
-simpleFluxR.src = 'https://s3.amazonaws.com/fluxdelux.org/simplefluxred.mp3';
+simpleFluxR.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
 simpleFluxR.preload = "none";
 
 var cornersB = document.createElement('audio');
-cornersB.src = 'https://s3.amazonaws.com/fluxdelux.org/cornersblue.mp3';
+cornersB.src = 'https://s3.amazonaws.com/fluxdelux.org/corners-blue.mp3';
 cornersB.preload = "none";
 var cornersR = document.createElement('audio');
-cornersR.src = 'https://s3.amazonaws.com/fluxdelux.org/cornersred.mp3';
+cornersR.src = 'https://s3.amazonaws.com/fluxdelux.org/corners-red.mp3';
 cornersR.preload = "none";
 
 var chipmeltB = document.createElement('audio');
-chipmeltB.src = 'https://s3.amazonaws.com/fluxdelux.org/chipmeltblue.mp3';
+chipmeltB.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-blue.mp3';
 chipmeltB.preload = "none";
 var chipmeltR = document.createElement('audio');
-chipmeltR.src = 'https://s3.amazonaws.com/fluxdelux.org/chipmeltred.mp3';
+chipmeltR.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-red.mp3';
 chipmeltR.preload = "none";
 
 var hulaB = document.createElement('audio');
-hulaB.src = 'https://s3.amazonaws.com/fluxdelux.org/hulablue.mp3';
+hulaB.src = 'https://s3.amazonaws.com/fluxdelux.org/hula-lasso-blue.mp3';
 hulaB.preload = "none";
 var hulaR = document.createElement('audio');
-hulaR.src = 'https://s3.amazonaws.com/fluxdelux.org/hulared.mp3';
+hulaR.src = 'https://s3.amazonaws.com/fluxdelux.org/hula-lasso-red.mp3';
 hulaR.preload = "none";
 
 var shipB = document.createElement('audio');
-shipB.src = 'https://s3.amazonaws.com/fluxdelux.org/shipblue.mp3';
+shipB.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-blue.mp3';
 shipB.preload = "none";
 var shipR = document.createElement('audio');
-shipR.src = 'https://s3.amazonaws.com/fluxdelux.org/shipred.mp3';
+shipR.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-red.mp3';
 shipR.preload = "none";
 
 var orbitalsB = document.createElement('audio');
-orbitalsB.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitalsblue.mp3';
+orbitalsB.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-blue.mp3';
 orbitalsB.preload = "none";
 var orbitalsR = document.createElement('audio');
-orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitalsred.mp3';
+orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-red.mp3';
 orbitalsR.preload = "none";
 
 //SETTING UP ARRAY OF ALL THE AUDIO FILES FOR FUTUR FOR LOOPS
@@ -344,7 +344,7 @@ var subscribeToServerSentEvents = function(){
                                             case 5:
                                             orbitalsR.play();
                                             currentEpisodeAudio = orbitalsR;
-                                            
+
                                                 break;
 
                                             case 6:
