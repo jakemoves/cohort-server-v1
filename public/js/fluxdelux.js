@@ -108,6 +108,13 @@ var orbitalsR = document.createElement('audio');
 orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-red.mp3';
 orbitalsR.preload = "none";
 
+var chipmeltT = document.createElement('audio');
+chipmeltT.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
+chipmeltT.preload = "none";
+
+var shipT = document.createElement('audio');
+shipT.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
+shipT.preload = "none";
 //SETTING UP ARRAY OF ALL THE AUDIO FILES FOR FUTUR FOR LOOPS
 
 var allAudio = [test, simpleFluxB, simpleFluxR, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipB, orbitalsB, orbitalsR];
@@ -160,6 +167,14 @@ var load = function () {
         case 6:
         hulaB.load();
         hulaR.load();
+          break;
+
+          case 7:
+          chipmeltT.load();
+          break;
+
+          case 8:
+          shipT.load();
           break;
 
         default:
@@ -309,6 +324,16 @@ var subscribeToServerSentEvents = function(){
                                             currentEpisodeAudio = hulaB;
                                             break;
 
+                                            case 7:
+                                            chipmeltT.play();
+                                            currentEpisodeAudio = chipmeltT;
+                                            break;
+
+                                            case 8:
+                                            shipT.play();
+                                            currentEpisodeAudio = shipT;
+                                            break;
+
                                             default:
                                                 console.log("no music for cue index " + cue.index);
                                         }
@@ -351,6 +376,16 @@ var subscribeToServerSentEvents = function(){
                                             hulaR.play();
                                             currentEpisodeAudio = hulaR;
 
+                                                break;
+
+                                                case 7:
+                                                chipmeltT.play();
+                                                currentEpisodeAudio = chipmeltT;
+                                                break;
+
+                                                case 8:
+                                                shipT.play();
+                                                currentEpisodeAudio = shipT;
                                                 break;
 
                                             default:
@@ -508,6 +543,22 @@ $("#b10").on("click", function(){
 
 
   orbitalsB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+
+  playerLayer.style.visibility = "visible";
+})
+$("#b11").on("click", function(){
+
+
+  chipmeltT.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+
+  playerLayer.style.visibility = "visible";
+})
+$("#b12").on("click", function(){
+
+
+  shipT.play();
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
   playerLayer.style.visibility = "visible";
