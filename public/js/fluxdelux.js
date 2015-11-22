@@ -108,9 +108,23 @@ var orbitalsR = document.createElement('audio');
 orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-red.mp3';
 orbitalsR.preload = "none";
 
+var chipMeltTogetherB = document.createElement('audio');
+chipMeltTogetherB.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
+chipMeltTogetherB.preload = "none";
+var chipMeltTogetherR = document.createElement('audio');
+chipMeltTogetherR.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
+chipMeltTogetherR.preload = "none";
+
+var shipTogetherB = document.createElement('audio');
+shipTogetherB.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
+shipTogetherB.preload = "none";
+var shipTogetherR = document.createElement('audio');
+shipTogetherR.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
+shipTogetherR.preload = "none";
+
 //SETTING UP ARRAY OF ALL THE AUDIO FILES FOR FUTUR FOR LOOPS
 
-var allAudio = [test, simpleFluxB, simpleFluxR, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipB, orbitalsB, orbitalsR];
+var allAudio = [test, simpleFluxB, simpleFluxR, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipB, orbitalsB, orbitalsR, chipMeltTogetherB, chipMeltTogetherR, shipTogetherB, shipTogetherR];
 
 //--setting up boolean to only have one audio playback at a time
 var audioIsPlaying = false;
@@ -141,25 +155,33 @@ var load = function () {
             break;
 
         case 3:
-        shipB.load();
-        shipR.load();
-
+            shipB.load();
+            shipR.load();
             break;
 
         case 4:
-        chipmeltB.load();
-        chipmeltR.load();
-
+            chipmeltB.load();
+            chipmeltR.load();
             break;
 
         case 5:
-        orbitalsB.load();
-        orbitalsR.load();
+            orbitalsB.load();
+            orbitalsR.load();
           break;
 
         case 6:
-        hulaB.load();
-        hulaR.load();
+            hulaB.load();
+            hulaR.load();
+          break;
+
+        case 7:
+            shipTogetherB.load();
+            shipTogetherR.load();
+          break;
+
+        case 8:
+            chipMeltTogetherB.load();
+            chipMeltTogetherR.load();
           break;
 
         default:
@@ -175,7 +197,7 @@ var load = function () {
 
 var checkin = function(){
     var passcode = $('#passcode').val();
-    if(passcode === "NBTO"){
+    if(passcode === "YOW"){
         subscribeToServerSentEvents();
         participantIsCheckedIn = true;
         info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><h4>move into the open space along a curving path<br />be careful not to bump or brush against anyone else<br />vary your speed whenever you want<br />pause and be still whenever the impulse strikes you<br />follow beside or behind others when you want<br />copy, repeat, and experiment with movements that you see around you, whenever you want</h4>"
@@ -192,7 +214,11 @@ var checkin = function(){
 
 var checkout = function(){
     source.close();
-    info.innerHTML = "<h4>Welcome to <i>FluxDelux</i>!</h4><h4>If you're in our space at the <a href=\"https://www.google.ca/maps?client=safari&rls=en&q=trinity+community+recreation+centre&oe=UTF-8&gfe_rd=cr&um=1&ie=UTF-8&sa=X&ved=0CAcQ_AUoAWoVChMIhtr7--elyAIVyXE-Ch1fyQw1\">Trinity Community Recreation Center</a>, enter the check-in passcode.</h4>"
+    info.innerHTML = '<h4>Welcome to <i>FluxDelux</i>!</h4>
+                    <h4>If you\'re in our space at the <a href=
+                    "https://www.google.ca/maps/place/Carleton+University+Conference+Services/@45.3871615,-75.699481,17z/data=!3m1!4b1!4m2!3m1!1s0x4cce05d910840183:0x5df37779017e6a0a">
+                    Carleton University Residence Commons Conference Centre</a>, enter the check-in
+                    passcode.</h4>'
     $('#check-out').css('display', 'none');
     $('#survey').css('display', 'block');
     $('#check-in').css('display', 'block');
@@ -309,6 +335,17 @@ var subscribeToServerSentEvents = function(){
                                             currentEpisodeAudio = hulaB;
                                             break;
 
+                                            case 7:
+                                            shipTogetherB.play();
+                                            currentEpisodeAudio = shipTogetherB;
+                                            break;
+
+                                            case 8:
+                                            chipMeltTogetherB.play();
+                                            currentEpisodeAudio = chipMeltTogetherB;
+                                            break;
+
+
                                             default:
                                                 console.log("no music for cue index " + cue.index);
                                         }
@@ -352,6 +389,17 @@ var subscribeToServerSentEvents = function(){
                                             currentEpisodeAudio = hulaR;
 
                                                 break;
+
+                                            case 7:
+                                            shipTogetherR.play();
+                                            currentEpisodeAudio = shipTogetherR;
+
+                                                break;
+
+                                            case 8:
+                                            shipTogetherB.play();
+                                            currentEpisodeAudio = shipTogetherB;
+                                            break;
 
                                             default:
                                                 console.log("no music for cue index " + cue.index);
@@ -508,6 +556,22 @@ $("#b10").on("click", function(){
 
 
   orbitalsB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+
+  playerLayer.style.visibility = "visible";
+})
+$("#b11").on("click", function(){
+
+
+  shipTogetherB.play();
+  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+
+  playerLayer.style.visibility = "visible";
+})
+$("#b12").on("click", function(){
+
+
+  chipMeltTogetherB.play();
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
   playerLayer.style.visibility = "visible";
