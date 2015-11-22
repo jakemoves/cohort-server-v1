@@ -476,7 +476,7 @@ for (var q = 0; q < allAudio.length; q++) {
     (function (q) {
         allAudio[q].addEventListener("waiting", function () {
 
-            // info.innerHTML = "<h4>Audio instructions are delayed</h4>";
+            info.innerHTML = "<h4>We can't seem to start our audio on your smartphone. Please see a volunteer for help.</h4>";
             console.log("stalled");
 
         }, false);
