@@ -1,10 +1,10 @@
 var GroupEnum = {
     BLUE: 1,
-    RED: 2,
+    RED: 2/*,
     properties: {
         1: {name: "blue", value: 1},
         2: {name: "red", value: 2}
-    }
+    }*/
 };
 
 var episodes = [
@@ -28,25 +28,30 @@ var episodes = [
     {
       "name":  "chipmelt",
       "displayName": "Chip Melt"
-
     },
     {
       "name": "orbitals",
       "displayName": "Orbitals"
-
     },
     {
       "name": "hulalasso",
       "displayName": "Hula Lasso"
-
+    },
+    {
+      "name": "shipTogether",
+      "displayName": "Ship Together"
+    },
+    {
+      "name": "chipMeltTogether",
+      "displayName": "Chip Melt Together"
     }
-]
+];
 
 var numberOfEpisodes = episodes.length;
 var source;
 
 var participantGroup = assignGroup();
-console.log("participantGroup: " + GroupEnum.properties[participantGroup].name);
+//console.log("participantGroup: " + GroupEnum.properties[participantGroup].name);
 
 var participantIsCheckedIn = false;
 
@@ -200,7 +205,7 @@ var checkin = function(){
     if(passcode === "YOW"){
         subscribeToServerSentEvents();
         participantIsCheckedIn = true;
-        info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><h4>move into the open space along a curving path<br />be careful not to bump or brush against anyone else<br />vary your speed whenever you want<br />pause and be still whenever the impulse strikes you<br />follow beside or behind others when you want<br />copy, repeat, and experiment with movements that you see around you, whenever you want</h4>"
+        info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><h4>move into the open space along a curving path<br />be careful not to bump or brush against anyone else<br />vary your speed whenever you want<br />pause and be still whenever the impulse strikes you<br />follow beside or behind others when you want<br />copy, repeat, and experiment with movements that you see around you, whenever you want</h4>";
         $('#check-in').css('display', 'none');
 
     } else if(passcode === "backup"){
@@ -210,19 +215,15 @@ var checkin = function(){
     } else {
         $('#passcode').attr('placeholder', 'Incorrect passcode');
     }
-}
+};
 
 var checkout = function(){
     source.close();
-    info.innerHTML = '<h4>Welcome to <i>FluxDelux</i>!</h4>
-                    <h4>If you\'re in our space at the <a href=
-                    "https://www.google.ca/maps/place/Carleton+University+Conference+Services/@45.3871615,-75.699481,17z/data=!3m1!4b1!4m2!3m1!1s0x4cce05d910840183:0x5df37779017e6a0a">
-                    Carleton University Residence Commons Conference Centre</a>, enter the check-in
-                    passcode.</h4>'
+    info.innerHTML = "<h4>Welcome to <i>FluxDelux</i>!</h4><h4>If you’re in our space at the <a href=\"https%3A//www.google.ca/maps/place/Carleton+University+Conference+Services/@45.3871615%2C-75.699481%2C17z/data%3D%213m1%214b1%214m2%213m1%211s0x4cce05d910840183%3A0x5df37779017e6a0a\">Carleton University Residence Commons Conference Centre</a>, enter the check-in passcode.</h4>";
     $('#check-out').css('display', 'none');
     $('#survey').css('display', 'block');
     $('#check-in').css('display', 'block');
-}
+};
 
 var subscribeToServerSentEvents = function(){
     //THIS IS FROM YOUR CODE
@@ -261,7 +262,7 @@ var subscribeToServerSentEvents = function(){
             type: actionAsArray[0],
             index: parseInt(actionAsArray[1], 10),
             action: actionAsArray[2]
-        }
+        };
 
         // make sure our index is a valid integer
         if(isNaN(cue.index)){
@@ -282,7 +283,7 @@ var subscribeToServerSentEvents = function(){
 
                         case "load":  if(audioIsPlaying === false ){
                             Index = cue.index;
-                            info.innerHTML = "<h4>Please tap the button below to confirm you're ready!</h4>"
+                            info.innerHTML = "<h4>Please tap the button below to confirm you're ready!</h4>";
                             $('#episode-confirm').css('display', 'block');
                             console.log("episode number: " + Index);
                           }
@@ -439,7 +440,7 @@ var subscribeToServerSentEvents = function(){
             }
         }
     }, false);
-}
+};
 
 //LISTEN FOR WHEN AUDIO HAS ENDED AND UPDATE UI....I TRIED DOING THIS WITHOUT PLACING A FUNCTION INSIDE A FOR LOOP BUT..
 for (var i = 0; i < allAudio.length; i++) {
@@ -519,7 +520,7 @@ $("#b5").on("click", function(){
 
 playerLayer.style.visibility = "visible";
 
-})
+});
 $("#b6").on("click", function(){
 
 
@@ -527,7 +528,7 @@ $("#b6").on("click", function(){
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
 playerLayer.style.visibility = "visible";
-})
+});
 $("#b7").on("click", function(){
 
 
@@ -535,7 +536,7 @@ $("#b7").on("click", function(){
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
   playerLayer.style.visibility = "visible";
-})
+});
 $("#b8").on("click", function(){
 
 
@@ -543,7 +544,7 @@ $("#b8").on("click", function(){
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
   playerLayer.style.visibility = "visible";
-})
+});
 $("#b9").on("click", function(){
 
 
@@ -551,7 +552,7 @@ $("#b9").on("click", function(){
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
   playerLayer.style.visibility = "visible";
-})
+});
 $("#b10").on("click", function(){
 
 
@@ -559,7 +560,7 @@ $("#b10").on("click", function(){
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
   playerLayer.style.visibility = "visible";
-})
+});
 $("#b11").on("click", function(){
 
 
@@ -567,7 +568,7 @@ $("#b11").on("click", function(){
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
   playerLayer.style.visibility = "visible";
-})
+});
 $("#b12").on("click", function(){
 
 
@@ -575,4 +576,4 @@ $("#b12").on("click", function(){
   manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
   playerLayer.style.visibility = "visible";
-})
+});
