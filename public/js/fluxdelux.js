@@ -2,7 +2,7 @@ $(document).ready(function(){
     if(Cookies.get('fluxdelux') == "checkedin"){
         $('#passcode').val('YOW');
     }
-}
+});
 
 var GroupEnum = {
     BLUE: 1,
