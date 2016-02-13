@@ -1,19 +1,19 @@
 {
-    "name": "cohort-server",
-    "version": "0.0.1",
-    "description": "Server for Cohort-based iOS apps",
-    "author": "Jacob Niedzwiecki <jake@jacob-n.com>",
-    "engines": {
-      "node": "0.10.29"
-    },
-    "dependencies": {
-    	"express": "4.x",
-        "nanotimer": "~0.3.1",
-        "cors": "2.7.x"
-    },
-
-    "repository": {
-    	"type": "git",
-    	"url": "https://github.com/jakemoves/jqrs-server.git"
-    }
+  "name": "cohort-server",
+  "version": "0.0.1",
+  "description": "Server for Cohort-based iOS apps",
+  "author": "Jacob Niedzwiecki <jake@jacob-n.com>",
+  "engines": {
+    "node": "0.10.29"
+  },
+  "dependencies": {
+    "cors": "2.7.x",
+    "express": "4.x",
+    "nanotimer": "~0.3.1",
+    "nedb": "^1.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakemoves/jqrs-server.git"
+  }
 }

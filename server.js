@@ -3,6 +3,8 @@ var http = require('http'),
   cors = require('cors'),
 	NanoTimer = require('nanotimer'),
 	bodyParser = require('body-parser'),
+  Datastore = require('nedb'),
+  db = new Datastore({ filename: "events.db", autoload: true }),
   	interval = 1000,
  	  port = 0,
   	id = 0,
@@ -77,10 +79,119 @@ app.get('/simulate-start', function(req, res){
   broadcast("cohortMessage", msg);
 
   res.writeHead(200, {
-    'Content-Type': 'text/html',
+    'Content-Type': 'text/html'
   });
   res.write("<DOCTYPE !html><html><head></head><body>Sent simulated event start signal.</body></html>");
   res.send();
+});
+
+app.get('/events', function(req, res){
+  db.find({}, function(err, docs){
+    console.log(docs);
+    if(!err){
+      res.writeHead(200, {
+        'Content-Type': 'application/json'
+      });
+      res.write(JSON.stringify(docs));
+      res.send();
+    } else {
+      res.writeHead(400);
+      res.write("" + err);
+      res.send();
+    }
+  });
+});
+
+app.get('/events/upcoming', function(req, res){
+  db.find({}, function(err, docs){
+    console.log(docs);
+    if(!err){
+      res.writeHead(200, {
+        'Content-Type': 'application/json'
+      });
+      var today = Date.now();
+      var upcomingEvents = new Array;
+      for(i=0; i<docs.length; i++){
+        var evnt = docs[i];
+        console.log(evnt.date);
+        var eventDate = Date.parse(evnt.date);
+        console.log("event: " + eventDate + ", today: " + today);
+        if(eventDate > today) {
+          upcomingEvents.push(evnt);
+        }
+      }
+      console.log(upcomingEvents);
+      res.write(JSON.stringify(upcomingEvents));
+      res.send();
+    } else {
+      res.writeHead(400);
+      res.write("" + err);
+      res.send();
+    }
+  });
+});
+
+app.post('/events/create', jsonParser, function(req, res) {
+  var resText;
+  // console.log('received create-event');
+  // console.log(req.body);
+  var eventInfo = req.body;
+  // basic validation
+  if( eventInfo.city &&
+      eventInfo.venue &&
+      eventInfo.address &&
+      eventInfo.geocode &&
+      eventInfo.date &&
+      eventInfo.startTime &&
+      eventInfo.endTime &&
+      eventInfo.checkInCode) 
+    {
+      db.insert(eventInfo, function(err, newDoc){
+        if(err){
+          console.log(err);
+          resText = err;
+          res.writeHead(400);
+        } else {
+          resText = "Created new event with id: " + newDoc._id;
+          res.writeHead(200);
+        }
+        res.write(resText);
+        res.send();
+      });
+  } else {
+    res.writeHead(400);
+    res.write('Event is missing required information');
+    res.send();
+  }
+});
+
+app.post('/events/delete', jsonParser, function(req, res) {
+  var resText;
+  // console.log('received create-event');
+  // console.log(req.body);
+  // basic validation
+  if( req.body.eventId) {
+      db.remove({ _id: req.body.eventId }, {}, function(err, numRemoved){
+        if(err || numRemoved !== 1){
+          if(err){
+            console.log(err);
+            resText = err;
+          } else {
+            resText = "Failed to delete event";
+          }
+          res.writeHead(400);
+        } else {
+          resText = "Deleted " + numRemoved + " event";
+          res.writeHead(200);
+        }
+        res.write(resText);
+        res.send();
+      });
+  } else {
+    res.writeHead(400);
+    res.write('Delete request is missing event ID');
+    res.send();
+  }
 });
 
 timer.setInterval(emitHeartbeat, '', '10s');
