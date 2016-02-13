@@ -1,7 +1,34 @@
 $(document).ready(function(){
     if(Cookies.get('fluxdelux') == "checkedin"){
         $('#passcode').val('YOW');
-    }
+    };
+
+    // get list of upcoming events from server
+    var events = $.get("/events/upcoming")
+        .done(function(data){
+            //console.log(data);
+        })
+        .fail(function(){
+            console.log("Request failed: /events/upcoming");
+        });
+
+    events.then(function(events){
+        console.log(events);
+        var eventsList = $('<ul>').addClass('events-list').appendTo('#info');
+        for(i=0; i<events.length; i++){
+            var date = moment(events[i].date + ", " + events[i].startTime, "MMMM D, YYYY, h:mm A");
+            console.log(date);
+            var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
+            var eventHTML = '<li class="event">'
+                + '<h5 class="city">' + events[i].city + '</h5>' 
+                + '<p>' + events[i].venue + '<br/>' + events[i].address + '</p>' 
+                + '<p>' + eventDate + '</p>'
+                + '<p>Doors open at ' + events[i].doorsOpenTime + '</p>'
+                + '</li>';
+            $('.events-list').append($(eventHTML));
+        }
+    });
+
 });
 
 var GroupEnum = {

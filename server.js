@@ -120,8 +120,9 @@ app.get('/events/upcoming', function(req, res){
           upcomingEvents.push(evnt);
         }
       }
-      console.log(upcomingEvents);
-      res.write(JSON.stringify(upcomingEvents));
+      var sortedUpcomingEvents = sortEventsByDate(upcomingEvents);
+      console.log(sortedUpcomingEvents);
+      res.write(JSON.stringify(sortedUpcomingEvents));
       res.send();
     } else {
       res.writeHead(400);
@@ -216,4 +217,12 @@ function broadcast(eventName, msg){
        }
 		}
 	}
+}
+
+function sortEventsByDate(events){
+  var sortedArray = events;
+  sortedArray.sort(function(a,b){
+    return new Date(a.date) - new Date(b.date);
+  });
+  return sortedArray;
 }
