@@ -24,10 +24,11 @@ function formSubmit(){
     
     City = $("#city").val();
     
-     var Flux = new FluxEvent($("#city").val(),$("#venue").val(),$("#address").val(),[],$("#date").val(),$("#doorsOpenTime").val(),$("#startTime").val(),$("#endTime").val(),[{
-        "name": "Tangled Art + Disability",
-        "url": "http://tangledarts.org"
-    }],"https://guestlistapp.com/events/402906", "yxu", eventsCounter );
+     var Flux = new FluxEvent($("#city").val(),$("#venue").val(),$("#address").val(),[$("#latitude").val(),$("#longitude").val()
+     ],$("#date").val(),$("#doorsOpenTime").val(),$("#startTime").val(),$("#endTime").val(),[{
+        "name": $("#hostName").val(),
+        "url": $("#hostURL").val()
+    }],$("#signUpUrl").val(), $("#checkInCode").val(), $("#_id").val() );
     
      
    eventsCounter += 1; 
