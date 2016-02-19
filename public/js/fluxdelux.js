@@ -305,7 +305,6 @@ var subscribeToServerSentEvents = function(){
                                 if (!audioIsPlaying) {
                                     audioIsPlaying = true;
                                     if (participantGroup === GroupEnum.BLUE) {
-                                        //NOT SURE IF THE "currentEpisodeAudio" IS NECCESSARY BUT IT WAS MY WAY OF REDUCING FOR LOOPS
                                         switch (cue.index) {
                                             case 0:
                                                 test.play();
@@ -473,25 +472,25 @@ for (var p = 0; p < allAudio.length; p++) {
         allAudio[p].addEventListener("play", function () {
 
             info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
-            // b1.style.visibility = "hidden";
+            
 
         }, false);
     })(p);
 
 }
 
-//THIS IS IN CASE THE AUDIO WAS WAITING..WHICH INDICATES THAT THE Audio IS NOT LOADED BUT MAY LOAD IN THE FUTURE..IT MAY ALSO NOT.
-for (var q = 0; q < allAudio.length; q++) {
-    (function (q) {
-        allAudio[q].addEventListener("waiting", function () {
-
-            info.innerHTML = "<h4>We can't seem to start our audio on your smartphone. Please see a volunteer for help.</h4>";
-            console.log("stalled");
-
-        }, false);
-    })(q);
-
-}
+////THIS IS IN CASE THE AUDIO WAS WAITING..WHICH INDICATES THAT THE Audio IS NOT LOADED BUT MAY LOAD IN THE FUTURE..IT MAY ALSO NOT.
+//for (var q = 0; q < allAudio.length; q++) {
+//    (function (q) {
+//        allAudio[q].addEventListener("waiting", function () {
+//
+//            info.innerHTML = "<h4>We can't seem to start our audio on your smartphone. Please see a volunteer for help.</h4>";
+//            console.log("stalled");
+//
+//        }, false);
+//    })(q);
+//
+//}
 
 //CHECK-IN FUNCTION
 
@@ -518,46 +517,54 @@ function assignGroup() {
 function manualGo(){
     var dropDownChoice = $("#manualEpisodeChoice").val();
     
+    
     switch(dropDownChoice){
         case "0" : 
                 simpleFluxB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Simple Flux now streaming</h2>";
                 playerLayer.style.visibility = "visible";
+                
             break;
         case "1" :
                 cornersB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Corners now streaming</h2>";
                 playerLayer.style.visibility = "visible";
+             
             break;
-        case "2": 
-                chipmeltB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+        case "2":
+                shipB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Ship now streaming</h2>";
                 playerLayer.style.visibility = "visible";
+             
             break;
         case "3": 
-                shipB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                chipmeltB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Chip Melt now streaming</h2>";
                 playerLayer.style.visibility = "visible";
+             
             break;
         case "4": 
                 hulaB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Hula Lasso now streaming</h2>";
                 playerLayer.style.visibility = "visible";
             break;
         case "5": 
                 orbitalsB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Orbitals now streaming</h2>";
                 playerLayer.style.visibility = "visible";
+            
             break;
         case "6": 
                 shipTogetherB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Ship Together now streaming</h2>";
                 playerLayer.style.visibility = "visible";
+             
             break;
         case "7": 
                 chipMeltTogetherB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Chip Melt Together now streaming</h2>";
                 playerLayer.style.visibility = "visible";
+             
             break;
         default: console.log(dropDownChoice);;
     }
