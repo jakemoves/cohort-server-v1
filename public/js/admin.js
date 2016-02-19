@@ -46,14 +46,14 @@ function formSubmit(){
     
     
     $.get("/events", function(Flux){
-        $("#deleteEvent").html("<option value="+ eventsCounter + "> " + Flux.City + " " + Flux.Venue + " " + Flux.date + "</option>");
+        var htmlUpdate; 
+        htmlUpdate += "<option value="+ eventsCounter + "> " + Flux.City + " " + Flux.Venue + " " + Flux.date + "</option>";
+        $("#deleteEvent").html(htmlUpdate);
         
     }
     
     
-    
-     
-   eventsCounter += 1; 
+ eventsCounter += 1; 
     
 }
 
