@@ -1,3 +1,4 @@
+//--Variable to use in menu value
 var eventsCounter = 0;
 
 
@@ -19,7 +20,7 @@ function FluxEvent(city, venue, address, geocode, date, doorsOpenTime, startTime
     this._id = _id;
 };
 
-
+//function for when submit create event is hit
 function formSubmit(){
     
      var Flux = new FluxEvent(
@@ -56,8 +57,12 @@ function formSubmit(){
  eventsCounter += 1; 
     
 }
+         
           
-          function removeEvent(){
+          //function for when submit delete event is hit
+
+function removeEvent(){
+        $.post("/events/delete")
         
     }
 
