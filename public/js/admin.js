@@ -56,5 +56,9 @@ function formSubmit(){
  eventsCounter += 1; 
     
 }
+          
+          function removeEvent(){
+        
+    }
 
   

@@ -512,77 +512,54 @@ function assignGroup() {
     }
 }
 
-// function loadScores(){
-//   simpleFluxB.load();
-//   cornersB.load();
-//   chipmeltB.load();
-//   shipB.load();
-//   hulaB.load();
-//   orbitalsB.load();
-// }
-
-$("#b5").on("click", function(){
 
 
-  simpleFluxB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
-playerLayer.style.visibility = "visible";
+function manualGo(){
+    var dropDownChoice = $("#manualEpisodeChoice").val();
+    
+    switch(dropDownChoice){
+        case "0" : 
+                simpleFluxB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        case "1" :
+                cornersB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        case "2": 
+                chipmeltB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        case "3": 
+                shipB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        case "4": 
+                hulaB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        case "5": 
+                orbitalsB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        case "6": 
+                shipTogetherB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        case "7": 
+                chipMeltTogetherB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        default: console.log(dropDownChoice);;
+    }
+}
 
-});
-$("#b6").on("click", function(){
-
-
-  cornersB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-playerLayer.style.visibility = "visible";
-});
-$("#b7").on("click", function(){
-
-
-  chipmeltB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b8").on("click", function(){
-
-
-  shipB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b9").on("click", function(){
-
-
-  hulaB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b10").on("click", function(){
-
-
-  orbitalsB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b11").on("click", function(){
-
-
-  shipTogetherB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b12").on("click", function(){
-
-
-  chipMeltTogetherB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
