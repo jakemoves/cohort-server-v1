@@ -69,10 +69,10 @@ var manual = document.getElementById('manual');
 var pageTwo = document.getElementById("page02");
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
-// var playerLayer = document.getElementById("playerLayer");
+
 
 //LOADING ALL THE AUDIO ELEMENTS
-//SIMPLEFLUX IS REPLACED WITH A SHORT TEST.MP3 THATS ONLY 30s LONG
+//IF AUDIO SOURCES NEED TO CHANNGE, UPDATE EACH trackname.src = "https://newSource..."
 var test = document.createElement('audio');
 test.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
 test.preload = "none";
@@ -235,7 +235,7 @@ var checkout = function(){
 };
 
 var subscribeToServerSentEvents = function(){
-    //THIS IS FROM YOUR CODE
+    
     source = new EventSource("/listen");
 
     source.addEventListener('open', function (e) {
@@ -451,7 +451,7 @@ var subscribeToServerSentEvents = function(){
     }, false);
 };
 
-//LISTEN FOR WHEN AUDIO HAS ENDED AND UPDATE UI....I TRIED DOING THIS WITHOUT PLACING A FUNCTION INSIDE A FOR LOOP BUT..
+//LISTEN FOR WHEN AUDIO HAS ENDED AND UPDATE UI
 for (var i = 0; i < allAudio.length; i++) {
 
     allAudio[i].addEventListener("ended", function () {
@@ -466,7 +466,7 @@ for (var i = 0; i < allAudio.length; i++) {
 }
 
 
-// MOST AGREE THIS IS A BETTER WAY, BUT STILL NOT GREAT WAY OF PUTTING AN EVENTLISTENER ON AN ARRAY
+
 
 for (var p = 0; p < allAudio.length; p++) {
     (function (p) {
@@ -480,7 +480,7 @@ for (var p = 0; p < allAudio.length; p++) {
 
 }
 
-//THIS IS IN CASE THE AUDIO WAS WAITING..WHICH INDICATES THAT THE VIDEO IS NOT LOADED BUT MAY LOAD IN THE FUTUR..IT MAY ALSO NOT.
+//THIS IS IN CASE THE AUDIO WAS WAITING..WHICH INDICATES THAT THE Audio IS NOT LOADED BUT MAY LOAD IN THE FUTURE..IT MAY ALSO NOT.
 for (var q = 0; q < allAudio.length; q++) {
     (function (q) {
         allAudio[q].addEventListener("waiting", function () {
