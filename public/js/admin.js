@@ -1,4 +1,4 @@
-var eventsCounter = 1;
+var eventsCounter = 0;
 
 
 
@@ -22,13 +22,35 @@ function FluxEvent(city, venue, address, geocode, date, doorsOpenTime, startTime
 
 function formSubmit(){
     
-    City = $("#city").val();
-    
-     var Flux = new FluxEvent($("#city").val(),$("#venue").val(),$("#address").val(),[$("#latitude").val(),$("#longitude").val()
-     ],$("#date").val(),$("#doorsOpenTime").val(),$("#startTime").val(),$("#endTime").val(),[{
+     var Flux = new FluxEvent(
+         $("#city").val(),
+         $("#venue").val(),
+         $("#address").val(),
+        [
+         $("#latitude").val(),$("#longitude").val()
+        ],
+         $("#date").val(),
+         $("#doorsOpenTime").val(),
+         $("#startTime").val(),
+         $("#endTime").val(),
+        [{
         "name": $("#hostName").val(),
         "url": $("#hostURL").val()
-    }],$("#signUpUrl").val(), $("#checkInCode").val(), $("#_id").val() );
+        }],
+         $("#signUpUrl").val(), 
+         $("#checkInCode").val(), 
+         $("#_id").val() 
+     );
+    
+    $.post("/events/create", Flux);
+    
+    
+    $.get("/events", function(Flux){
+        $("#deleteEvent").html("<option value="+ eventsCounter + "> " + Flux.City + " " + Flux.Venue + " " + Flux.date + "</option>");
+        
+    }
+    
+    
     
      
    eventsCounter += 1; 

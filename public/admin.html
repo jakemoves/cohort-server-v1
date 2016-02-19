@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>FluxDelux Control Board</title><!-- Bootstrap -->
+    <title>FluxDelux Control Board</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="flux.css" rel="stylesheet">
 </head>
@@ -22,10 +22,11 @@
     </div>
 
     <div class="container" id="content">
-        <h2> Create Event</h2>
+        
         
     
-        <form>
+    <form>
+        <h2> Create Event</h2>
             <div class="form-group">
                 <label for="city">City</label>
                 <input type="local" class="form-control" id="city" placeholder="Toronto">
@@ -43,7 +44,6 @@
                 <label for="geocodeLatitude">Latitude</label>
                 <input type="number" class="form-control" id="geocodeLatitude" placeholder="43.653226">
             </div>
-        
             <div class="form-group col-md-6">
                 <label for="geocodeLongitude">Longitude</label>
                 <input type="number" class="form-control" id="geocodeLongitude" placeholder="-79.383184">
@@ -56,7 +56,7 @@
                 <input type="date" class="form-control" id="date">
             </div>
             <div class="form-group">
-                <label for="doorsOpen">Doors Open Time</label>
+                <label for="doorsOpen">Time That Doors Open</label>
                 <input type="time" class="form-control" id="startTime">
             </div>
             <div class="form-group">
@@ -82,7 +82,6 @@
                 <label for="signUpURL">Sign Up URL</label>
                 <input type="text" class="form-control" id="signUpURL" placeholder="https://guestlistapp.com/events/402906">
             </div>
-            
             <div class="form-group">
                 <label for="checkInCode">Check In Code</label>
                 <input type="password" class="form-control" id="checkInCode" placeholder="yxu">
@@ -92,10 +91,11 @@
                 <input type="text" class="form-control" id="_id" placeholder="yHv4AKo4Cy01ippO">
             </div>
             
+    <button type="submit" class="btn btn-default btn-lg" onclick="formSubmit()">Submit Event Create</button>
             
-        <button type="submit" class="btn btn-default btn-lg" onclick="formSubmit()">Submit Event Create</button>
             <hr>
             <hr>
+            
         <h2>Delete Event</h2>
             <div class="form-group">
                 <label for="deleteEvent">Select Event To Delete</label>
@@ -134,7 +134,7 @@
           </div>
         </div>
       </div>
-    </div>
+    
 
     <script src=
     "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
