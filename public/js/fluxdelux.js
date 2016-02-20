@@ -20,7 +20,7 @@ $(document).ready(function () {
             //console.log(events[i].date);
 
             var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
-            var eventHTML = '<li class="event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong></p>' + '<p>Doors open at ' + events[i].doorsOpenTime + '</p>' + '</li>';
+            var eventHTML = '<li class="event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong></p>' + '<p>Doors open at ' + events[i].doorsOpenTime + '</p>' + '<a href="'events[i].signupURL'">Sign Up</a>' '</li>';
             $('.events-list').append($(eventHTML));
 
 

@@ -43,15 +43,9 @@ function formSubmit(){
          $("#_id").val() 
      );
     console.log(Flux.date)
-//    $.post("/events/create", Flux);
-//    
-//    
-//    $.get("/events", function(Flux){
-//        var htmlUpdate; 
-//        htmlUpdate += "<option value="+ eventsCounter + "> " + Flux.City + " " + Flux.Venue + " " + Flux.date + "</option>";
-//        $("#deleteEvent").html(htmlUpdate);
-//        
-//    }
+    $.post("/events/create", Flux);
+    
+
     
     
  eventsCounter += 1; 
