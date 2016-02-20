@@ -56,11 +56,13 @@
         </div>
 
         <div class="row" id="check-in">
+<!--
             <form>
                 <div class="form-group">
                     <input type="text" class="form-control" id="passcode" placeholder="Passcode">
                 </div>
             </form>
+-->
             <button class="btn btn-default btn-block btn-lg" id="b2" onclick="checkinManually()">Check In</button>
         </div>
 
@@ -99,6 +101,7 @@
 
 
         </div>
+     </div>
 
         <div class="container-fluid footer">
             <div class="row">
@@ -106,7 +109,7 @@
                     <p class="small">&#169; 2015 <a href="http://peggybakerdance.com/">Peggy Baker Dance
               Projects</a>, <a href="https://www.youtube.com/watch?v=GqcaSqmvz_U">Luke
               Garwood</a>, <a href="http://twitter.com/jakemoves">Jacob
-              Niedzwiecki</a></p>
+              Niedzwiecki</a><button id="backup" onclick = "backupCheckin()">, Flux</button></p>
 
                     <div class="col-xs-12" id="long-logo">
                         <embed src="img/bottom.svg" type="image/svg+xml">
@@ -115,8 +118,8 @@
             </div>
         </div>
 
-    </div>
-    <!-- end of page02-->
+   
+    
 
     <script src=
     "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

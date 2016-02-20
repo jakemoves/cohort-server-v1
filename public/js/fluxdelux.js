@@ -17,7 +17,8 @@ $(document).ready(function(){
         var eventsList = $('<ul>').addClass('events-list').appendTo('#info');
         for(i=0; i<events.length; i++){
             var date = moment(events[i].date + ", " + events[i].startTime, "MMMM D, YYYY, h:mm A");
-            console.log(date);
+            //console.log(events[i].date);
+            
             var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
             var eventHTML = '<li class="event">'
                 + '<h5 class="city">' + events[i].city + '</h5>' 
@@ -26,7 +27,32 @@ $(document).ready(function(){
                 + '<p>Doors open at ' + events[i].doorsOpenTime + '</p>'
                 + '</li>';
             $('.events-list').append($(eventHTML));
-        }
+            
+              
+           
+         }
+        
+         var eventsDateLong = new Date(Date.parse(events[0].date));
+         var eventsDayOfMonth = eventsDateLong.getDate();
+        var eventsMonth = eventsDateLong.getMonth(); 
+        var eventsYear = eventsDateLong.getFullYear(); 
+        var eventsTime = eventsDateLong.getTime();
+        
+        var currentDate = new Date();
+         var currentDayOfMonth = currentDate.getDate();
+        var currentMonth = currentDate.getMonth(); 
+        var currentYear = currentDate.getFullYear(); 
+        var currentTime = currentDate.getTime();
+        console.log(currentDayOfMonth);
+        
+      
+       if((currentDayOfMonth == eventsDayOfMonth) && (currentMonth == eventsMonth) && (currentYear == eventsYear) ){
+           $("#check-in").css("visibility","visible");
+           $("#backup").css("visibility","visible");
+       }
+           
+         
+
     });
 
 });
@@ -245,6 +271,11 @@ var checkinManually = function(){
         $('#passcode').attr('placeholder', 'Incorrect passcode');
     }
 };
+
+var backupCheckin = function(){
+    pageTwo.style.visibility = "visible";
+    
+}
 
 var checkin = function(){
     subscribeToServerSentEvents();

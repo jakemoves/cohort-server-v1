@@ -42,16 +42,16 @@ function formSubmit(){
          $("#checkInCode").val(), 
          $("#_id").val() 
      );
-    
-    $.post("/events/create", Flux);
-    
-    
-    $.get("/events", function(Flux){
-        var htmlUpdate; 
-        htmlUpdate += "<option value="+ eventsCounter + "> " + Flux.City + " " + Flux.Venue + " " + Flux.date + "</option>";
-        $("#deleteEvent").html(htmlUpdate);
-        
-    }
+    console.log(Flux.date)
+//    $.post("/events/create", Flux);
+//    
+//    
+//    $.get("/events", function(Flux){
+//        var htmlUpdate; 
+//        htmlUpdate += "<option value="+ eventsCounter + "> " + Flux.City + " " + Flux.Venue + " " + Flux.date + "</option>";
+//        $("#deleteEvent").html(htmlUpdate);
+//        
+//    }
     
     
  eventsCounter += 1; 
@@ -62,7 +62,7 @@ function formSubmit(){
           //function for when submit delete event is hit
 
 function removeEvent(){
-        $.post("/events/delete")
+//        $.post("/events/delete")
         
     }
 
