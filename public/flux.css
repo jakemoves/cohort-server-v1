@@ -127,6 +127,22 @@ a:visited {
         visibility: hidden;
 }
 
+.jumbotron {
+    background-color: rgba(246,240,250,0.1);
+    box-shadow: 1px 1px 1px #9CB3E6;
+    padding: 2%;
+    border: 1px solid #F1EDB1;
+   
+}
+
+.events-list{
+    list-style: none;
+}
+
+.city{
+    color: #f0c829;
+}
+
 
 /*
 

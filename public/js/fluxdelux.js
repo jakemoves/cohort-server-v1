@@ -1,57 +1,52 @@
-$(document).ready(function(){
-    if(Cookies.get('fluxdelux') == "checkedin"){
+$(document).ready(function () {
+    if (Cookies.get('fluxdelux') == "checkedin") {
         $('#passcode').val('YOW');
     };
 
     // get list of upcoming events from server
     var events = $.get("http://fluxdelux.org/events/upcoming")
-        .done(function(data){
+        .done(function (data) {
             //console.log(data);
         })
-        .fail(function(){
+        .fail(function () {
             console.log("Request failed: /events/upcoming");
         });
 
-    events.then(function(events){
+    events.then(function (events) {
         console.log(events);
         var eventsList = $('<ul>').addClass('events-list').appendTo('#info');
-        for(i=0; i<events.length; i++){
+        for (i = 0; i < events.length; i++) {
             var date = moment(events[i].date + ", " + events[i].startTime, "MMMM D, YYYY, h:mm A");
             //console.log(events[i].date);
-            
+
             var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
-            var eventHTML = '<li class="event">'
-                + '<h5 class="city">' + events[i].city + '</h5>' 
-                + '<p>' + events[i].venue + '<br/>' + events[i].address + '</p>' 
-                + '<p>' + eventDate + '</p>'
-                + '<p>Doors open at ' + events[i].doorsOpenTime + '</p>'
-                + '</li>';
+            var eventHTML = '<li class="event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong></p>' + '<p>Doors open at ' + events[i].doorsOpenTime + '</p>' + '</li>';
             $('.events-list').append($(eventHTML));
-            
-              
-           
-         }
-        
-         var eventsDateLong = new Date(Date.parse(events[0].date));
-         var eventsDayOfMonth = eventsDateLong.getDate();
-        var eventsMonth = eventsDateLong.getMonth(); 
-        var eventsYear = eventsDateLong.getFullYear(); 
+
+
+
+        }
+
+        var eventsDateLong = new Date(Date.parse(events[0].date));
+        var eventsDayOfMonth = eventsDateLong.getDate();
+        var eventsMonth = eventsDateLong.getMonth();
+        var eventsYear = eventsDateLong.getFullYear();
         var eventsTime = eventsDateLong.getTime();
-        
+
         var currentDate = new Date();
-         var currentDayOfMonth = currentDate.getDate();
-        var currentMonth = currentDate.getMonth(); 
-        var currentYear = currentDate.getFullYear(); 
+        var currentDayOfMonth = currentDate.getDate();
+        var currentMonth = currentDate.getMonth();
+        var currentYear = currentDate.getFullYear();
         var currentTime = currentDate.getTime();
         console.log(currentDayOfMonth);
-        
-      
-       if((currentDayOfMonth == eventsDayOfMonth) && (currentMonth == eventsMonth) && (currentYear == eventsYear) ){
-           $("#check-in").css("visibility","visible");
-           $("#backup").css("visibility","visible");
-       }
-           
-         
+
+
+        if ((currentDayOfMonth == eventsDayOfMonth) && (currentMonth == eventsMonth) && (currentYear == eventsYear)) {
+            $("#check-in").css("visibility", "visible");
+            $("#backup").css("visibility", "visible");
+        }
+
+
 
     });
 
@@ -59,11 +54,12 @@ $(document).ready(function(){
 
 var GroupEnum = {
     BLUE: 1,
-    RED: 2/*,
-    properties: {
-        1: {name: "blue", value: 1},
-        2: {name: "red", value: 2}
-    }*/
+    RED: 2
+        /*,
+            properties: {
+                1: {name: "blue", value: 1},
+                2: {name: "red", value: 2}
+            }*/
 };
 
 var episodes = [
@@ -80,29 +76,29 @@ var episodes = [
         "displayName": "Corners"
     },
     {
-      "name": "ship",
-      "displayName": "Ship"
+        "name": "ship",
+        "displayName": "Ship"
 
     },
     {
-      "name":  "chipmelt",
-      "displayName": "Chip Melt"
+        "name": "chipmelt",
+        "displayName": "Chip Melt"
     },
     {
-      "name": "orbitals",
-      "displayName": "Orbitals"
+        "name": "orbitals",
+        "displayName": "Orbitals"
     },
     {
-      "name": "hulalasso",
-      "displayName": "Hula Lasso"
+        "name": "hulalasso",
+        "displayName": "Hula Lasso"
     },
     {
-      "name": "shipTogether",
-      "displayName": "Ship Together"
+        "name": "shipTogether",
+        "displayName": "Ship Together"
     },
     {
-      "name": "chipMeltTogether",
-      "displayName": "Chip Melt Together"
+        "name": "chipMeltTogether",
+        "displayName": "Chip Melt Together"
     }
 ];
 
@@ -204,87 +200,89 @@ var audioIsPlaying = false;
 //LOAD FUNCTION FIRES ON BUTTON CLICK. SOUND FILE GETS LOADED ACCORDING TO WHICH "PRELOAD" NUMBER WE SEND
 var load = function () {
     switch (Index) {
-        case 0:
-            test.load();
-            break;
+    case 0:
+        test.load();
+        break;
 
-        case 1:
-            simpleFluxB.load();
-            simpleFluxR.load();
-            break;
+    case 1:
+        simpleFluxB.load();
+        simpleFluxR.load();
+        break;
 
-        case 2:
-            cornersB.load();
-            cornersR.load();
-            break;
+    case 2:
+        cornersB.load();
+        cornersR.load();
+        break;
 
-        case 3:
-            shipB.load();
-            shipR.load();
-            break;
+    case 3:
+        shipB.load();
+        shipR.load();
+        break;
 
-        case 4:
-            chipmeltB.load();
-            chipmeltR.load();
-            break;
+    case 4:
+        chipmeltB.load();
+        chipmeltR.load();
+        break;
 
-        case 5:
-            orbitalsB.load();
-            orbitalsR.load();
-          break;
+    case 5:
+        orbitalsB.load();
+        orbitalsR.load();
+        break;
 
-        case 6:
-            hulaB.load();
-            hulaR.load();
-          break;
+    case 6:
+        hulaB.load();
+        hulaR.load();
+        break;
 
-        case 7:
-            shipTogetherB.load();
-            shipTogetherR.load();
-          break;
+    case 7:
+        shipTogetherB.load();
+        shipTogetherR.load();
+        break;
 
-        case 8:
-            chipMeltTogetherB.load();
-            chipMeltTogetherR.load();
-          break;
+    case 8:
+        chipMeltTogetherB.load();
+        chipMeltTogetherR.load();
+        break;
 
-        default:
-            console.log("could not load audio for index " + Index);
+    default:
+        console.log("could not load audio for index " + Index);
     }
 
     console.log("audio loaded");
-//CHANGE UI AFTER USER CHECKS IN
+    //CHANGE UI AFTER USER CHECKS IN
     info.innerHTML = "<h4>Fantastic, you are now in queue. Please put your headphones on and wait for audio instructions.</h4>";
     //I NOW HAVE THE BUTTON HIDING SO THAT USERS DON'T KEEP PRESSING IT AND LOADING THE AUDIO AGAIN AND AGAIN.
     // b1.innerHTML = "Checked-in!";
 };
 
-var checkinManually = function(){
-    var passcode = $('#passcode').val(); 
-    if(passcode === "YOW"){
-        Cookies.set('fluxdelux', 'checkedin', { expires: 7 });
+var checkinManually = function () {
+    var passcode = $('#passcode').val();
+    if (passcode === "YOW") {
+        Cookies.set('fluxdelux', 'checkedin', {
+            expires: 7
+        });
         checkin();
-    } else if(passcode === "backup"){
-      console.log("go");
-      pageTwo.style.visibility = "visible";
+    } else if (passcode === "backup") {
+        console.log("go");
+        pageTwo.style.visibility = "visible";
     } else {
         $('#passcode').attr('placeholder', 'Incorrect passcode');
     }
 };
 
-var backupCheckin = function(){
+var backupCheckin = function () {
     pageTwo.style.visibility = "visible";
-    
+
 }
 
-var checkin = function(){
+var checkin = function () {
     subscribeToServerSentEvents();
     participantIsCheckedIn = true;
     info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><ul><li>move into the open space along a curving path</li><li>be careful not to bump or brush against anyone else</li><li>vary your speed whenever you want</li><li>pause and be still whenever the impulse strikes you</li><li>follow beside or behind others when you want</li><li>copy, repeat, and experiment with movements that you see around you, whenever you want</li></ul>";
     $('#check-in').css('display', 'none');
 };
 
-var checkout = function(){
+var checkout = function () {
     source.close();
     info.innerHTML = "<h4>Welcome to <i>FluxDelux</i>!</h4><h4>If you’re in our space at the <a href=\"https%3A//www.google.ca/maps/place/Carleton+University+Conference+Services/@45.3871615%2C-75.699481%2C17z/data%3D%213m1%214b1%214m2%213m1%211s0x4cce05d910840183%3A0x5df37779017e6a0a\">Carleton University Residence Commons Conference Centre</a>, enter the check-in passcode.</h4>";
     $('#check-out').css('display', 'none');
@@ -292,8 +290,8 @@ var checkout = function(){
     $('#check-in').css('display', 'block');
 };
 
-var subscribeToServerSentEvents = function(){
-    
+var subscribeToServerSentEvents = function () {
+
     source = new EventSource("/listen");
 
     source.addEventListener('open', function (e) {
@@ -324,15 +322,14 @@ var subscribeToServerSentEvents = function(){
 
         var x = data.action;
         var actionAsArray = data.action.split("-");
-        var cue =
-        {
+        var cue = {
             type: actionAsArray[0],
             index: parseInt(actionAsArray[1], 10),
             action: actionAsArray[2]
         };
 
         // make sure our index is a valid integer
-        if(isNaN(cue.index)){
+        if (isNaN(cue.index)) {
             console.log("could not parse cue due to invalid index: " + actionAsArray[1]);
             cue = nil;
         } else {
@@ -340,164 +337,165 @@ var subscribeToServerSentEvents = function(){
         }
 
         //IF WE SEND {"action": "episode-X-load"} change value of index accordingly
-        if(cue){
-            if(cue.type === "episode"){
+        if (cue) {
+            if (cue.type === "episode") {
 
                 // check if index is in bounds
-                if(cue.index < numberOfEpisodes){
-                    switch(cue.action){
+                if (cue.index < numberOfEpisodes) {
+                    switch (cue.action) {
 
 
-                        case "load":  if(audioIsPlaying === false ){
+                    case "load":
+                        if (audioIsPlaying === false) {
                             Index = cue.index;
                             info.innerHTML = "<h4>Please tap the button below to allow audio playback</h4>";
                             $('#episode-confirm').css('display', 'block');
                             console.log("episode number: " + Index);
-                          }
-                            break;
+                        }
+                        break;
 
-                        case "go":
-                            console.log("starting episode " + cue.index + " in 5 seconds");
-                            info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
-                            setTimeout(function () {
-                                if (!audioIsPlaying) {
-                                    audioIsPlaying = true;
-                                    if (participantGroup === GroupEnum.BLUE) {
-                                        switch (cue.index) {
-                                            case 0:
-                                                test.play();
-                                                currentEpisodeAudio = test;
-                                                break;
+                    case "go":
+                        console.log("starting episode " + cue.index + " in 5 seconds");
+                        info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
+                        setTimeout(function () {
+                            if (!audioIsPlaying) {
+                                audioIsPlaying = true;
+                                if (participantGroup === GroupEnum.BLUE) {
+                                    switch (cue.index) {
+                                    case 0:
+                                        test.play();
+                                        currentEpisodeAudio = test;
+                                        break;
 
-                                            case 1:
-                                                simpleFluxB.play();
-                                                currentEpisodeAudio = simpleFluxB;
-                                                break;
+                                    case 1:
+                                        simpleFluxB.play();
+                                        currentEpisodeAudio = simpleFluxB;
+                                        break;
 
-                                            case 2:
-                                                cornersB.play();
-                                                currentEpisodeAudio = cornersB;
-                                                break;
+                                    case 2:
+                                        cornersB.play();
+                                        currentEpisodeAudio = cornersB;
+                                        break;
 
-                                            case 3:
-                                            shipB.play();
-                                            currentEpisodeAudio = shipB;
+                                    case 3:
+                                        shipB.play();
+                                        currentEpisodeAudio = shipB;
 
-                                            break;
+                                        break;
 
-                                            case 4:
-                                            chipmeltB.play();
-                                            currentEpisodeAudio = chipmeltB;
+                                    case 4:
+                                        chipmeltB.play();
+                                        currentEpisodeAudio = chipmeltB;
 
-                                            break;
+                                        break;
 
-                                            case 5:
-                                            orbitalsB.play();
-                                            currentEpisodeAudio = orbitalsB;
+                                    case 5:
+                                        orbitalsB.play();
+                                        currentEpisodeAudio = orbitalsB;
 
-                                            break;
+                                        break;
 
-                                            case 6:
-                                            hulaB.play();
-                                            currentEpisodeAudio = hulaB;
-                                            break;
+                                    case 6:
+                                        hulaB.play();
+                                        currentEpisodeAudio = hulaB;
+                                        break;
 
-                                            case 7:
-                                            shipTogetherB.play();
-                                            currentEpisodeAudio = shipTogetherB;
-                                            break;
+                                    case 7:
+                                        shipTogetherB.play();
+                                        currentEpisodeAudio = shipTogetherB;
+                                        break;
 
-                                            case 8:
-                                            chipMeltTogetherB.play();
-                                            currentEpisodeAudio = chipMeltTogetherB;
-                                            break;
+                                    case 8:
+                                        chipMeltTogetherB.play();
+                                        currentEpisodeAudio = chipMeltTogetherB;
+                                        break;
 
 
-                                            default:
-                                                console.log("no music for cue index " + cue.index);
-                                        }
-                                    } else if(participantGroup === GroupEnum.RED){
-                                        switch (cue.index) {
-                                            case 0:
-                                                test.play();
-                                                currentEpisodeAudio = test;
-                                                break;
-
-                                            case 1:
-                                                simpleFluxR.play();
-                                                currentEpisodeAudio = simpleFluxR;
-                                                break;
-
-                                            case 2:
-                                                cornersR.play();
-                                                currentEpisodeAudio = cornersR;
-                                                break;
-
-                                            case 3:
-                                            shipR.play();
-                                            currentEpisodeAudio = shipR;
-
-                                                break;
-
-                                            case 4:
-                                            chipmeltR.play();
-                                            currentEpisodeAudio = chipmeltR;
-
-                                                break;
-
-                                            case 5:
-                                            orbitalsR.play();
-                                            currentEpisodeAudio = orbitalsR;
-
-                                                break;
-
-                                            case 6:
-                                            hulaR.play();
-                                            currentEpisodeAudio = hulaR;
-
-                                                break;
-
-                                            case 7:
-                                            shipTogetherR.play();
-                                            currentEpisodeAudio = shipTogetherR;
-
-                                                break;
-
-                                            case 8:
-                                            shipTogetherB.play();
-                                            currentEpisodeAudio = shipTogetherB;
-                                            break;
-
-                                            default:
-                                                console.log("no music for cue index " + cue.index);
-                                        }
-                                    } else {
-                                        console.log("participant has no group assigned");
+                                    default:
+                                        console.log("no music for cue index " + cue.index);
                                     }
+                                } else if (participantGroup === GroupEnum.RED) {
+                                    switch (cue.index) {
+                                    case 0:
+                                        test.play();
+                                        currentEpisodeAudio = test;
+                                        break;
+
+                                    case 1:
+                                        simpleFluxR.play();
+                                        currentEpisodeAudio = simpleFluxR;
+                                        break;
+
+                                    case 2:
+                                        cornersR.play();
+                                        currentEpisodeAudio = cornersR;
+                                        break;
+
+                                    case 3:
+                                        shipR.play();
+                                        currentEpisodeAudio = shipR;
+
+                                        break;
+
+                                    case 4:
+                                        chipmeltR.play();
+                                        currentEpisodeAudio = chipmeltR;
+
+                                        break;
+
+                                    case 5:
+                                        orbitalsR.play();
+                                        currentEpisodeAudio = orbitalsR;
+
+                                        break;
+
+                                    case 6:
+                                        hulaR.play();
+                                        currentEpisodeAudio = hulaR;
+
+                                        break;
+
+                                    case 7:
+                                        shipTogetherR.play();
+                                        currentEpisodeAudio = shipTogetherR;
+
+                                        break;
+
+                                    case 8:
+                                        shipTogetherB.play();
+                                        currentEpisodeAudio = shipTogetherB;
+                                        break;
+
+                                    default:
+                                        console.log("no music for cue index " + cue.index);
+                                    }
+                                } else {
+                                    console.log("participant has no group assigned");
                                 }
-                            //END OF DELAY SET UP..SET TO 5s
-                            }, 5000);
-                            break;
-
-                        case "pause":
-                            currentEpisodeAudio.pause();
-                            audioIsPlaying = false;
-                            console.log('paused');
-                            break;
-
-                        case "stop":
-                            if (currentEpisodeAudio.duration > 0 && !currentEpisodeAudio.paused) {
-                                currentEpisodeAudio.pause();
-                                currentEpisodeAudio.currentTime = 0;
                             }
-                            //THIS WAS MY ATTEMPT AT GETTING RID OF SOME STUFF FROM THE DOM..DON'T THINK IT HELPED AND IS NOW PROBABLY NOT NECCESSARY..UNLESS
-                            //SOMEONE STAYS ALL NIGHT AND REFUSES TO REFRESH THEIR BROWSER
-                            $('audio').remove();
-                            audioIsPlaying = false;
-                            break;
+                            //END OF DELAY SET UP..SET TO 5s
+                        }, 5000);
+                        break;
 
-                        default:
-                            console.log("invalid cue action: " + cue.action);
+                    case "pause":
+                        currentEpisodeAudio.pause();
+                        audioIsPlaying = false;
+                        console.log('paused');
+                        break;
+
+                    case "stop":
+                        if (currentEpisodeAudio.duration > 0 && !currentEpisodeAudio.paused) {
+                            currentEpisodeAudio.pause();
+                            currentEpisodeAudio.currentTime = 0;
+                        }
+                        //THIS WAS MY ATTEMPT AT GETTING RID OF SOME STUFF FROM THE DOM..DON'T THINK IT HELPED AND IS NOW PROBABLY NOT NECCESSARY..UNLESS
+                        //SOMEONE STAYS ALL NIGHT AND REFUSES TO REFRESH THEIR BROWSER
+                        $('audio').remove();
+                        audioIsPlaying = false;
+                        break;
+
+                    default:
+                        console.log("invalid cue action: " + cue.action);
                     }
                 } else {
                     console.log("there is no episode for that number");
@@ -530,7 +528,7 @@ for (var p = 0; p < allAudio.length; p++) {
         allAudio[p].addEventListener("play", function () {
 
             info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
-            
+
 
         }, false);
     })(p);
@@ -572,59 +570,59 @@ function assignGroup() {
 
 
 
-function manualGo(){
+function manualGo() {
     var dropDownChoice = $("#manualEpisodeChoice").val();
-    
-    
-    switch(dropDownChoice){
-        case "0" : 
-                simpleFluxB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Simple Flux now streaming</h2>";
-                playerLayer.style.visibility = "visible";
-                
-            break;
-        case "1" :
-                cornersB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Corners now streaming</h2>";
-                playerLayer.style.visibility = "visible";
-             
-            break;
-        case "2":
-                shipB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Ship now streaming</h2>";
-                playerLayer.style.visibility = "visible";
-             
-            break;
-        case "3": 
-                chipmeltB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Chip Melt now streaming</h2>";
-                playerLayer.style.visibility = "visible";
-             
-            break;
-        case "4": 
-                hulaB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Hula Lasso now streaming</h2>";
-                playerLayer.style.visibility = "visible";
-            break;
-        case "5": 
-                orbitalsB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Orbitals now streaming</h2>";
-                playerLayer.style.visibility = "visible";
-            
-            break;
-        case "6": 
-                shipTogetherB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Ship Together now streaming</h2>";
-                playerLayer.style.visibility = "visible";
-             
-            break;
-        case "7": 
-                chipMeltTogetherB.play();
-                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Chip Melt Together now streaming</h2>";
-                playerLayer.style.visibility = "visible";
-             
-            break;
-        default: console.log(dropDownChoice);;
+
+
+    switch (dropDownChoice) {
+    case "0":
+        simpleFluxB.play();
+        manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Simple Flux now streaming</h2>";
+        playerLayer.style.visibility = "visible";
+
+        break;
+    case "1":
+        cornersB.play();
+        manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Corners now streaming</h2>";
+        playerLayer.style.visibility = "visible";
+
+        break;
+    case "2":
+        shipB.play();
+        manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Ship now streaming</h2>";
+        playerLayer.style.visibility = "visible";
+
+        break;
+    case "3":
+        chipmeltB.play();
+        manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Chip Melt now streaming</h2>";
+        playerLayer.style.visibility = "visible";
+
+        break;
+    case "4":
+        hulaB.play();
+        manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Hula Lasso now streaming</h2>";
+        playerLayer.style.visibility = "visible";
+        break;
+    case "5":
+        orbitalsB.play();
+        manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Orbitals now streaming</h2>";
+        playerLayer.style.visibility = "visible";
+
+        break;
+    case "6":
+        shipTogetherB.play();
+        manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Ship Together now streaming</h2>";
+        playerLayer.style.visibility = "visible";
+
+        break;
+    case "7":
+        chipMeltTogetherB.play();
+        manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Chip Melt Together now streaming</h2>";
+        playerLayer.style.visibility = "visible";
+
+        break;
+    default:
+        console.log(dropDownChoice);;
     }
 }
-
