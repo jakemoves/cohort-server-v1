@@ -96,10 +96,10 @@ var manual = document.getElementById('manual');
 var pageTwo = document.getElementById("page02");
 var info = document.getElementById("info");
 var b1 = document.getElementById("b1");
-// var playerLayer = document.getElementById("playerLayer");
+
 
 //LOADING ALL THE AUDIO ELEMENTS
-//SIMPLEFLUX IS REPLACED WITH A SHORT TEST.MP3 THATS ONLY 30s LONG
+//IF AUDIO SOURCES NEED TO CHANNGE, UPDATE EACH trackname.src = "https://newSource..."
 var test = document.createElement('audio');
 test.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
 test.preload = "none";
@@ -262,7 +262,7 @@ var checkout = function(){
 };
 
 var subscribeToServerSentEvents = function(){
-    //THIS IS FROM YOUR CODE
+    
     source = new EventSource("/listen");
 
     source.addEventListener('open', function (e) {
@@ -332,7 +332,6 @@ var subscribeToServerSentEvents = function(){
                                 if (!audioIsPlaying) {
                                     audioIsPlaying = true;
                                     if (participantGroup === GroupEnum.BLUE) {
-                                        //NOT SURE IF THE "currentEpisodeAudio" IS NECCESSARY BUT IT WAS MY WAY OF REDUCING FOR LOOPS
                                         switch (cue.index) {
                                             case 0:
                                                 test.play();
@@ -478,7 +477,7 @@ var subscribeToServerSentEvents = function(){
     }, false);
 };
 
-//LISTEN FOR WHEN AUDIO HAS ENDED AND UPDATE UI....I TRIED DOING THIS WITHOUT PLACING A FUNCTION INSIDE A FOR LOOP BUT..
+//LISTEN FOR WHEN AUDIO HAS ENDED AND UPDATE UI
 for (var i = 0; i < allAudio.length; i++) {
 
     allAudio[i].addEventListener("ended", function () {
@@ -493,32 +492,32 @@ for (var i = 0; i < allAudio.length; i++) {
 }
 
 
-// MOST AGREE THIS IS A BETTER WAY, BUT STILL NOT GREAT WAY OF PUTTING AN EVENTLISTENER ON AN ARRAY
+
 
 for (var p = 0; p < allAudio.length; p++) {
     (function (p) {
         allAudio[p].addEventListener("play", function () {
 
             info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
-            // b1.style.visibility = "hidden";
+            
 
         }, false);
     })(p);
 
 }
 
-//THIS IS IN CASE THE AUDIO WAS WAITING..WHICH INDICATES THAT THE VIDEO IS NOT LOADED BUT MAY LOAD IN THE FUTUR..IT MAY ALSO NOT.
-for (var q = 0; q < allAudio.length; q++) {
-    (function (q) {
-        allAudio[q].addEventListener("waiting", function () {
-
-            info.innerHTML = "<h4>We can't seem to start our audio on your smartphone. Please see a volunteer for help.</h4>";
-            console.log("stalled");
-
-        }, false);
-    })(q);
-
-}
+////THIS IS IN CASE THE AUDIO WAS WAITING..WHICH INDICATES THAT THE Audio IS NOT LOADED BUT MAY LOAD IN THE FUTURE..IT MAY ALSO NOT.
+//for (var q = 0; q < allAudio.length; q++) {
+//    (function (q) {
+//        allAudio[q].addEventListener("waiting", function () {
+//
+//            info.innerHTML = "<h4>We can't seem to start our audio on your smartphone. Please see a volunteer for help.</h4>";
+//            console.log("stalled");
+//
+//        }, false);
+//    })(q);
+//
+//}
 
 //CHECK-IN FUNCTION
 
@@ -539,77 +538,62 @@ function assignGroup() {
     }
 }
 
-// function loadScores(){
-//   simpleFluxB.load();
-//   cornersB.load();
-//   chipmeltB.load();
-//   shipB.load();
-//   hulaB.load();
-//   orbitalsB.load();
-// }
-
-$("#b5").on("click", function(){
 
 
-  simpleFluxB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
 
-playerLayer.style.visibility = "visible";
+function manualGo(){
+    var dropDownChoice = $("#manualEpisodeChoice").val();
+    
+    
+    switch(dropDownChoice){
+        case "0" : 
+                simpleFluxB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Simple Flux now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+                
+            break;
+        case "1" :
+                cornersB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Corners now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+             
+            break;
+        case "2":
+                shipB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Ship now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+             
+            break;
+        case "3": 
+                chipmeltB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Chip Melt now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+             
+            break;
+        case "4": 
+                hulaB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Hula Lasso now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            break;
+        case "5": 
+                orbitalsB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Orbitals now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+            
+            break;
+        case "6": 
+                shipTogetherB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Ship Together now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+             
+            break;
+        case "7": 
+                chipMeltTogetherB.play();
+                manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Chip Melt Together now streaming</h2>";
+                playerLayer.style.visibility = "visible";
+             
+            break;
+        default: console.log(dropDownChoice);;
+    }
+}
 
-});
-$("#b6").on("click", function(){
-
-
-  cornersB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-playerLayer.style.visibility = "visible";
-});
-$("#b7").on("click", function(){
-
-
-  chipmeltB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b8").on("click", function(){
-
-
-  shipB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b9").on("click", function(){
-
-
-  hulaB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b10").on("click", function(){
-
-
-  orbitalsB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b11").on("click", function(){
-
-
-  shipTogetherB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
-$("#b12").on("click", function(){
-
-
-  chipMeltTogetherB.play();
-  manual.innerHTML = "<h2 style = 'color: white; text-align: center'> Audio now streaming</h2>";
-
-  playerLayer.style.visibility = "visible";
-});
