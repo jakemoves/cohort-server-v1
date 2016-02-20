@@ -4,7 +4,7 @@ $(document).ready(function(){
     };
 
     // get list of upcoming events from server
-    var events = $.get("/events/upcoming")
+    var events = $.get("http://fluxdelux.org/events/upcoming")
         .done(function(data){
             //console.log(data);
         })
