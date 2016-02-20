@@ -21,92 +21,94 @@
         </div>
     </div>
 
-    <div class="container" id="content">
+    <div class="container-fluid" id="content">
         
         
     
     <form>
-        <h2> Create Event</h2>
-            <div class="form-group">
+        <h2 style="text-align:center"> Create Event</h2>
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="city">City</label>
                 <input type="local" class="form-control" id="city" placeholder="Toronto">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="venue">Venue</label>
                 <input type="text" class="form-control" id="venue" placeholder="The ARTS Project">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="address">Address</label>
                 <input type="local" class="form-control" id="address" placeholder="203 Dundas St, Toronto, ON">
             </div>
         
-            <div class="form-group col-md-6">
+            <div class="form-group col-xs-6 col-md-4">
                 <label for="geocodeLatitude">Latitude</label>
                 <input type="number" class="form-control" id="geocodeLatitude" placeholder="43.653226">
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-xs-6 col-md-4">
                 <label for="geocodeLongitude">Longitude</label>
                 <input type="number" class="form-control" id="geocodeLongitude" placeholder="-79.383184">
             </div>
             
             <hr>
             
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="date">Date</label>
                 <input type="date" class="form-control" id="date">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="doorsOpen">Time That Doors Open</label>
                 <input type="time" class="form-control" id="startTime">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="startTime">Start Time</label>
                 <input type="time" class="form-control" id="startTime">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="endTime">End Time</label>
                 <input type="time" class="form-control" id="endTime">
             </div>
             
             <hr>
             
-            <div class="form-group col-md-6">
+            <div class="form-group col-xs-6 col-md-4">
                 <label for="hostName">Host - Name</label>
                 <input type="text" class="form-control" id="hostName" placeholder="Tangled Art + Disability">
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-xs-6 col-md-4">
                 <label for="hostURL">Host - URL</label>
                 <input type="text" class="form-control" id="hostURL" placeholder="http://tangledarts.org">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="signUpURL">Sign Up URL</label>
                 <input type="text" class="form-control" id="signUpURL" placeholder="https://guestlistapp.com/events/402906">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-6">
                 <label for="checkInCode">Check In Code</label>
                 <input type="password" class="form-control" id="checkInCode" placeholder="yxu">
             </div>
-            <div class="form-group">
+            <div class="form-group col-xs-12 col-md-6">
                 <label for="_id">Event ID</label>
                 <input type="text" class="form-control" id="_id" placeholder="yHv4AKo4Cy01ippO">
             </div>
             
-    <button type="submit" class="btn btn-default btn-lg formButton" onclick="formSubmit()">Submit Event Create</button>
+    <button type="submit" class="btn btn-default btn-lg formButton" onclick="formSubmit()">Create Event</button>
             
             <hr>
             <hr>
             
-        <h2>Delete Event</h2>
-            <div class="form-group">
-                <label for="deleteEvent">Select Event To Delete (Important to note: only events in the future will show in the app and on the website. There's no need to delete events that have passed)</label>
+        <h2 style="text-align:center">Delete Event</h2>
+            <div class="form-group col-xs-12 col-md-12">
+                <label for="deleteEvent">Select Event To Delete </label>
                 <select name="deleteEvent" id="deleteEvent" class="form-control">
                     
                     
                 </select>
+                
+                <small> (please note: only events in the future will show in the app and on the website. There's no need to delete events that have passed)</small>
           </div>
             
   
-  <button type="submit" class="btn btn-default btn-lg formButton" >Submit Delete</button>
+  <button type="submit" class="btn btn-default btn-lg formButton" >Delete Event</button>
         
         </form>
         
