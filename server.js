@@ -137,6 +137,7 @@ app.post('/events/create', jsonParser, function(req, res) {
   // console.log('received create-event');
   // console.log(req.body);
   var eventInfo = req.body;
+  console.log(eventInfo);
   // basic validation
   if( eventInfo.city &&
       eventInfo.venue &&

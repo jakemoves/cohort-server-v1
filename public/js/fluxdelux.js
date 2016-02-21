@@ -4,7 +4,11 @@ $(document).ready(function () {
     };
 
     // get list of upcoming events from server
-    var events = $.get("http://fluxdelux.org/events/upcoming")
+    var events = 
+        // for broken Node 
+        $.get("http://fluxdelux.org/events/upcoming")
+        // for production
+        //$.get("events/upcoming")
         .done(function (data) {
             //console.log(data);
         })

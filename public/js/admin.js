@@ -1,9 +1,6 @@
 //--Variable to use in menu value
 var eventsCounter = 0;
 
-
-
-
 //function FluxEvent(city, venue, address, geocode, date, doorsOpenTime, startTime, endTime, hosts, singupURL, checkInCode, _id){
 //    
 //    this.city = city;
@@ -29,12 +26,13 @@ $('form').bind('keydown', function (e) {
 
 //function for when submit create event is hit
 function formSubmit() {
+    //console.log('preparing form data');
     var flux = {
         "city": $("#city").val(),
         "venue": $("#venue").val(),
         "address": $("#address").val(),
         "geocode": [
-         $("#latitude").val(), $("#longitude").val()
+         $("#geocodeLatitude").val(), $("#geocodeLongitude").val()
         ],
         "date": $("#date").val(),
         "doorsOpenTime": $("#doorsOpenTime").val(),
@@ -44,27 +42,25 @@ function formSubmit() {
             "name": $("#hostName").val(),
             "url": $("#hostURL").val()
         }],
-        "signupURL": $("#signUpUrl").val(),
-        "checkInCode": $("#checkInCode").val(),
-        "_id": $("#_id").val()
+        "signupURL": $("#signupURL").val(),
+        "checkInCode": $("#checkInCode").val()
     }
+    //console.log(JSON.stringify(flux));
 
-    $.post("http://fluxdelux.org/events/create", flux)
-
-
-
-    .done(function () {
-        alert("second success");
-    })
-
-    .fail(function () {
-            alert("error");
-        })
-        .always(function () {
-            alert("finished");
-        });
-
-
-
-
+    $.ajax({
+        type: "POST",
+        // for busted node install
+        url: "http://fluxdelux.org/events/create",
+        // for production
+        //url: "events/create",
+        data: flux,
+        success: function(data){ 
+            console.log("post request successful");
+            console.log(data);
+        },
+        error: function(data){
+            console.log('error: ');
+            console.log(data);
+        }
+    });
 };

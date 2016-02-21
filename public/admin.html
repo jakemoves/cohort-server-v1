@@ -42,11 +42,11 @@
         
             <div class="form-group col-xs-6 col-md-4">
                 <label for="geocodeLatitude">Latitude</label>
-                <input type="number" class="form-control" id="geocodeLatitude" placeholder="43.653226">
+                <input type="number" class="form-control" id="geocodeLatitude" placeholder="43.653226" step="any">
             </div>
             <div class="form-group col-xs-6 col-md-4">
                 <label for="geocodeLongitude">Longitude</label>
-                <input type="number" class="form-control" id="geocodeLongitude" placeholder="-79.383184">
+                <input type="number" class="form-control" id="geocodeLongitude" placeholder="-79.383184" step="any">
             </div>
             
             <hr>
@@ -56,8 +56,8 @@
                 <input type="text" class="form-control" id="date" placeholder="March 5, 2016">
             </div>
             <div class="form-group col-xs-12 col-md-4">
-                <label for="doorsOpen">Time That Doors Open</label>
-                <input type="time" class="form-control" id="startTime">
+                <label for="doorsOpenTime">Time That Doors Open</label>
+                <input type="time" class="form-control" id="doorsOpenTime">
             </div>
             <div class="form-group col-xs-12 col-md-4">
                 <label for="startTime">Start Time</label>
@@ -70,25 +70,21 @@
             
             <hr>
             
-            <div class="form-group col-xs-6 col-md-4">
+            <div class="form-group col-xs-6 col-md-6">
                 <label for="hostName">Host - Name</label>
                 <input type="text" class="form-control" id="hostName" placeholder="Tangled Art + Disability">
             </div>
-            <div class="form-group col-xs-6 col-md-4">
+            <div class="form-group col-xs-6 col-md-6">
                 <label for="hostURL">Host - URL</label>
                 <input type="text" class="form-control" id="hostURL" placeholder="http://tangledarts.org">
             </div>
-            <div class="form-group col-xs-12 col-md-4">
-                <label for="signUpURL">Sign Up URL</label>
-                <input type="text" class="form-control" id="signUpURL" placeholder="https://guestlistapp.com/events/402906">
+            <div class="form-group col-xs-12 col-md-8">
+                <label for="signupURL">Sign Up URL</label>
+                <input type="text" class="form-control" id="signupURL" placeholder="https://guestlistapp.com/events/402906">
             </div>
-            <div class="form-group col-xs-12 col-md-6">
+            <div class="form-group col-xs-12 col-md-4">
                 <label for="checkInCode">Check In Code</label>
                 <input type="password" class="form-control" id="checkInCode" placeholder="yxu">
-            </div>
-            <div class="form-group col-xs-12 col-md-6">
-                <label for="_id">Event ID</label>
-                <input type="text" class="form-control" id="_id" placeholder="yHv4AKo4Cy01ippO">
             </div>
             
     <button class="btn btn-default btn-lg formButton" onclick="formSubmit()">Create Event</button>
@@ -145,7 +141,7 @@
      <script src="js/bootstrap.min.js"></script>
      <script src="js/js.cookie.js"></script>
      <script src="js/moment.js"></script>
-     <script src="js/fluxdelux.js"></script>
+     <!--<script src="js/fluxdelux.js"></script>-->
     <script src="js/admin.js"></script>
 
 </body>
