@@ -30,23 +30,23 @@ $('form').bind('keydown', function (e) {
 //function for when submit create event is hit
 function formSubmit() {
     var flux = {
-        '"city"': $("#city").val(),
-        '"venue"': $("#venue").val(),
-        '"address"': $("#address").val(),
-        '"geocode"': [
+        "city": $("#city").val(),
+        "venue": $("#venue").val(),
+        "address": $("#address").val(),
+        "geocode": [
          $("#latitude").val(), $("#longitude").val()
         ],
-        '"date"': $("#date").val(),
-        '"doorsOpenTime"': $("#doorsOpenTime").val(),
-        '"startTime"': $("#startTime").val(),
-        '"endTime"': $("#endTime").val(),
-        '"hosts"': [{
-            '"name"': $("#hostName").val(),
-            '"url"': $("#hostURL").val()
+        "date": $("#date").val(),
+        "doorsOpenTime": $("#doorsOpenTime").val(),
+        "startTime": $("#startTime").val(),
+        "endTime": $("#endTime").val(),
+        "hosts": [{
+            "name": $("#hostName").val(),
+            "url": $("#hostURL").val()
         }],
-        '"signupURL"': $("#signUpUrl").val(),
-        '"checkInCode"': $("#checkInCode").val(),
-        '"_id"': $("#_id").val()
+        "signupURL": $("#signUpUrl").val(),
+        "checkInCode": $("#checkInCode").val(),
+        "_id": $("#_id").val()
     }
 
     $.post("http://fluxdelux.org/events/create", flux)
@@ -55,13 +55,13 @@ function formSubmit() {
 
     .done(function () {
         alert("second success");
-        })
+    })
 
     .fail(function () {
-        alert("error");
+            alert("error");
         })
-     .always(function () {
-        alert("finished");
+        .always(function () {
+            alert("finished");
         });
 
 
