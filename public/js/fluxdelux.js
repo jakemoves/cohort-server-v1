@@ -17,10 +17,11 @@ $(document).ready(function () {
         var eventsList = $('<ul>').addClass('events-list').appendTo('#info');
         for (i = 0; i < events.length; i++) {
             var date = moment(events[i].date + ", " + events[i].startTime, "MMMM D, YYYY, h:mm A");
-            //console.log(events[i].date);
+            console.log(events[i].signupURL);
 
             var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
-            var eventHTML = '<li class="event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong></p>' + '<p>Doors open at ' + events[i].doorsOpenTime + '</p>' + '<a href="'events[i].signupURL'">Sign Up</a>' '</li>';
+            var eventHTML = '<li class="event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong></p>' + '<p>Doors open at ' + events[i].doorsOpenTime + '</p>' + 
+            '<a href="' + events[i].signupURL + '" class="btn btn-warning" role="button" title="link to event page">Sign Up</a>'+'</li>';
             $('.events-list').append($(eventHTML));
 
 
