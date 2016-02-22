@@ -1,6 +1,3 @@
-//--Variable to use in menu value
-var eventsCounter = 0;
-
 //function FluxEvent(city, venue, address, geocode, date, doorsOpenTime, startTime, endTime, hosts, singupURL, checkInCode, _id){
 //    
 //    this.city = city;
@@ -23,29 +20,33 @@ $('form').bind('keydown', function (e) {
         e.preventDefault();
     }
 });
+$("#formButton").click(function (event) {
+    event.preventDefault();
+});
 
 //function for when submit create event is hit
 function formSubmit() {
+
     //console.log('preparing form data');
     var flux = {
-        "city": $("#city").val(),
-        "venue": $("#venue").val(),
-        "address": $("#address").val(),
-        "geocode": [
+            "city": $("#city").val(),
+            "venue": $("#venue").val(),
+            "address": $("#address").val(),
+            "geocode": [
          $("#geocodeLatitude").val(), $("#geocodeLongitude").val()
         ],
-        "date": $("#date").val(),
-        "doorsOpenTime": $("#doorsOpenTime").val(),
-        "startTime": $("#startTime").val(),
-        "endTime": $("#endTime").val(),
-        "hosts": [{
-            "name": $("#hostName").val(),
-            "url": $("#hostURL").val()
+            "date": $("#date").val(),
+            "doorsOpenTime": $("#doorsOpenTime").val(),
+            "startTime": $("#startTime").val(),
+            "endTime": $("#endTime").val(),
+            "hosts": [{
+                "name": $("#hostName").val(),
+                "url": $("#hostURL").val()
         }],
-        "signupURL": $("#signupURL").val(),
-        "checkInCode": $("#checkInCode").val()
-    }
-    //console.log(JSON.stringify(flux));
+            "signupURL": $("#signupURL").val(),
+            "checkInCode": $("#checkInCode").val()
+        }
+        //console.log(JSON.stringify(flux));
 
     $.ajax({
         type: "POST",
@@ -54,13 +55,37 @@ function formSubmit() {
         // for production
         //url: "events/create",
         data: flux,
-        success: function(data){ 
+        success: function (data) {
             console.log("post request successful");
             console.log(data);
         },
-        error: function(data){
+        error: function (data) {
             console.log('error: ');
             console.log(data);
         }
     });
 };
+
+$(document).ready(function () {
+    var events = $.get("http://fluxdelux.org/events")
+        .done(function (data) {
+        //console.log(data);
+        })
+        .fail(function () {
+        console.log("Request failed: /dropDownEvents");
+        });
+
+        events.then(function (events) {
+            var eventsId =[];
+            for (i = 0; i <= events.length; i++) {
+                var eventHTML = '<option value ="' + i + '">' + events[i].city + ' ' + events[i].venue + ' ' + events[i].date + '</option>';
+                $('#deleteEvent').append($(eventHTML));
+                
+                eventsId.push(events[i]._id);
+                console.log(eventsId);
+                
+                
+            }
+        });
+   ;
+});

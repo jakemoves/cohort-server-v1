@@ -132,7 +132,11 @@ a:visited {
     box-shadow: 1px 1px 1px #9CB3E6;
     padding: 2%;
     border: 1px solid #F1EDB1;
-   
+    align-content: center;
+}
+.jumbotron>p{
+    font-size: 0.9em;
+    
 }
 
 .events-list{
@@ -146,6 +150,8 @@ a:visited {
 #tagline{
     margin-bottom: 10%;
 }
+
+
 
 
 /*
