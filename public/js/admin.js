@@ -45,10 +45,12 @@ function formSubmit() {
         //url: "events/create",
         data: flux,
         success: function (data) {
+            alert("Event Created")
             console.log("post request successful");
             console.log(data);
         },
         error: function (data) {
+            alert("An error has occured, please review creation form")
             console.log('error: ');
             console.log(data);
         }
@@ -68,7 +70,7 @@ $(document).ready(function () {
         events.then(function (events) {
             
             for (i = 0; i <= events.length; i++) {
-                var eventHTML = '<option value ="' + i + '">' + events[i].city + ' ' + events[i].venue + ' ' + events[i].date + '</option>';
+                var eventHTML = '<option value ="' + i + '">' + events[i].city + ', ' + events[i].venue + ', ' + events[i].date + '</option>';
                 $('#deleteEvent').append($(eventHTML));
                 
                 eventsId.push(events[i]._id);
