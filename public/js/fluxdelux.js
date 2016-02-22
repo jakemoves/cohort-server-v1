@@ -1,3 +1,12 @@
+var currentDate = new Date();
+        var currentDayOfMonth = currentDate.getDate();
+        var currentMonth = currentDate.getMonth();
+        var currentYear = currentDate.getFullYear();
+        var currentTime = currentDate.getTime();
+
+
+
+
 $(document).ready(function () {
     if (Cookies.get('fluxdelux') == "checkedin") {
         $('#passcode').val('YOW');
@@ -17,6 +26,8 @@ $(document).ready(function () {
         });
 
     events.then(function (events) {
+        
+        
         console.log(events);
         var eventsList = $('<ul>').addClass('events-list').appendTo('#info');
         for (i = 0; i < events.length; i++) {
@@ -27,29 +38,42 @@ $(document).ready(function () {
             var eventHTML = '<li class="event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong><br> Doors open at ' + events[i].doorsOpenTime + '</p>' + 
             '<a href="' + events[i].signupURL + '" class="btn btn-warning" role="button" title="link to event page">Sign Up</a>'+'</li>';
             $('.events-list').append($(eventHTML));
-
-
-
-        }
-
-        var eventsDateLong = new Date(Date.parse(events[0].date));
-        var eventsDayOfMonth = eventsDateLong.getDate();
-        var eventsMonth = eventsDateLong.getMonth();
-        var eventsYear = eventsDateLong.getFullYear();
-        var eventsTime = eventsDateLong.getTime();
-
-        var currentDate = new Date();
-        var currentDayOfMonth = currentDate.getDate();
-        var currentMonth = currentDate.getMonth();
-        var currentYear = currentDate.getFullYear();
-        var currentTime = currentDate.getTime();
-        console.log(currentDayOfMonth);
-
-
-        if ((currentDayOfMonth == eventsDayOfMonth) && (currentMonth == eventsMonth) && (currentYear == eventsYear)) {
+            
+            console.log(events[i].doorsOpenTime)
+            
+            //---date condition for checkin --time is not included
+            var dateForCheckin = new Date(Date.parse(events[i].date));
+            var currentDate = new Date();
+            console.log(currentDate.getTime());
+            if((currentDate.getDate() == dateForCheckin.getDate())
+               && (currentDate.getMonth() == dateForCheckin.getMonth())
+              && (currentDate.getFullYear() == dateForCheckin.getFullYear())){
             $("#check-in").css("visibility", "visible");
             $("#backup").css("visibility", "visible");
+        };
+
+
         }
+
+//        //only works if the first event in the array is the next upcoming 
+//        var eventsDateLong =new Date(Date.parse(events[0].date));
+//        var eventsDayOfMonth = eventsDateLong.getDate();
+//        var eventsMonth = eventsDateLong.getMonth();
+//        var eventsYear = eventsDateLong.getFullYear();
+//        var eventsTime = eventsDateLong.getTime();
+//
+//        var currentDate = new Date();
+//        var currentDayOfMonth = currentDate.getDate();
+//        var currentMonth = currentDate.getMonth();
+//        var currentYear = currentDate.getFullYear();
+//        var currentTime = currentDate.getTime();
+//        console.log(currentDayOfMonth);
+//
+//
+//        if ((currentDayOfMonth == eventsDayOfMonth) && (currentMonth == eventsMonth) && (currentYear == eventsYear)) {
+//            $("#check-in").css("visibility", "visible");
+//            $("#backup").css("visibility", "visible");
+//        }
 
 
 
