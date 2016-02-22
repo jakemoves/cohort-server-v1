@@ -50,7 +50,7 @@ function formSubmit() {
             console.log(data);
         },
         error: function (data) {
-            alert("An error has occured, please review creation form")
+            alert("An error has occured, please review creation form");
             console.log('error: ');
             console.log(data);
         }
@@ -83,34 +83,37 @@ $(document).ready(function () {
 function removeEvent(){
     id = eventsId[$("#deleteEvent").val()];
     
-    //to be changed to /events/delete
-    var removeEvent = $.post("http://fluxdelux.org/events/delete", {"eventId": id} )
-        .done(function (data) {
-        //console.log(data);
-        })
-        .fail(function () {
-        console.log("Request failed: /events/delete");
-        });
+    
+   
+    
+     $.ajax({
+        type: "POST",
+        // for busted node install
+        url: "http://fluxdelux.org/events/create/delete",
+        // for production
+        //url: "events/create/delete",
+        data: {"eventID: id"},
+        success: function (data) {
+            alert("Event successfully deleted");
+            console.log("post request successful");
+            console.log(data);
+        },
+        error: function (data) {
+            alert("An error has occured");
+            console.log('error: ');
+            console.log(data);
+        }
+    });
     
     //ALTERNATIVE
-    
-//     $.ajax({
-//        type: "POST",
-//        // for busted node install
-//        url: "http://fluxdelux.org/events/create/delete",
-//        // for production
-//        //url: "events/create",
-//        data: {"eventID: id"},
-//        success: function (data) {
-//            console.log("post request successful");
-//            console.log(data);
-//        },
-//        error: function (data) {
-//            console.log('error: ');
-//            console.log(data);
-//        }
-//    });
-    
+//    var removeEvent = $.post("http://fluxdelux.org/events/delete", {"eventId": id} )
+//        .done(function (data) {
+//        //console.log(data);
+//        })
+//        .fail(function () {
+//        console.log("Request failed: /events/delete");
+//        });
+//    
     
 };
         
