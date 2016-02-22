@@ -39,12 +39,12 @@ $(document).ready(function () {
             '<a href="' + events[i].signupURL + '" class="btn btn-warning" role="button" title="link to event page">Sign Up</a>'+'</li>';
             $('.events-list').append($(eventHTML));
             
-            console.log(events[i].doorsOpenTime)
+            
             
             //---date condition for checkin --time is not included
             var dateForCheckin = new Date(Date.parse(events[i].date));
             var currentDate = new Date();
-            console.log(currentDate.getTime());
+            
             if((currentDate.getDate() == dateForCheckin.getDate())
                && (currentDate.getMonth() == dateForCheckin.getMonth())
               && (currentDate.getFullYear() == dateForCheckin.getFullYear())){
