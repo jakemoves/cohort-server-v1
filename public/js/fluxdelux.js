@@ -1,8 +1,8 @@
 var currentDate = new Date();
-        var currentDayOfMonth = currentDate.getDate();
-        var currentMonth = currentDate.getMonth();
-        var currentYear = currentDate.getFullYear();
-        var currentTime = currentDate.getTime();
+var currentDayOfMonth = currentDate.getDate();
+var currentMonth = currentDate.getMonth();
+var currentYear = currentDate.getFullYear();
+var currentTime = currentDate.getTime();
 
 
 
