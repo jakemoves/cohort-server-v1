@@ -2,9 +2,9 @@
 var eventsId =[];
 
 // CORS 
-//var baseUrl = "http://fluxdelux.org/";
+var baseUrl = "http://fluxdelux.org/";
 // Production
-var baseUrl = "";
+//var baseUrl = "";
 
 $(document).ready(function () {
     updateEventList();
@@ -51,14 +51,14 @@ function formSubmit(e) {
         url: serverUrl,
         data: JSON.stringify(flux),
         success: function (data) {
-            alert("Event Created")
+            $(".modal-body").html("<h5 style='text-align:center'><font color='#1b4790'>Event created!</font></h5>");
             console.log("post request successful");
             console.log(data);
             updateEventList();
         },
         error: function (data) {
-            alert("An error has occured, please review creation form");
-            console.log('error: ');
+            $(".modal-body").html("<h5 style='text-align:center'><font color='#1b4790'>There seems to be a problem. Please double check the form and give it another go.</font></h5>");
+            console.log('error: '); 
             console.log(data);
         }
     });
@@ -80,13 +80,11 @@ function removeEvent(e){
         url: serverUrl,
         data: JSON.stringify(requestBody),
         success: function (data) {
-            //alert("Event successfully deleted");
             console.log("post request successful");
             console.log(data);
             updateEventList();
         },
         error: function (data) {
-            //alert("An error has occured");
             console.log('error: ');
             console.log(data);
         }

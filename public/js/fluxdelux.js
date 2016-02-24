@@ -2,7 +2,7 @@
        var currentTime;
        var checkinTime = false;
 
-       //self updating time that converts current time to hh:mm pm/am
+       //self updating time that converts current time 
        function updatingTime() {
            var hours = currentDate.getHours();
            var minutes = currentDate.getMinutes();
@@ -10,21 +10,22 @@
            if (minutes < 10)
                minutes = "0" + minutes
 
-           var suffix = "AM";
-           if (hours >= 12) {
-               suffix = "PM";
-               hours = hours - 12;
-           }
-           if (hours == 0) {
-               hours = 12;
-           }
+//           var suffix = "AM";
+//           if (hours >= 12) {
+//               suffix = "PM";
+//               hours = hours - 12;
+//           }
+//           if (hours == 0) {
+//               hours = 12;
+//           }
 
-           currentTime = hours + ":" + minutes + " " + suffix;
+           currentTime = hours + ":" + minutes + " " ;
+               //+ suffix;
 
        }
        updatingTime();
        setInterval(updatingTime, 60000);
-       console.log(currentTime);
+      
 
 
 
@@ -54,12 +55,13 @@
                var eventsList = $('<ul>').addClass('events-list').appendTo('#info');
                for (i = 0; i < events.length; i++) {
                    var date = moment(events[i].date + ", " + events[i].startTime, "MMMM D, YYYY, h:mm A");
-                   console.log(events[i].signupURL);
+                  
 
 
                    //---date condition for checkin --time is not included
                    var dateForCheckin = new Date(Date.parse(events[i].date));
-                   var checkinTime
+                   var checkinTime;
+                   
                    if (currentTime == events[i].doorsOpenTime) {
                        checkinTime = true;
                    } else if (currentTime == events[i].endTime) {
