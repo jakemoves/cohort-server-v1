@@ -35,7 +35,7 @@ $(document).ready(function () {
             console.log(events[i].signupURL);
 
             var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
-            var eventHTML = '<li class="event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong><br> Doors open at ' + events[i].doorsOpenTime + '</p>' + 
+            var eventHTML = '<li class=" event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong><br> Doors open at ' + events[i].doorsOpenTime + '</p>' + 
             '<a href="' + events[i].signupURL + '" class="btn btn-warning" role="button" title="link to event page">Sign Up</a>'+'</li>';
             $('.events-list').append($(eventHTML));
             
@@ -49,7 +49,7 @@ $(document).ready(function () {
                && (currentDate.getMonth() == dateForCheckin.getMonth())
               && (currentDate.getFullYear() == dateForCheckin.getFullYear())){
             $("#check-in").css("visibility", "visible");
-            $("#backup").css("visibility", "visible");
+            $("#backup").css("display", "block");
         };
 
 
@@ -300,7 +300,7 @@ var checkinManually = function () {
 };
 
 var backupCheckin = function () {
-    pageTwo.style.visibility = "visible";
+    $("#page02").css("display","block");
 
 }
 
