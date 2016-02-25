@@ -1,36 +1,13 @@
-       var currentDate = new Date();
-       var currentTime;
+
+      
        var checkinTime = false;
-       var today;
-       // CORS 
-       //var baseUrl = "http://dev.fluxdelux.org/";
-       // Production
-       var baseUrl = "";
 
-       //self updating time that converts current time 
-       function updatingTime() {
-           var hours = currentDate.getHours();
-           var minutes = currentDate.getMinutes();
-           var seconds = currentDate.getSeconds();
-           if (minutes < 10)
-               minutes = "0" + minutes
+//       // CORS 
+       var baseUrl = "http://dev.fluxdelux.org/";
+//       // Production
+////       var baseUrl = "";
+//
 
-           var suffix = "AM";
-           if (hours >= 12) {
-               suffix = "PM";
-               hours = hours - 12;
-           }
-           if (hours == 0) {
-               hours = 12;
-           }
-
-           currentTime = hours + ":" + minutes + " " + suffix;
-
-       }
-
-    
-       updatingTime();
-       setInterval(updatingTime, 60000);
 
 
        $(document).ready(function () {
@@ -60,21 +37,28 @@
 
 
 
-                   var dateForCheckin = new Date(Date.parse(events[i].date));
+                   //var dateForCheckin = new Date(Date.parse(events[i].date));
+                    //var checkindate = Date.parse(events[0].date);
+                   
+                   var eventsdateForCheckin = events[i].date + "," + events[i].doorsOpenTime;
+                   var eventsdateForCheckout = events[i].date + "," + events[i].endTime;
+                   var currentdate = moment().format("MMMM D YYYY, h:mm a");
+                  
+                  timeOfEventDoors= Date.parse(eventsdateForCheckin);
+                   timeOfEventEnd = Date.parse(eventsdateForCheckout);
+                   timeNow = new Date().getTime();
+                   
+                   
 
-
-                   var checkindate = Date.parse(events[0].date);
-                   console.log(checkindate);
-
-                   if (currentTime == events[i].doorsOpenTime) {
+                   if((timeNow > timeOfEventDoors) && (timeNow < timeOfEventEnd)) {
                        checkinTime = true;
-                   } else if (currentTime == events[i].endTime) {
+                   } else {
                        checkinTime = false;
                    };
 
 
 
-                   if ((currentDate.getDate() == dateForCheckin.getDate()) && (currentDate.getMonth() == dateForCheckin.getMonth()) && (currentDate.getFullYear() == dateForCheckin.getFullYear()) && (checkinTime == true)) {
+                   if ((checkinTime == true)) {
                        var buttonHTML = '<button class="btn btn-success btn-block" onclick="checkinManually()">Check In </button>';
                        $("#backup").css("display", "inline-block");
                        checkinTime= false;
