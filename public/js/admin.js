@@ -3,7 +3,9 @@ var eventsId =[];
 
 
 // CORS 
+
 //var baseUrl = "http://dev.fluxdelux.org/";
+
 // Production
 var baseUrl = "";
 
