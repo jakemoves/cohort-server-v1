@@ -38,7 +38,7 @@
            // get list of upcoming events from server
            var events =
                // for broken Node 
-//               $.get("http://fluxdelux.org/events/upcoming")
+//               $.get("http://dev.fluxdelux.org/events/upcoming")
 //                for production
                $.get("events/upcoming")
                .done(function (data) {
@@ -58,9 +58,9 @@
                   
 
 
-                   //---date condition for checkin --time is not included
+                   
                    var dateForCheckin = new Date(Date.parse(events[i].date));
-                   var checkinTime;
+                   
                    
                    var checkindate= Date.parse(events[0].date);
                    console.log(checkindate);
@@ -79,7 +79,7 @@
                    } else {
                        var buttonHTML = '<a href="' + events[i].signupURL + '" class= "btn btn-warning" role="button" title="link to event page">Sign Up</a>';
                    };
-
+                    
                    var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
                    var eventHTML = '<li class=" event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong><br> Doors open at ' + events[i].doorsOpenTime + '</p>' + buttonHTML + '</li>';
                    $('.events-list').append($(eventHTML));

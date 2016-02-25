@@ -11,6 +11,13 @@ $(document).ready(function () {
     updateEventList();
 });
 
+function convert(input) {
+    return moment(input, 'HH:mm').format('h:mm A');
+}
+
+
+
+var doorsTimeInString= $("#doorsOpenTime").val()
 //disable Enter key
 $('form').bind('keydown', function (e) {
     if (e.keyCode == 13) {
@@ -22,6 +29,9 @@ $('form').bind('keydown', function (e) {
 function formSubmit(e) {
     e.preventDefault();
 
+    doorsOpenTimeFormated = convert($("#doorsOpenTime").val());
+    startTimeFormated = convert($("#startTime").val());
+    endTimeFormated = convert($("#endTime").val());
     //console.log('preparing form data');
     var flux = {
         city: $("#city").val(),
@@ -31,9 +41,9 @@ function formSubmit(e) {
             $("#geocodeLatitude").val(), $("#geocodeLongitude").val()
         ],
         date: $("#date").val(),
-        doorsOpenTime: $("#doorsOpenTime").val(),
-        startTime: $("#startTime").val(),
-        endTime: $("#endTime").val(),
+        doorsOpenTime: doorsOpenTimeFormated,
+        startTime: startTimeFormated,
+        endTime: endTimeFormated,
         hosts: [{
             name: $("#hostName").val(),
             url: $("#hostURL").val()
