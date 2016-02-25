@@ -1,7 +1,7 @@
        var currentDate = new Date();
        var currentTime;
        var checkinTime = false;
-
+        var today;
       // CORS 
       //var baseUrl = "http://dev.fluxdelux.org/";
       // Production
@@ -15,21 +15,25 @@
            if (minutes < 10)
                minutes = "0" + minutes
 
-//           var suffix = "AM";
-//           if (hours >= 12) {
-//               suffix = "PM";
-//               hours = hours - 12;
-//           }
-//           if (hours == 0) {
-//               hours = 12;
-//           }
+           var suffix = "AM";
+           if (hours >= 12) {
+               suffix = "PM";
+               hours = hours - 12;
+           }
+           if (hours == 0) {
+               hours = 12;
+           }
 
-           currentTime = hours + ":" + minutes + " " ;
-               //+ suffix;
+           currentTime = hours + ":" + minutes + " " + suffix;
 
        }
+function updatingDate(){
+    today = Date.now();
+}
        updatingTime();
+        updatingDate();
        setInterval(updatingTime, 60000);
+        setInterval(updatingDate, 60000);
     
 
       $(document).ready(function () {
