@@ -3,7 +3,7 @@
        var checkinTime = false;
 
       // CORS 
-      //var baseUrl = "http://fluxdelux.org/";
+      //var baseUrl = "http://dev.fluxdelux.org/";
       // Production
       var baseUrl = "";
 
@@ -40,11 +40,6 @@
            // get list of upcoming events from server
            var events =
 
-               // for broken Node 
-//               $.get("http://dev.fluxdelux.org/events/upcoming")
-//                for production
-//               $.get("events/upcoming")
-
                $.get(baseUrl + "events/upcoming")
                .done(function (data) {
                    console.log(data);
@@ -78,7 +73,7 @@
 
 
 
-                   if ((currentDate.getDate() == dateForCheckin.getDate()) && (currentDate.getMonth() == dateForCheckin.getMonth()) && ((currentDate.getFullYear() +1) == dateForCheckin.getFullYear()) && (checkinTime == true)) {
+                   if ((currentDate.getDate() == dateForCheckin.getDate()) && (currentDate.getMonth() == dateForCheckin.getMonth()) && (currentDate.getFullYear() == dateForCheckin.getFullYear()) && (checkinTime == true)) {
                        var buttonHTML = '<button class="btn btn-success btn-block" onclick="checkinManually()">Check In </button>';
                        $("#backup").css("display", "block");
                    } else {
