@@ -32,7 +32,7 @@ function formSubmit(e) {
     doorsOpenTimeFormated = convert($("#doorsOpenTime").val());
     startTimeFormated = convert($("#startTime").val());
     endTimeFormated = convert($("#endTime").val());
-    //console.log('preparing form data');
+    console.log(endTimeFormated);
     var flux = {
         city: $("#city").val(),
         venue: $("#venue").val(),
