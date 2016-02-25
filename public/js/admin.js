@@ -1,5 +1,5 @@
 //---id array
-var eventsId =[];
+var eventsId = [];
 
 
 // CORS 
@@ -17,8 +17,8 @@ $(document).ready(function () {
 
 
 
-var doorsTimeInString= $("#doorsOpenTime").val()
-//disable Enter key
+var doorsTimeInString = $("#doorsOpenTime").val()
+    //disable Enter key
 $('form').bind('keydown', function (e) {
     if (e.keyCode == 13) {
         e.preventDefault();
@@ -28,13 +28,15 @@ $('form').bind('keydown', function (e) {
 //function for when submit create event is hit
 function formSubmit(e) {
     e.preventDefault();
-function convert(input) {
-    return moment(input, 'HH:mm').format('h:mm A');
-}
+
+    function convert(input) {
+        return moment(input, 'HH:mm').format('h:mm A');
+    }
     doorsOpenTimeFormated = convert($("#doorsOpenTime").val());
     startTimeFormated = convert($("#startTime").val());
     endTimeFormated = convert($("#endTime").val());
-    console.log(endTimeFormated);
+
+
     var flux = {
         city: $("#city").val(),
         venue: $("#venue").val(),
@@ -71,22 +73,24 @@ function convert(input) {
         },
         error: function (data) {
             $(".modal-body").html("<h5 style='text-align:center'><font color='#1b4790'>There seems to be a problem. Please double check the form and give it another go.</font></h5>");
-            console.log('error: '); 
+            console.log('error: ');
             console.log(data);
         }
     });
 };
 
 
-function removeEvent(e){
+function removeEvent(e) {
     e.preventDefault();
 
     id = eventsId[$("#deleteEvent").val()];
-    var requestBody = { eventId: id };
+    var requestBody = {
+        eventId: id
+    };
     console.log(requestBody);
 
     var serverUrl = baseUrl + "events/delete";
-    
+
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -101,10 +105,10 @@ function removeEvent(e){
             console.log('error: ');
             console.log(data);
         }
-    });  
+    });
 };
-     
-function updateEventList(){
+
+function updateEventList() {
     var serverUrl = baseUrl + "events";
     var events = $.get(serverUrl)
         .done(function (data) {
@@ -122,11 +126,8 @@ function updateEventList(){
             var evnt = events[i];
             var eventHTML = '<option value ="' + i + '">' + evnt.city + ', ' + evnt.venue + ', ' + evnt.date + '</option>';
             $('#deleteEvent').append($(eventHTML));
-            
+
             eventsId.push(evnt._id);
         }
     });
-}   
-            
-        
-                     
+}

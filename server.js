@@ -116,9 +116,9 @@ app.get('/events/upcoming', function(req, res){
         console.log(evnt.date);
         var eventDate = Date.parse(evnt.date);
         console.log("event: " + eventDate + ", today: " + today);
-        if(eventDate > today) {
+        //if(eventDate > today){
           upcomingEvents.push(evnt);
-        }
+        //}
       }
       var sortedUpcomingEvents = sortEventsByDate(upcomingEvents);
       console.log(sortedUpcomingEvents);
