@@ -2,9 +2,9 @@
 var eventsId =[];
 
 // CORS 
-var baseUrl = "http://fluxdelux.org/";
+//var baseUrl = "http://fluxdelux.org/";
 // Production
-//var baseUrl = "";
+var baseUrl = "";
 
 $(document).ready(function () {
     updateEventList();

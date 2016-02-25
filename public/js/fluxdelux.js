@@ -2,6 +2,11 @@
        var currentTime;
        var checkinTime = false;
 
+      // CORS 
+      //var baseUrl = "http://fluxdelux.org/";
+      // Production
+      var baseUrl = "";
+
        //self updating time that converts current time 
        function updatingTime() {
            var hours = currentDate.getHours();
@@ -25,24 +30,18 @@
        }
        updatingTime();
        setInterval(updatingTime, 60000);
-      
+    
 
-
-
-
-       $(document).ready(function () {
+      $(document).ready(function () {
            if (Cookies.get('fluxdelux') == "checkedin") {
                $('#passcode').val('YOW');
            };
 
            // get list of upcoming events from server
            var events =
-               // for broken Node 
-               $.get("http://fluxdelux.org/events/upcoming")
-               // for production
-               //$.get("events/upcoming")
+               $.get(baseUrl + "events/upcoming")
                .done(function (data) {
-                   //console.log(data);
+                   console.log(data);
                })
                .fail(function () {
                    console.log("Request failed: /events/upcoming");
