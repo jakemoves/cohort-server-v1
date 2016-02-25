@@ -109,13 +109,14 @@ app.get('/events/upcoming', function(req, res){
       res.writeHead(200, {
         'Content-Type': 'application/json'
       });
-      var today = new Date().getTime();
+      var today = Date.now();
       var upcomingEvents = new Array;
       for(i=0; i<docs.length; i++){
         var evnt = docs[i];
         console.log(evnt.date);
-        //luke add
+        //--luke add
         var eventEnd = evnt.date + "," + evnt.endTime;
+        //--
         var eventDate = Date.parse(eventEnd);
           
         //console.log("event: " + eventDate + ", today: " + today);
