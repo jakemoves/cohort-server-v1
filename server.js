@@ -109,7 +109,7 @@ app.get('/events/upcoming', function(req, res){
       res.writeHead(200, {
         'Content-Type': 'application/json'
       });
-      var today = new Date()    .getTime();
+      var today = new Date().getTime();
       var upcomingEvents = new Array;
       for(i=0; i<docs.length; i++){
         var evnt = docs[i];
