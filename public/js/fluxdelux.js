@@ -1,11 +1,11 @@
        var currentDate = new Date();
        var currentTime;
        var checkinTime = false;
-        var today;
-      // CORS 
-      //var baseUrl = "http://dev.fluxdelux.org/";
-      // Production
-      var baseUrl = "";
+       var today;
+       // CORS 
+       //var baseUrl = "http://dev.fluxdelux.org/";
+       // Production
+       var baseUrl = "";
 
        //self updating time that converts current time 
        function updatingTime() {
@@ -27,16 +27,13 @@
            currentTime = hours + ":" + minutes + " " + suffix;
 
        }
-function updatingDate(){
-    today = Date.now();
-}
-       updatingTime();
-        updatingDate();
-       setInterval(updatingTime, 60000);
-        setInterval(updatingDate, 60000);
-    
 
-      $(document).ready(function () {
+    
+       updatingTime();
+       setInterval(updatingTime, 60000);
+
+
+       $(document).ready(function () {
            if (Cookies.get('fluxdelux') == "checkedin") {
                $('#passcode').val('YOW');
            };
@@ -59,16 +56,16 @@ function updatingDate(){
                var eventsList = $('<ul>').addClass('events-list').appendTo('#info');
                for (i = 0; i < events.length; i++) {
                    var date = moment(events[i].date + ", " + events[i].startTime, "MMMM D, YYYY, h:mm A");
-                  
 
 
-                   
+
+
                    var dateForCheckin = new Date(Date.parse(events[i].date));
-                   
-                   
-                   var checkindate= Date.parse(events[0].date);
+
+
+                   var checkindate = Date.parse(events[0].date);
                    console.log(checkindate);
-                
+
                    if (currentTime == events[i].doorsOpenTime) {
                        checkinTime = true;
                    } else if (currentTime == events[i].endTime) {
@@ -79,11 +76,12 @@ function updatingDate(){
 
                    if ((currentDate.getDate() == dateForCheckin.getDate()) && (currentDate.getMonth() == dateForCheckin.getMonth()) && (currentDate.getFullYear() == dateForCheckin.getFullYear()) && (checkinTime == true)) {
                        var buttonHTML = '<button class="btn btn-success btn-block" onclick="checkinManually()">Check In </button>';
-                       $("#backup").css("display", "block");
+                       $("#backup").css("display", "inline-block");
+                       checkinTime= false;
                    } else {
                        var buttonHTML = '<a href="' + events[i].signupURL + '" class= "btn btn-warning" role="button" title="link to event page">Sign Up</a>';
                    };
-                    
+
                    var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
                    var eventHTML = '<li class=" event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong><br> Doors open at ' + events[i].doorsOpenTime + '</p>' + buttonHTML + '</li>';
                    $('.events-list').append($(eventHTML));
