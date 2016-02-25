@@ -137,6 +137,7 @@ app.post('/events/create', jsonParser, function(req, res) {
   // console.log('received create-event');
   // console.log(req.body);
   var eventInfo = req.body;
+  //console.log(eventInfo);
   // basic validation
   if( eventInfo.city &&
       eventInfo.venue &&
@@ -169,7 +170,7 @@ app.post('/events/create', jsonParser, function(req, res) {
 app.post('/events/delete', jsonParser, function(req, res) {
   var resText;
   // console.log('received create-event');
-  // console.log(req.body);
+  //console.log(req.body);
   // basic validation
   if( req.body.eventId) {
       db.remove({ _id: req.body.eventId }, {}, function(err, numRemoved){
