@@ -11,9 +11,7 @@ $(document).ready(function () {
     updateEventList();
 });
 
-function convert(input) {
-    return moment(input, 'HH:mm').format('h:mm A');
-}
+
 
 
 
@@ -28,7 +26,9 @@ $('form').bind('keydown', function (e) {
 //function for when submit create event is hit
 function formSubmit(e) {
     e.preventDefault();
-
+function convert(input) {
+    return moment(input, 'HH:mm').format('h:mm A');
+}
     doorsOpenTimeFormated = convert($("#doorsOpenTime").val());
     startTimeFormated = convert($("#startTime").val());
     endTimeFormated = convert($("#endTime").val());
