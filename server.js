@@ -114,8 +114,11 @@ app.get('/events/upcoming', function(req, res){
       for(i=0; i<docs.length; i++){
         var evnt = docs[i];
         console.log(evnt.date);
-        var eventDate = Date.parse(evnt.date);
-        console.log("event: " + eventDate + ", today: " + today);
+        //luke add
+        var eventEnd = evnt.date + "," + evnt.endTime;
+        var eventDate = Date.parse(eventEnd);
+          
+        //console.log("event: " + eventDate + ", today: " + today);
         if(eventDate > today){
           upcomingEvents.push(evnt);
         }
