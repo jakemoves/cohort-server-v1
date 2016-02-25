@@ -70,12 +70,12 @@
 
 
 
-                   if ((currentDate.getDate() == dateForCheckin.getDate()) && (currentDate.getMonth() == dateForCheckin.getMonth()) && (currentDate.getFullYear() == dateForCheckin.getFullYear()) && (checkinTime == true)) {
-                       var buttonHTML = '<button class="btn btn-success btn-block" onclick="checkinManually()">Check In </button>';
-                       $("#backup").css("display", "block");
-                   } else {
-                       var buttonHTML = '<a href="' + events[i].signupURL + '" class= "btn btn-warning" role="button" title="link to event page">Sign Up</a>';
-                   };
+//                   if ((currentDate.getDate() == dateForCheckin.getDate()) && (currentDate.getMonth() == dateForCheckin.getMonth()) && (currentDate.getFullYear() == dateForCheckin.getFullYear()) && (checkinTime == true)) {
+//                       var buttonHTML = '<button class="btn btn-success btn-block" onclick="checkinManually()">Check In </button>';
+//                       $("#backup").css("display", "block");
+//                   } else {
+//                       var buttonHTML = '<a href="' + events[i].signupURL + '" class= "btn btn-warning" role="button" title="link to event page">Sign Up</a>';
+//                   };
 
                    var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
                    var eventHTML = '<li class=" event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong><br> Doors open at ' + events[i].doorsOpenTime + '</p>' + buttonHTML + '</li>';
