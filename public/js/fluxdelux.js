@@ -38,9 +38,9 @@
            // get list of upcoming events from server
            var events =
                // for broken Node 
-               $.get("http://fluxdelux.org/events/upcoming")
+//               $.get("http://fluxdelux.org/events/upcoming")
                // for production
-               //$.get("events/upcoming")
+               $.get("events/upcoming")
                .done(function (data) {
                    //console.log(data);
                })
