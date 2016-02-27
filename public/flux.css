@@ -6,11 +6,11 @@ body {
 }
 
 body.checked-in {
-    background-color: #D4420D;
+    background-color: #D4420D!important;
 }
 
 body.audio-playing {
-    background-color: #F0C829;
+    background-color: #F0C829!important;
 }
 
 body,
