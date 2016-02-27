@@ -110,7 +110,7 @@ app.get('/events/upcoming', function(req, res){
       res.writeHead(200, {
         'Content-Type': 'application/json'
       });
-      var today = moment(Date.now();
+      var today = moment(Date.now());
       var upcomingEvents = new Array;
       for(i=0; i<docs.length; i++){
         var evnt = docs[i];

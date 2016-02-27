@@ -53,7 +53,7 @@ $(document).ready(function () {
             };
 
             if ((showCheckinButton == true)) {
-                var buttonHTML = '<button class="btn btn-success btn-block" onclick="checkinManually()">Check In </button>';
+                var buttonHTML = '<button class="btn btn-success btn-block" onclick="checkin()">Check In </button>';
                 $("#backup").css("display", "inline-block");
                 showCheckinButton = false;
             } else {
