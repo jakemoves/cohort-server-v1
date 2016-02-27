@@ -382,11 +382,11 @@ var subscribeToServerSentEvents = function () {
                         console.log("starting episode " + cue.index + " in 5 seconds");
                         info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
                         setTimeout(function () {
+                            $('body').toggleClass('checked-in');
+                            $('body').toggleClass('audio-playing');
                             if (!audioIsPlaying) {
                                 audioIsPlaying = true;
 
-                                $('body').toggleClass('checked-in');
-                                $('body').toggleClass('audio-playing');
                                 if (participantGroup === GroupEnum.BLUE) {
                                     switch (cue.index) {
                                     case 0:

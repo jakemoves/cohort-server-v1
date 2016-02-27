@@ -12,6 +12,10 @@ body.checked-in {
 
 body.audio-playing {
     background-color: #F0C829!important;
+
+    a, a:visited, a:hover {
+        color: #fff !important;
+    }
 }
 
 body,
