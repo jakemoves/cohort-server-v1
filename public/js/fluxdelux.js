@@ -1,4 +1,4 @@
-var ShowCheckinButton = false;
+var showCheckinButton = false;
 
 //       // CORS 
 //       var baseUrl = "http://dev.fluxdelux.org/";
@@ -30,51 +30,44 @@ $(document).ready(function () {
         console.log(events);
         var eventsList = $('<ul>').addClass('events-list').appendTo('#info');
         for (i = 0; i < events.length; i++) {
-            var date = moment(events[i].date + ", " + events[i].startTime, "MMMM D, YYYY, h:mm A");
-
-
-
+            
+            var date = moment(events[i].startDateAndTimeUTC);
 
             //var dateForCheckin = new Date(Date.parse(events[i].date));
             //var checkindate = Date.parse(events[0].date);
 
-            var eventsdateForCheckin = events[i].date + "," + events[i].doorsOpenTime;
-            var eventsdateForCheckout = events[i].date + "," + events[i].endTime;
-            var currentdate = moment().format("MMMM D YYYY, h:mm a");
+            var eventDateWithDoorsOpenTime = moment(events[i].date + "T" + events[i].doorsOpenTime);
+            var eventDateWithEndTime = moment(events[i].date + "T" + events[i].endTime);
+            var eventDateWithStartTime = moment(events[i].date + "T" + events[i].startTime);
 
-            timeOfEventDoors = Date.parse(eventsdateForCheckin);
-            timeOfEventEnd = Date.parse(eventsdateForCheckout);
-            timeNow = new Date().getTime();
+            var currentDateAndTime = moment(Date.now());
 
+            // timeOfEventDoors = Date.parse(eventsdateForCheckin);
+            // timeOfEventEnd = Date.parse(eventsdateForCheckout);
+            // timeNow = new Date().getTime();
 
-
-            if ((timeNow > timeOfEventDoors) && (timeNow <= timeOfEventEnd)) {
-                ShowCheckinButton = true;
+            if ((currentDateAndTime > eventDateWithDoorsOpenTime) && (currentDateAndTime <= eventDateWithEndTime)) {
+                showCheckinButton = true;
             } else {
-                ShowCheckinButton = false;
+                showCheckinButton = false;
             };
 
-
-
-            if ((ShowCheckinButton == true)) {
+            if ((showCheckinButton == true)) {
                 var buttonHTML = '<button class="btn btn-success btn-block" onclick="checkinManually()">Check In </button>';
                 $("#backup").css("display", "inline-block");
-                ShowCheckinButton = false;
+                showCheckinButton = false;
             } else {
                 var buttonHTML = '<a href="' + events[i].signupURL + '" class= "btn btn-warning" role="button" title="link to event page">Sign Up</a>';
             };
 
-            var eventDate = date.format("dddd, MMMM Do, h:mm") + ' – ' + events[i].endTime;
-            var eventHTML = '<li class=" event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDate + '</strong><br> Doors open at ' + events[i].doorsOpenTime + '</p>' + buttonHTML + '</li>';
+            var eventDateAndTimeString = eventDateWithStartTime.format("dddd, MMMM Do, h:mm") + ' – ' + eventDateWithEndTime.format("h:mm a");
+
+            var doorsOpenString = eventDateWithDoorsOpenTime.format("h:mm a");
+
+            var eventHTML = '<li class=" event jumbotron">' + '<h4 class="city" style="text-align: left">' + events[i].city + '</h4>' + '<p><strong>' + events[i].venue + '</strong><br/>' + events[i].address + '</p>' + '<p><strong>' + eventDateAndTimeString + '</strong><br> Doors open at ' + doorsOpenString + '</p>' + buttonHTML + '</li>';
             $('.events-list').append($(eventHTML));
 
-
         };
-
-
-
-
-
 
     });
 

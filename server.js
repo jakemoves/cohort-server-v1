@@ -3,6 +3,7 @@ var http = require('http'),
   cors = require('cors'),
 	NanoTimer = require('nanotimer'),
 	bodyParser = require('body-parser'),
+  moment = require('moment'),
   Datastore = require('nedb'),
   db = new Datastore({ filename: "events.db", autoload: true }),
   	interval = 1000,
@@ -109,18 +110,18 @@ app.get('/events/upcoming', function(req, res){
       res.writeHead(200, {
         'Content-Type': 'application/json'
       });
-      var today = Date.now();
+      var today = moment(Date.now();
       var upcomingEvents = new Array;
       for(i=0; i<docs.length; i++){
         var evnt = docs[i];
-        console.log(evnt.date);
-        //--luke add
-        var eventEnd = evnt.date + "," + evnt.endTime;
-        //--
-        var eventDate = Date.parse(eventEnd);
-          
-        //console.log("event: " + eventDate + ", today: " + today);
-        if(eventDate > today){
+
+        var eventDate = moment(evnt.date + "T" + evnt.endTime);
+
+        // console.log("event: ");
+        // console.log(eventDate);
+        // console.log(today);
+
+        if(eventDate >= today) {
           upcomingEvents.push(evnt);
         }
       }
@@ -152,6 +153,7 @@ app.post('/events/create', jsonParser, function(req, res) {
       eventInfo.endTime &&
       eventInfo.checkInCode) 
     {
+      eventInfo.startDateAndTimeUTC = eventInfo.date + "T" + eventInfo.startTime;
       db.insert(eventInfo, function(err, newDoc){
         if(err){
           console.log(err);

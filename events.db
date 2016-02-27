@@ -1,5 +1,3 @@
-{"city":"Paris","venue":"Somewhere","address":"45 arrondissement","geocode":["34.23","45.23"],"date":"September 14, 2016","doorsOpenTime":"11:30","startTime":"12:00","endTime":"14:00","hosts":[{"name":"PBDP","url":"pbdp.org"}],"signupURL":"pbdp.org/signup","checkInCode":"tes","_id":"33QKUmrwG1lWf9WL"}
-{"city":"Toronto","venue":"Citadel","address":"304 Parliament St","geocode":["43.534","23.540"],"date":"April 1, 2016","doorsOpenTime":"16:00","startTime":"16:30","endTime":"18:30","hosts":[{"name":"PBDP","url":"pbdp.org"}],"signupURL":"pbdp.org/signup","checkInCode":"test","_id":"j4Gl7zqpCoisgYta"}
-{"city":"London","venue":"The ARTS Project","address":"203 Dundas St, London, ON","geocode":[42.984063,-81.24804],"date":"March 5, 2016","doorsOpenTime":"1:30 PM","startTime":"2:00 PM","endTime":"4:00 PM","hosts":[{"name":"Tangled Art + Disability","url":"http://tangledarts.org"}],"signupURL":"https://guestlistapp.com/events/402906","checkInCode":"yxu","_id":"m0y3pQAlaAXd25TK"}
-{"$$deleted":true,"_id":"33QKUmrwG1lWf9WL"}
-{"$$deleted":true,"_id":"j4Gl7zqpCoisgYta"}
+{"city":"Toronto","venue":"Ctiadel","address":"fe43","geocode":["43.343","43.4343"],"date":"2016-02-27","doorsOpenTime":"1:58 pm","startTime":"2:15 pm","endTime":"4 pm","hosts":[{"name":"pbdp","url":"pbdp"}],"signupURL":"pbdp","checkInCode":"ret","_id":"5laGX7YMLmCYjS3a"}
+{"$$deleted":true,"_id":"5laGX7YMLmCYjS3a"}
+{"city":"Toronto","venue":"Wherever","address":"34 gj","geocode":["343.34","34.345"],"date":"2016-02-27","doorsOpenTime":"14:05","startTime":"14:30","endTime":"16:30","hosts":[{"name":"pbdp","url":"pbdp"}],"signupURL":"pbdp","checkInCode":"pbd","_id":"0WmubJUNBQIxoad2"}
