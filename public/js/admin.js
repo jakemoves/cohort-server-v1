@@ -30,7 +30,7 @@ function formSubmit(e) {
     e.preventDefault();
 
     function convert(input) {
-        return moment(input, 'HH:mm').format('h:mm A');
+        return input; //moment(input, 'HH:mm').format('h:mm A');
     }
     doorsOpenTimeFormated = convert($("#doorsOpenTime").val());
     startTimeFormated = convert($("#startTime").val());
