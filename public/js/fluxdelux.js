@@ -373,6 +373,7 @@ var subscribeToServerSentEvents = function () {
                             Index = cue.index;
                             info.innerHTML = "<h4>Please tap the button below to allow audio playback</h4>";
                             $('#episode-confirm').css('display', 'block');
+                            $('#check-out').css('display', 'none');    
                             console.log("episode number: " + Index);
                         }
                         break;
