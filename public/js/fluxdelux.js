@@ -381,9 +381,9 @@ var subscribeToServerSentEvents = function () {
                         Index = cue.index;
                         console.log("starting episode " + cue.index + " in 5 seconds");
                         info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
+                        $('body').toggleClass('checked-in');
+                        $('body').toggleClass('audio-playing');
                         setTimeout(function () {
-                            $('body').toggleClass('checked-in');
-                            $('body').toggleClass('audio-playing');
                             if (!audioIsPlaying) {
                                 audioIsPlaying = true;
 
