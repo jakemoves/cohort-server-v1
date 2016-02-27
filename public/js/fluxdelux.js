@@ -16,7 +16,7 @@ $(document).ready(function () {
     // get list of upcoming events from server
     var events =
 
-        $.get(baseUrl + "events/upcoming")
+        $.get(baseUrl + "events")
         .done(function (data) {
             console.log(data);
         })
