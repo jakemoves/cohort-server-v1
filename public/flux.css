@@ -5,6 +5,14 @@ body {
     background: linear-gradient(right, #1b4790, #072b69);
 }
 
+body.checked-in {
+    background-color: #D4420D;
+}
+
+body.audio-playing {
+    background-color: #F0C829;
+}
+
 body,
 p {
     color: #FAFDFE;

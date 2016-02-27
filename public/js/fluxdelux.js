@@ -272,6 +272,8 @@ var load = function () {
     console.log("audio loaded");
     //CHANGE UI AFTER USER CHECKS IN
     info.innerHTML = "<h4>Fantastic, you are now in queue. Please put your headphones on and wait for audio instructions.</h4>";
+
+    $('body').toggleClass('checked-in');
     //I NOW HAVE THE BUTTON HIDING SO THAT USERS DON'T KEEP PRESSING IT AND LOADING THE AUDIO AGAIN AND AGAIN.
     // b1.innerHTML = "Checked-in!";
 };
@@ -382,6 +384,9 @@ var subscribeToServerSentEvents = function () {
                         setTimeout(function () {
                             if (!audioIsPlaying) {
                                 audioIsPlaying = true;
+
+                                $('body').toggleClass('checked-in');
+                                $('body').toggleClass('audio-playing');
                                 if (participantGroup === GroupEnum.BLUE) {
                                     switch (cue.index) {
                                     case 0:
@@ -537,6 +542,8 @@ for (var i = 0; i < allAudio.length; i++) {
         $("audio").remove();
         info.innerHTML = "<h4>If you'd like to stay for another episode, please wait.</h4><h4>If not, thank you for playing <i>FluxDelux</i>! You can now check out and make your way to the exit.";
         $('#check-out').css('display', 'block');
+
+        $('body').toggleClass('audio-playing');
     }, false);
 
 
