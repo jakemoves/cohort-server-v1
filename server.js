@@ -110,24 +110,7 @@ app.get('/events/upcoming', function(req, res){
       res.writeHead(200, {
         'Content-Type': 'application/json'
       });
-      var today = moment(Date.now());
-      var upcomingEvents = new Array;
-      for(i=0; i<docs.length; i++){
-        var evnt = docs[i];
-
-        var eventDate = moment(evnt.date + "T" + evnt.endTime);
-
-        // console.log("event: ");
-        // console.log(eventDate);
-        // console.log(today);
-
-        if(eventDate >= today) {
-          upcomingEvents.push(evnt);
-        }
-      }
-      var sortedUpcomingEvents = sortEventsByDate(upcomingEvents);
-      console.log(sortedUpcomingEvents);
-      res.write(JSON.stringify(sortedUpcomingEvents));
+      res.write(JSON.stringify(docs));
       res.send();
     } else {
       res.writeHead(400);
@@ -135,6 +118,37 @@ app.get('/events/upcoming', function(req, res){
       res.send();
     }
   });
+  // db.find({}, function(err, docs){
+  //   console.log(docs);
+  //   if(!err){
+  //     res.writeHead(200, {
+  //       'Content-Type': 'application/json'
+  //     });
+  //     var today = moment(Date.now());
+  //     var upcomingEvents = new Array;
+  //     for(i=0; i<docs.length; i++){
+  //       var evnt = docs[i];
+
+  //       var eventDate = moment(evnt.date + "T" + evnt.endTime);
+
+  //       console.log("event: ");
+  //       console.log(eventDate);
+  //       console.log(today);
+
+  //       if(eventDate >= today) {
+  //         upcomingEvents.push(evnt);
+  //       }
+  //     }
+  //     var sortedUpcomingEvents = sortEventsByDate(upcomingEvents);
+  //     console.log(sortedUpcomingEvents);
+  //     res.write(JSON.stringify(sortedUpcomingEvents));
+  //     res.send();
+  //   } else {
+  //     res.writeHead(400);
+  //     res.write("" + err);
+  //     res.send();
+  //   }
+  // });
 });
 
 app.post('/events/create', jsonParser, function(req, res) {
