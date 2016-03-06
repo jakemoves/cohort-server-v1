@@ -36,9 +36,9 @@ $(document).ready(function () {
             //var dateForCheckin = new Date(Date.parse(events[i].date));
             //var checkindate = Date.parse(events[0].date);
 
-            var eventDateWithDoorsOpenTime = moment(events[i].date + "T" + events[i].doorsOpenTime);
-            var eventDateWithEndTime = moment(events[i].date + "T" + events[i].endTime);
-            var eventDateWithStartTime = moment(events[i].date + "T" + events[i].startTime);
+            var eventDateWithDoorsOpenTime = moment(events[i].date + " T " + events[i].doorsOpenTime);
+            var eventDateWithEndTime = moment(events[i].date + " T " + events[i].endTime);
+            var eventDateWithStartTime = moment(events[i].date + " T " + events[i].startTime);
 
             var currentDateAndTime = moment(Date.now());
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
                 $("#backup").css("display", "inline-block");
                 showCheckinButton = false;
             } else {
-                var buttonHTML = '<a href="' + events[i].signupURL + '" class= "btn btn-warning" role="button" title="link to event page">Sign Up</a>';
+                var buttonHTML = '<a href="' + events[i].signupURL + '" class= "btn btn-warning btn-block" role="button" title="link to event page">Sign Up</a>';
             };
 
             var eventDateAndTimeString = eventDateWithStartTime.format("dddd, MMMM Do, h:mm") + ' – ' + eventDateWithEndTime.format("h:mm a");
