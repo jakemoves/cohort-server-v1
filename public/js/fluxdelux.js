@@ -33,19 +33,14 @@ $(document).ready(function () {
             
             var date = moment(events[i].startDateAndTimeUTC);
 
-            //var dateForCheckin = new Date(Date.parse(events[i].date));
-            //var checkindate = Date.parse(events[0].date);
-
             var eventDateWithDoorsOpenTime = moment(events[i].date + "T" + events[i].doorsOpenTime);
             var eventDateWithEndTime = moment(events[i].date + "T" + events[i].endTime);
             var eventDateWithStartTime = moment(events[i].date + "T" + events[i].startTime);
 
             var currentDateAndTime = moment(Date.now());
-
-            // timeOfEventDoors = Date.parse(eventsdateForCheckin);
-            // timeOfEventEnd = Date.parse(eventsdateForCheckout);
-            // timeNow = new Date().getTime();
-
+            console.log("open" + eventDateWithDoorsOpenTime);
+            console.log("current" + currentDateAndTime);
+            console.log("end" + eventDateWithEndTime);
             if ((currentDateAndTime > eventDateWithDoorsOpenTime) && (currentDateAndTime <= eventDateWithEndTime)) {
                 showCheckinButton = true;
             } else {
