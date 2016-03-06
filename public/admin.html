@@ -48,31 +48,50 @@
                 <label for="geocodeLongitude">Longitude</label>
                 <input type="number" class="form-control" id="geocodeLongitude" placeholder="-79.383184" step="any">
             </div>
-            
+            <div class="clearfix"></div> 
             <hr>
-            
+             
             <div class="form-group col-xs-12 col-md-4">
                 <label for="date">Date</label>
                 <input type="text" class="form-control" id="date" placeholder="March 5, 2016">
             </div>
-        <div class="bfh-timepicker" data-mode="12h">
-       
-            <div class="form-group col-xs-12 col-md-4 bfh-timepicker" data-mode="12h">
-                <label for="doorsOpenTime">Time That Doors Open</label>
-                <input type="text" class="form-control" id="doorsOpenTime">
+            <div class="clearfix"></div> 
+            <div class="form-group col-xs-3 col-md-1">
+                <label for="doorsOpenTime">Doors Open (24 hour)</label>
+                <select class="form-control"id="doorsOpenTime">
+                </select>
+            </div>
+            <div class="form-group col-xs-3 col-md-1">
+                <label for="doorsOpenTimeMin">Doors Open (min)</label>
+                <select class="form-control"id="doorsOpenTimeMin">
+                </select>
+            </div>
+            <div class="clearfix"></div> 
+            <div class="form-group col-xs-3 col-md-1 col-md-offset-1">
+                <label for="startTime">Start Time (24 hour)</label>
+                <select class="form-control"id="startTime">
+                </select>
+            </div>
+            <div class="form-group col-xs-3 col-md-1">
+                <label for="startTime">Start Time (min)</label>
+                <select class="form-control"id="startTimeMin">
+                </select>
+            </div>
+        <div class="clearfix"></div> 
+           <div class="form-group col-xs-3 col-md-1 col-md-offset-1">
+                <label for="endTime">End Time (24 hour)</label>
+                <select class="form-control"id="endTime">
+                </select>
+            </div>
+            <div class="form-group col-xs-3 col-md-1">
+                <label for="endTimeMin">End Time (min)</label>
+                <select class="form-control"id="endTimeMin">
+                </select>
             </div>
         
-            <div class="form-group col-xs-12 col-md-4">
-                <label for="startTime">Start Time</label>
-                <input type="text" class="form-control" id="startTime">
-            </div>
-            <div class="form-group col-xs-12 col-md-4">
-                <label for="endTime">End Time</label>
-                <input type="text" class="form-control" id="endTime">
-            </div>
-        </div> 
+        <div class="clearfix"></div> 
             <hr>
-            
+           
             <div class="form-group col-xs-6 col-md-6">
                 <label for="hostName">Host - Name</label>
                 <input type="text" class="form-control" id="hostName" placeholder="Tangled Art + Disability">
@@ -89,9 +108,9 @@
                 <label for="checkInCode">Check In Code</label>
                 <input type="password" class="form-control" id="checkInCode" placeholder="yxu">
             </div>
-            
+          <div class="col-sm-10">  
     <button class="btn btn-default btn-lg formButton" data-toggle="modal" data-target="#myModal" onclick="formSubmit(event)">Create Event</button>
-        
+            </div>
 <!--        ---Modal---     -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="CreateConfirm">

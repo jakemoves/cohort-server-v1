@@ -17,6 +17,7 @@ $(document).ready(function () {
 
 
 
+
 var doorsTimeInString = $("#doorsOpenTime").val()
     //disable Enter key
 $('form').bind('keydown', function (e) {
@@ -131,3 +132,33 @@ function updateEventList() {
         }
     });
 }
+
+function DynamicallyMakeTimeSlots(){
+    
+    for(i=0; i< 24; i++){
+       var hourHTML;
+        if(i < 10){
+            hourHTML +="<option value='"+i+"'> 0" + i + ":" +"</option>";
+        } else {
+        hourHTML += "<option value='"+i+"'>" + i + ":" +"</option>";
+        }
+        $("#doorsOpenTime").html(hourHTML);
+        $("#startTime").html(hourHTML);
+        $("#endTime").html(hourHTML);
+    }
+    for(i=0;i<60;i+=5){
+        var minHTML;
+        if(i < 10){
+        minHTML +="<option value='"+i+"'>" +"0" + i +"</option>";   
+        } else{
+        minHTML +="<option value='"+i+"'>" + i +"</option>";
+        }
+        
+        $("#doorsOpenTimeMin").html(minHTML);
+        $("#startTimeMin").html(minHTML);
+        $("#endTimeMin").html(minHTML);
+       
+    }
+}
+
+DynamicallyMakeTimeSlots();
