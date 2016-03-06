@@ -37,21 +37,20 @@ function formSubmit(e) {
 //    startTimeFormated = convert($("#startTime").val());
 //    endTimeFormated = convert($("#endTime").val());
 
-    doorsOpenTimeFormated = $("#doorsOpenTime").val(); 
-//        + ":" + $("#doorsOpenTimeMin").val();
+    doorsOpenTimeFormated = $("#doorsOpenTime").val(); + ":" + $("#doorsOpenTimeMin").val();
     startTimeFormated = $("#startTime").val() + ":" + $("#startTimeMin").val();
     endTimeFormated = $("#endTime").val() + ":" + $("#endTimeMin").val();
     
+    dateFormated = $("#dateYear").val() + "-" + $("#dateMonth").val() + "-" + $("#dateDay").val();
     
-
-    var flux = {
+     var flux = {
         city: $("#city").val(),
         venue: $("#venue").val(),
         address: $("#address").val(),
         geocode: [
             $("#geocodeLatitude").val(), $("#geocodeLongitude").val()
         ],
-        date: $("#date").val(),
+        date: dateFormated,
         doorsOpenTime: doorsOpenTimeFormated,
         startTime: startTimeFormated,
         endTime: endTimeFormated,
@@ -140,30 +139,57 @@ function updateEventList() {
 }
 
 function DynamicallyMakeTimeSlots(){
+    var hourHTML;
+    var minHTML;
+    var yearHTML;
+    var monthHTML;
+    var dayHTML;
     
     for(i=0; i< 24; i++){
-       var hourHTML;
-        if(i < 10){
+       if(i < 10){
             hourHTML +="<option value='0"+i+"'> 0" + i + ":" +"</option>";
         } else {
-        hourHTML += "<option value='"+i+"'>" + i + ":" +"</option>";
+            hourHTML += "<option value='"+i+"'>" + i + ":" +"</option>";
         }
         $("#doorsOpenTime").html(hourHTML);
         $("#startTime").html(hourHTML);
         $("#endTime").html(hourHTML);
     }
+    
     for(i=0;i<60;i+=5){
-        var minHTML;
         if(i < 10){
-        minHTML +="<option value='0"+i+"'>" +"0" + i +"</option>";   
+            minHTML +="<option value='0"+i+"'>" +"0" + i +"</option>";   
         } else{
-        minHTML +="<option value='"+i+"'>" + i +"</option>";
+            minHTML +="<option value='"+i+"'>" + i +"</option>";
         }
         
         $("#doorsOpenTimeMin").html(minHTML);
         $("#startTimeMin").html(minHTML);
         $("#endTimeMin").html(minHTML);
-       
+    }
+    
+    for(i = 2016; i<=2030; i++){
+        yearHTML += "<option value='"+i+"'>" + i + "</option>";
+        $("#dateYear").html(yearHTML);
+    }
+        
+    
+    for(i= 1; i <= 12; i++){
+        if(i < 10){
+            monthHTML +="<option value='0"+i+"'> 0" + i +"</option>";
+        } else{
+            monthHTML +="<option value='"+i+"'>" + i +"</option>";       
+            }
+       $("#dateMonth").html(monthHTML);
+        }
+    
+    for(i=1; i<=31; i++){
+        if(i<10){
+            dayHTML += "<option value='0"+i+"'> 0" + i +"</option>";
+        } else {
+            dayHTML += "<option value='"+i+"'>" + i +"</option>";  
+        }
+        $("#dateDay").html(dayHTML);
     }
 }
 
