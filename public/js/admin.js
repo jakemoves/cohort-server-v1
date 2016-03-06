@@ -37,7 +37,8 @@ function formSubmit(e) {
 //    startTimeFormated = convert($("#startTime").val());
 //    endTimeFormated = convert($("#endTime").val());
 
-    doorsOpenTimeFormated = $("#doorsOpenTime").val() + ":" + $("#doorsOpenTimeMin").val();
+    doorsOpenTimeFormated = $("#doorsOpenTime").val(); 
+//        + ":" + $("#doorsOpenTimeMin").val();
     startTimeFormated = $("#startTime").val() + ":" + $("#startTimeMin").val();
     endTimeFormated = $("#endTime").val() + ":" + $("#endTimeMin").val();
     

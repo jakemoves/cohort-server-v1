@@ -36,9 +36,9 @@ $(document).ready(function () {
             //var dateForCheckin = new Date(Date.parse(events[i].date));
             //var checkindate = Date.parse(events[0].date);
 
-            var eventDateWithDoorsOpenTime = moment(events[i].date + " T " + events[i].doorsOpenTime);
-            var eventDateWithEndTime = moment(events[i].date + " T " + events[i].endTime);
-            var eventDateWithStartTime = moment(events[i].date + " T " + events[i].startTime);
+            var eventDateWithDoorsOpenTime = moment(events[i].date + "T" + events[i].doorsOpenTime);
+            var eventDateWithEndTime = moment(events[i].date + "T" + events[i].endTime);
+            var eventDateWithStartTime = moment(events[i].date + "T" + events[i].startTime);
 
             var currentDateAndTime = moment(Date.now());
 
