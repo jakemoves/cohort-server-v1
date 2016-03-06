@@ -131,6 +131,7 @@ a:hover {
     background: none!important;
     border: none;
     padding: 0!important;
+    margin: 0;
     font: inherit;
     color: #f0c829;
     cursor: pointer;

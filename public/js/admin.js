@@ -30,13 +30,18 @@ $('form').bind('keydown', function (e) {
 function formSubmit(e) {
     e.preventDefault();
 
-    function convert(input) {
-        return input; //moment(input, 'HH:mm').format('h:mm A');
-    }
-    doorsOpenTimeFormated = convert($("#doorsOpenTime").val());
-    startTimeFormated = convert($("#startTime").val());
-    endTimeFormated = convert($("#endTime").val());
+//    function convert(input) {
+//        return input; //moment(input, 'HH:mm').format('h:mm A');
+//    }
+//    doorsOpenTimeFormated = convert($("#doorsOpenTime").val());
+//    startTimeFormated = convert($("#startTime").val());
+//    endTimeFormated = convert($("#endTime").val());
 
+    doorsOpenTimeFormated = $("#doorsOpenTime").val() + ":" + $("#doorsOpenTimeMin").val();
+    startTimeFormated = $("#startTime").val() + ":" + $("#startTimeMin").val();
+    endTimeFormated = $("#endTime").val() + ":" + $("#endTimeMin").val();
+    
+    
 
     var flux = {
         city: $("#city").val(),
@@ -138,7 +143,7 @@ function DynamicallyMakeTimeSlots(){
     for(i=0; i< 24; i++){
        var hourHTML;
         if(i < 10){
-            hourHTML +="<option value='"+i+"'> 0" + i + ":" +"</option>";
+            hourHTML +="<option value='0"+i+"'> 0" + i + ":" +"</option>";
         } else {
         hourHTML += "<option value='"+i+"'>" + i + ":" +"</option>";
         }
@@ -149,7 +154,7 @@ function DynamicallyMakeTimeSlots(){
     for(i=0;i<60;i+=5){
         var minHTML;
         if(i < 10){
-        minHTML +="<option value='"+i+"'>" +"0" + i +"</option>";   
+        minHTML +="<option value='0"+i+"'>" +"0" + i +"</option>";   
         } else{
         minHTML +="<option value='"+i+"'>" + i +"</option>";
         }
