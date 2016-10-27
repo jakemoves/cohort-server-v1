@@ -18,7 +18,7 @@ switch($('#control-episode').val()){
 
 
 var chControlBoard = {
-	url: "/broadcast",
+	url: "http://cohortserver-pillarapp.herokuapp.com/broadcast",
 	postdata: "",
 	validateCue : function(){
 		console.log("checking cue validity");

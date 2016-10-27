@@ -3,7 +3,7 @@ var showCheckinButton = false;
 //       // CORS 
 //       var baseUrl = "http://dev.fluxdelux.org/";
 //       // Production
-var baseUrl = "";
+var baseUrl = "http://pillarapp.ca/";
 //
 
 
