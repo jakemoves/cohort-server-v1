@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>FluxDelux Control Board</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="flux.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" id="logo">
+                <embed src="img/fluxlogoblue2.svg" type="image/svg+xml">
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="content">
+        
+        
+    
+    <form>
+        <h2 style="text-align:center"> Create Event</h2>
+            <div class="form-group col-xs-12 col-md-4">
+                <label for="city">City</label>
+                <input type="local" class="form-control" id="city" placeholder="Toronto">
+            </div>
+            <div class="form-group col-xs-12 col-md-4">
+                <label for="venue">Venue</label>
+                <input type="text" class="form-control" id="venue" placeholder="The ARTS Project">
+            </div>
+            <div class="form-group col-xs-12 col-md-4">
+                <label for="address">Address</label>
+                <input type="local" class="form-control" id="address" placeholder="203 Dundas St, Toronto, ON">
+            </div>
+        
+            <div class="form-group col-xs-6 col-md-4">
+                <label for="geocodeLatitude">Latitude</label>
+                <input type="number" class="form-control" id="geocodeLatitude" placeholder="43.653226" step="any">
+            </div>
+            <div class="form-group col-xs-6 col-md-4">
+                <label for="geocodeLongitude">Longitude</label>
+                <input type="number" class="form-control" id="geocodeLongitude" placeholder="-79.383184" step="any">
+            </div>
+            <div class="clearfix"></div> 
+            <hr>
+             
+<!--
+            <div class="form-group col-xs-12 col-md-4">
+                <label for="date">Date</label>
+                <input type="text" class="form-control" id="date" placeholder="March 5, 2016">
+            </div>
+-->     <h4 class="text-left"> &nbsp &nbsp Date and Time of Event</h4>
+        <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="dateYear">Year</label>
+                <select class="form-control"id="dateYear">
+                </select>
+            </div>
+        <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="dateMonth">Month</label>
+                <select class="form-control"id="dateMonth">
+                </select>
+            </div>
+        <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="dateDay">Day</label>
+                <select class="form-control"id="dateDay">
+                </select>
+            </div>
+            <div class="clearfix"></div> 
+            <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="doorsOpenTime">Doors Open (hour)</label>
+                <select class="form-control"id="doorsOpenTime">
+                </select>
+            </div>
+            <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="doorsOpenTimeMin">Doors Open (min)</label>
+                <select class="form-control"id="doorsOpenTimeMin">
+                </select>
+            </div>
+            <div class="clearfix"></div> 
+            <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="startTime">Start Time (hour)</label>
+                <select class="form-control"id="startTime">
+                </select>
+            </div>
+            <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="startTime">Start Time (min)</label>
+                <select class="form-control"id="startTimeMin">
+                </select>
+            </div>
+        <div class="clearfix"></div> 
+           <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="endTime">End Time (hour)</label>
+                <select class="form-control"id="endTime">
+                </select>
+            </div>
+            <div class="form-group-inline col-xs-4 col-md-2">
+                <label for="endTimeMin">End Time (min)</label>
+                <select class="form-control"id="endTimeMin">
+                </select>
+            </div>
+        
+        <div class="clearfix"></div> 
+        <small> &nbsp &nbsp(please note: all times must be input in the 24 hour format)</small>
+            <hr>
+           
+            <div class="form-group col-xs-6 col-md-6">
+                <label for="hostName">Host - Name</label>
+                <input type="text" class="form-control" id="hostName" placeholder="Tangled Art + Disability">
+            </div>
+            <div class="form-group col-xs-6 col-md-6">
+                <label for="hostURL">Host - URL</label>
+                <input type="text" class="form-control" id="hostURL" placeholder="http://tangledarts.org">
+            </div>
+            <div class="form-group col-xs-12 col-md-8">
+                <label for="signupURL">Sign Up URL</label>
+                <input type="text" class="form-control" id="signupURL" placeholder="https://guestlistapp.com/events/402906">
+            </div>
+            <div class="form-group col-xs-12 col-md-4">
+                <label for="checkInCode">Check In Code</label>
+                <input type="password" class="form-control" id="checkInCode" placeholder="yxu">
+            </div>
+          <div class="col-sm-10">  
+    <button class="btn btn-default btn-lg formButton" data-toggle="modal" data-target="#myModal" onclick="formSubmit(event)">Create Event</button>
+            </div>
+<!--        ---Modal---     -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="CreateConfirm">
+  <div class="modal-dialog" role="dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+        
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <div class="row" id="server-response">
+
+      </div>
+    </div>
+            
+            <hr>
+            <hr>
+            
+        <h2 style="text-align:center">Delete Event</h2>
+            <div class="form-group col-xs-12 col-md-12">
+                <label for="deleteEvent">Select Event To Delete </label>
+                <select name="deleteEvent" id="deleteEvent" class="form-control">
+                    
+                    
+                </select>
+                
+                <small> (please note: only events in the future will show in the app and on the website. There's no need to delete events that have passed)</small>
+          </div>
+            
+  
+  <button class="btn btn-default btn-lg formButton" onclick="removeEvent(event)">Delete Event</button>
+        
+        </form>
+        
+        
+    </div>
+    
+  
+
+    <div class="container-fluid footer">
+        <div class="row">
+            <div class="col-xs-12">
+              <p class="small">&#169; 2015 <a href=
+              "http://peggybakerdance.com/">Peggy Baker Dance
+              Projects</a>, <a href=
+              "https://www.youtube.com/watch?v=GqcaSqmvz_U">Luke
+              Garwood</a>, <a href="http://twitter.com/jakemoves">Jacob
+              Niedzwiecki</a></p>
+
+              <div class="col-xs-12" id="long-logo">
+                  <embed src="img/bottom.svg" type="image/svg+xml">
+              </div>
+          </div>
+        </div>
+      </div>
+    
+
+    <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/js.cookie.js"></script>
+     <script src="js/moment.js"></script>
+     <!--<script src="js/fluxdelux.js"></script>-->
+    <script src="js/admin.js"></script>
+
+</body>
+</html>
