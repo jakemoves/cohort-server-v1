@@ -4,7 +4,7 @@
   "description": "Server for Cohort-based iOS apps",
   "author": "Jacob Niedzwiecki <jake@jacob-n.com>",
   "engines": {
-    "node": "0.10.29"
+    "node": "6.11.1"
   },
   "dependencies": {
     "cors": "2.7.x",
