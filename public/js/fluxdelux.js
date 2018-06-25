@@ -9,10 +9,12 @@ var baseUrl = "";
 
 
 $(document).ready(function () {
-    if (Cookies.get('fluxdelux') == "checkedin") {
-        $('#passcode').val('YOW');
-    };
+    // if (Cookies.get('fluxdelux') == "checkedin") {
+    //     $('#passcode').val('YOW');
+    // };
 
+    $('#passcode').val('YOW');
+    
     // get list of upcoming events from server
     var events =
 

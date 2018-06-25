@@ -113,9 +113,9 @@ a:hover {
     display:none;
 }
 
-#check-in {
+/*#check-in {
     visibility: hidden;
-}
+}*/
 
 #playerLayer {
     position: absolute;
