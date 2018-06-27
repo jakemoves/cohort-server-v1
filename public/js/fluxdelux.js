@@ -14,6 +14,8 @@ $(document).ready(function () {
     // };
 
     $('#passcode').val('YOW');
+    participantGroup = assignGroup();
+
     
     // get list of upcoming events from server
     var events =
@@ -87,49 +89,15 @@ var GroupEnum = {
 
 var episodes = [
     {
-        "name": "test",
-        "displayName": "Test Episode"
-    },
-    {
-        "name": "simpleflux",
-        "displayName": "Simple Flux"
-    },
-    {
-        "name": "corners",
-        "displayName": "Corners"
-    },
-    {
-        "name": "ship",
-        "displayName": "Ship"
-
-    },
-    {
-        "name": "chipmelt",
-        "displayName": "Chip Melt"
-    },
-    {
-        "name": "orbitals",
-        "displayName": "Orbitals"
-    },
-    {
-        "name": "hulalasso",
-        "displayName": "Hula Lasso"
-    },
-    {
-        "name": "shipTogether",
-        "displayName": "Ship Together"
-    },
-    {
-        "name": "chipMeltTogether",
-        "displayName": "Chip Melt Together"
+        "name": "whiteLightParkette",
+        "displayName": "White Light Parkette (pentatrack)"
     }
 ];
 
 var numberOfEpisodes = episodes.length;
 var source;
 
-var participantGroup = assignGroup();
-//console.log("participantGroup: " + GroupEnum.properties[participantGroup].name);
+var participantGroup;
 
 var participantIsCheckedIn = false;
 
@@ -145,69 +113,90 @@ var b1 = document.getElementById("b1");
 
 //LOADING ALL THE AUDIO ELEMENTS
 //IF AUDIO SOURCES NEED TO CHANNGE, UPDATE EACH trackname.src = "https://newSource..."
-var test = document.createElement('audio');
-test.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
-test.preload = "none";
 
-var simpleFluxB = document.createElement('audio');
-simpleFluxB.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
-simpleFluxB.preload = "none";
-var simpleFluxR = document.createElement('audio');
-simpleFluxR.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
-simpleFluxR.preload = "none";
+var wlp1 = document.createElement('audio');
+wlp1.src = '/media/parkette-1.mp3';
+wlp1.preload = "none";
 
-var cornersB = document.createElement('audio');
-cornersB.src = 'https://s3.amazonaws.com/fluxdelux.org/corners-blue.mp3';
-cornersB.preload = "none";
-var cornersR = document.createElement('audio');
-cornersR.src = 'https://s3.amazonaws.com/fluxdelux.org/corners-red.mp3';
-cornersR.preload = "none";
+var wlp2 = document.createElement('audio');
+wlp2.src = '/media/parkette-1.mp3';
+wlp2.preload = "none";
 
-var chipmeltB = document.createElement('audio');
-chipmeltB.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-blue.mp3';
-chipmeltB.preload = "none";
-var chipmeltR = document.createElement('audio');
-chipmeltR.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-red.mp3';
-chipmeltR.preload = "none";
+var wlp3 = document.createElement('audio');
+wlp3.src = '/media/parkette-1.mp3';
+wlp3.preload = "none";
 
-var hulaB = document.createElement('audio');
-hulaB.src = 'https://s3.amazonaws.com/fluxdelux.org/hula-lasso-blue.mp3';
-hulaB.preload = "none";
-var hulaR = document.createElement('audio');
-hulaR.src = 'https://s3.amazonaws.com/fluxdelux.org/hula-lasso-red.mp3';
-hulaR.preload = "none";
+var wlp4 = document.createElement('audio');
+wlp4.src = '/media/parkette-1.mp3';
+wlp4.preload = "none";
 
-var shipB = document.createElement('audio');
-shipB.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-blue.mp3';
-shipB.preload = "none";
-var shipR = document.createElement('audio');
-shipR.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-red.mp3';
-shipR.preload = "none";
+var wlp5 = document.createElement('audio');
+wlp5.src = '/media/parkette-1.mp3';
+wlp5.preload = "none";
 
-var orbitalsB = document.createElement('audio');
-orbitalsB.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-blue.mp3';
-orbitalsB.preload = "none";
-var orbitalsR = document.createElement('audio');
-orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-red.mp3';
-orbitalsR.preload = "none";
+// var test = document.createElement('audio');
+// test.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
+// test.preload = "none";
 
-var chipMeltTogetherB = document.createElement('audio');
-chipMeltTogetherB.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
-chipMeltTogetherB.preload = "none";
-var chipMeltTogetherR = document.createElement('audio');
-chipMeltTogetherR.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
-chipMeltTogetherR.preload = "none";
+// var simpleFluxB = document.createElement('audio');
+// simpleFluxB.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
+// simpleFluxB.preload = "none";
+// var simpleFluxR = document.createElement('audio');
+// simpleFluxR.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
+// simpleFluxR.preload = "none";
 
-var shipTogetherB = document.createElement('audio');
-shipTogetherB.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
-shipTogetherB.preload = "none";
-var shipTogetherR = document.createElement('audio');
-shipTogetherR.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
-shipTogetherR.preload = "none";
+// var cornersB = document.createElement('audio');
+// cornersB.src = 'https://s3.amazonaws.com/fluxdelux.org/corners-blue.mp3';
+// cornersB.preload = "none";
+// var cornersR = document.createElement('audio');
+// cornersR.src = 'https://s3.amazonaws.com/fluxdelux.org/corners-red.mp3';
+// cornersR.preload = "none";
+
+// var chipmeltB = document.createElement('audio');
+// chipmeltB.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-blue.mp3';
+// chipmeltB.preload = "none";
+// var chipmeltR = document.createElement('audio');
+// chipmeltR.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-red.mp3';
+// chipmeltR.preload = "none";
+
+// var hulaB = document.createElement('audio');
+// hulaB.src = 'https://s3.amazonaws.com/fluxdelux.org/hula-lasso-blue.mp3';
+// hulaB.preload = "none";
+// var hulaR = document.createElement('audio');
+// hulaR.src = 'https://s3.amazonaws.com/fluxdelux.org/hula-lasso-red.mp3';
+// hulaR.preload = "none";
+
+// var shipB = document.createElement('audio');
+// shipB.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-blue.mp3';
+// shipB.preload = "none";
+// var shipR = document.createElement('audio');
+// shipR.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-red.mp3';
+// shipR.preload = "none";
+
+// var orbitalsB = document.createElement('audio');
+// orbitalsB.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-blue.mp3';
+// orbitalsB.preload = "none";
+// var orbitalsR = document.createElement('audio');
+// orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-red.mp3';
+// orbitalsR.preload = "none";
+
+// var chipMeltTogetherB = document.createElement('audio');
+// chipMeltTogetherB.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
+// chipMeltTogetherB.preload = "none";
+// var chipMeltTogetherR = document.createElement('audio');
+// chipMeltTogetherR.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
+// chipMeltTogetherR.preload = "none";
+
+// var shipTogetherB = document.createElement('audio');
+// shipTogetherB.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
+// shipTogetherB.preload = "none";
+// var shipTogetherR = document.createElement('audio');
+// shipTogetherR.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
+// shipTogetherR.preload = "none";
 
 //SETTING UP ARRAY OF ALL THE AUDIO FILES FOR FUTUR FOR LOOPS
 
-var allAudio = [test, simpleFluxB, simpleFluxR, cornersB, cornersR, chipmeltB, chipmeltR, hulaB, hulaR, shipB, shipB, orbitalsB, orbitalsR, chipMeltTogetherB, chipMeltTogetherR, shipTogetherB, shipTogetherR];
+var allAudio = [wlp1, wlp2, wlp3, wlp4, wlp5];
 
 //--setting up boolean to only have one audio playback at a time
 var audioIsPlaying = false;
@@ -224,48 +213,52 @@ var audioIsPlaying = false;
 var load = function () {
     switch (Index) {
     case 0:
-        test.load();
+        wlp1.load();
+        wlp2.load();
+        wlp3.load();
+        wlp4.load();
+        wlp5.load();
         break;
 
-    case 1:
-        simpleFluxB.load();
-        simpleFluxR.load();
-        break;
+    // case 1:
+    //     simpleFluxB.load();
+    //     simpleFluxR.load();
+    //     break;
 
-    case 2:
-        cornersB.load();
-        cornersR.load();
-        break;
+    // case 2:
+    //     cornersB.load();
+    //     cornersR.load();
+    //     break;
 
-    case 3:
-        shipB.load();
-        shipR.load();
-        break;
+    // case 3:
+    //     shipB.load();
+    //     shipR.load();
+    //     break;
 
-    case 4:
-        chipmeltB.load();
-        chipmeltR.load();
-        break;
+    // case 4:
+    //     chipmeltB.load();
+    //     chipmeltR.load();
+    //     break;
 
-    case 5:
-        orbitalsB.load();
-        orbitalsR.load();
-        break;
+    // case 5:
+    //     orbitalsB.load();
+    //     orbitalsR.load();
+    //     break;
 
-    case 6:
-        hulaB.load();
-        hulaR.load();
-        break;
+    // case 6:
+    //     hulaB.load();
+    //     hulaR.load();
+    //     break;
 
-    case 7:
-        shipTogetherB.load();
-        shipTogetherR.load();
-        break;
+    // case 7:
+    //     shipTogetherB.load();
+    //     shipTogetherR.load();
+    //     break;
 
-    case 8:
-        chipMeltTogetherB.load();
-        chipMeltTogetherR.load();
-        break;
+    // case 8:
+    //     chipMeltTogetherB.load();
+    //     chipMeltTogetherR.load();
+    //     break;
 
     default:
         console.log("could not load audio for index " + Index);
@@ -303,7 +296,7 @@ var backupCheckin = function () {
 var checkin = function () {
     subscribeToServerSentEvents();
     participantIsCheckedIn = true;
-    info.innerHTML = "<h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><ul><li>move into the open space along a curving path</li><li>be careful not to bump or brush against anyone else</li><li>vary your speed whenever you want</li><li>pause and be still whenever the impulse strikes you</li><li>follow beside or behind others when you want</li><li>copy, repeat, and experiment with movements that you see around you, whenever you want</li></ul>";
+    info.innerHTML = "<h4>this device will play track " + participantGroup + "</h4><br /><br /><h4>When the next episode starts in a few minutes, we’ll loop you in. Until then:</h4><ul><li>move into the open space along a curving path</li><li>be careful not to bump or brush against anyone else</li><li>vary your speed whenever you want</li><li>pause and be still whenever the impulse strikes you</li><li>follow beside or behind others when you want</li><li>copy, repeat, and experiment with movements that you see around you, whenever you want</li></ul>";
     $('#check-in').css('display', 'none');
 };
 
@@ -390,117 +383,36 @@ var subscribeToServerSentEvents = function () {
                             if (!audioIsPlaying) {
                                 audioIsPlaying = true;
 
-                                if (participantGroup === GroupEnum.BLUE) {
-                                    switch (cue.index) {
+                                switch (cue.index) {
                                     case 0:
-                                        test.play();
-                                        currentEpisodeAudio = test;
-                                        break;
-
-                                    case 1:
-                                        simpleFluxB.play();
-                                        currentEpisodeAudio = simpleFluxB;
-                                        break;
-
-                                    case 2:
-                                        cornersB.play();
-                                        currentEpisodeAudio = cornersB;
-                                        break;
-
-                                    case 3:
-                                        shipB.play();
-                                        currentEpisodeAudio = shipB;
-
-                                        break;
-
-                                    case 4:
-                                        chipmeltB.play();
-                                        currentEpisodeAudio = chipmeltB;
-
-                                        break;
-
-                                    case 5:
-                                        orbitalsB.play();
-                                        currentEpisodeAudio = orbitalsB;
-
-                                        break;
-
-                                    case 6:
-                                        hulaB.play();
-                                        currentEpisodeAudio = hulaB;
-                                        break;
-
-                                    case 7:
-                                        shipTogetherB.play();
-                                        currentEpisodeAudio = shipTogetherB;
-                                        break;
-
-                                    case 8:
-                                        chipMeltTogetherB.play();
-                                        currentEpisodeAudio = chipMeltTogetherB;
-                                        break;
-
-
-                                    default:
-                                        console.log("no music for cue index " + cue.index);
-                                    }
-                                } else if (participantGroup === GroupEnum.RED) {
-                                    switch (cue.index) {
-                                    case 0:
-                                        test.play();
-                                        currentEpisodeAudio = test;
-                                        break;
-
-                                    case 1:
-                                        simpleFluxR.play();
-                                        currentEpisodeAudio = simpleFluxR;
-                                        break;
-
-                                    case 2:
-                                        cornersR.play();
-                                        currentEpisodeAudio = cornersR;
-                                        break;
-
-                                    case 3:
-                                        shipR.play();
-                                        currentEpisodeAudio = shipR;
-
-                                        break;
-
-                                    case 4:
-                                        chipmeltR.play();
-                                        currentEpisodeAudio = chipmeltR;
-
-                                        break;
-
-                                    case 5:
-                                        orbitalsR.play();
-                                        currentEpisodeAudio = orbitalsR;
-
-                                        break;
-
-                                    case 6:
-                                        hulaR.play();
-                                        currentEpisodeAudio = hulaR;
-
-                                        break;
-
-                                    case 7:
-                                        shipTogetherR.play();
-                                        currentEpisodeAudio = shipTogetherR;
-
-                                        break;
-
-                                    case 8:
-                                        shipTogetherB.play();
-                                        currentEpisodeAudio = shipTogetherB;
+                                        switch (participantGroup) {
+                                            case 1:
+                                                wlp1.play();
+                                                currentEpisodeAudio = wlp1;
+                                                break;
+                                            case 2:
+                                                wlp2.play();
+                                                currentEpisodeAudio = wlp2;
+                                                break;
+                                            case 3:
+                                                wlp3.play();
+                                                currentEpisodeAudio = wlp3;
+                                                break;
+                                            case 4:
+                                                wlp4.play();
+                                                currentEpisodeAudio = wlp4;
+                                                break;
+                                            case 5:
+                                                wlp5.play();
+                                                currentEpisodeAudio = wlp5;
+                                                break;
+                                            default:
+                                                console.log("no music for participant " + participantGroup);
+                                        }
                                         break;
 
                                     default:
                                         console.log("no music for cue index " + cue.index);
-                                    }
-                                } else {
-                                    console.log("participant has no group assigned");
                                 }
                             }
                             //END OF DELAY SET UP..SET TO 5s
@@ -559,7 +471,7 @@ for (var p = 0; p < allAudio.length; p++) {
     (function (p) {
         allAudio[p].addEventListener("play", function () {
 
-            info.innerHTML = "<h4>" + episodes[Index].displayName + "</h4>";
+            info.innerHTML = "<h4>" + episodes[Index].displayName + " [track " + participantGroup + "]</h4>";
 
 
         }, false);
@@ -589,14 +501,17 @@ $("#episode-confirm").on("click", function () {
 
 
 //GROUP() ASSIGNS A PERSON TO BE EITHER RED OR BLUE
+// NOPE we now have 1 episode with 5 tracks available
 function assignGroup() {
-    var ranNum = Math.random() * (2 - 1) + 1;
+    // var ranNum = Math.random() * (2 - 1) + 1;
 
-    if (ranNum > 1.5) {
-        return 2;
-    } else {
-        return 1;
-    }
+    // if (ranNum > 1.5) {
+    //     return 2;
+    // } else {
+    //     return 1;
+    // }
+
+    return Math.ceil(Math.random() * 5)
 }
 
 
