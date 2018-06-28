@@ -115,23 +115,23 @@ var b1 = document.getElementById("b1");
 //IF AUDIO SOURCES NEED TO CHANNGE, UPDATE EACH trackname.src = "https://newSource..."
 
 var wlp1 = document.createElement('audio');
-wlp1.src = '/media/parkette-1.mp3';
+wlp1.src = 'https://s3.amazonaws.com/lot-x/parkette-1.mp3';
 wlp1.preload = "none";
 
 var wlp2 = document.createElement('audio');
-wlp2.src = '/media/parkette-1.mp3';
+wlp2.src = 'https://s3.amazonaws.com/lot-x/parkette-2.mp3';
 wlp2.preload = "none";
 
 var wlp3 = document.createElement('audio');
-wlp3.src = '/media/parkette-1.mp3';
+wlp3.src = 'https://s3.amazonaws.com/lot-x/parkette-3.mp3';
 wlp3.preload = "none";
 
 var wlp4 = document.createElement('audio');
-wlp4.src = '/media/parkette-1.mp3';
+wlp4.src = 'https://s3.amazonaws.com/lot-x/parkette-4.mp3';
 wlp4.preload = "none";
 
 var wlp5 = document.createElement('audio');
-wlp5.src = '/media/parkette-1.mp3';
+wlp5.src = 'https://s3.amazonaws.com/lot-x/parkette-5.mp3';
 wlp5.preload = "none";
 
 // var test = document.createElement('audio');
@@ -213,53 +213,27 @@ var audioIsPlaying = false;
 var load = function () {
     switch (Index) {
     case 0:
-        wlp1.load();
-        wlp2.load();
-        wlp3.load();
-        wlp4.load();
-        wlp5.load();
+        switch(participantGroup) {
+            case 1:
+                wlp1.load();
+                break;
+            case 2:
+                wlp2.load();
+                break;
+            case 3:
+                wlp3.load();
+                break;
+            case 4:
+                wlp4.load();
+                break;
+            case 5:
+                wlp5.load();
+                break;
+            default:
+                console.log("no track for participant " + participantGroup);
+                break;
+        }
         break;
-
-    // case 1:
-    //     simpleFluxB.load();
-    //     simpleFluxR.load();
-    //     break;
-
-    // case 2:
-    //     cornersB.load();
-    //     cornersR.load();
-    //     break;
-
-    // case 3:
-    //     shipB.load();
-    //     shipR.load();
-    //     break;
-
-    // case 4:
-    //     chipmeltB.load();
-    //     chipmeltR.load();
-    //     break;
-
-    // case 5:
-    //     orbitalsB.load();
-    //     orbitalsR.load();
-    //     break;
-
-    // case 6:
-    //     hulaB.load();
-    //     hulaR.load();
-    //     break;
-
-    // case 7:
-    //     shipTogetherB.load();
-    //     shipTogetherR.load();
-    //     break;
-
-    // case 8:
-    //     chipMeltTogetherB.load();
-    //     chipMeltTogetherR.load();
-    //     break;
-
     default:
         console.log("could not load audio for index " + Index);
     }
