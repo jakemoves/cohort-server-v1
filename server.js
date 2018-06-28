@@ -216,6 +216,16 @@ app.post('/events/delete', jsonParser, function(req, res) {
   }
 });
 
+app.get('/clients', function(req, res) {
+  res.writeHead(200, {
+    'Content-Type': 'application/json'
+  });
+  var clientCount;
+  clientCount = { "clients": clients.length} ;
+  res.write( JSON.stringify(clientCount) );
+  res.send();
+});
+
 timer.setInterval(emitHeartbeat, '', '10s');
 
 function emitHeartbeat(){

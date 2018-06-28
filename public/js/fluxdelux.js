@@ -14,8 +14,19 @@ $(document).ready(function () {
     // };
 
     $('#passcode').val('YOW');
-    participantGroup = assignGroup();
 
+    $.get(baseUrl + "clients")
+        .done(function (data) {
+            console.log(data);
+            var group = (data.clients % 5) + 1;
+            console.log(group);
+            participantGroup = group;
+        })
+        .fail(function () {
+            console.log("Request failed: /clients");
+            console.log("Assigning group randomly")
+            participantGroup = Math.ceil(Math.random() * 5)
+        });
     
     // get list of upcoming events from server
     var events =
@@ -485,7 +496,21 @@ function assignGroup() {
     //     return 1;
     // }
 
-    return Math.ceil(Math.random() * 5)
+    var clients = $.get(baseUrl + "clients")
+        .done(function (data) {
+            console.log(data);
+        })
+        .fail(function () {
+            console.log("Request failed: /clients");
+            console.log("Assigning group randomly")
+            return Math.ceil(Math.random() * 5)
+        });
+
+    return clients.then(function (clients) {
+        var group = clients % 5;
+        console.log(group);
+        return group;
+    });
 }
 
 
