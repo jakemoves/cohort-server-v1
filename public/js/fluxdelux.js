@@ -18,14 +18,14 @@ $(document).ready(function () {
     $.get(baseUrl + "clients")
         .done(function (data) {
             console.log(data);
-            var group = (data.clients % 5) + 1;
+            var group = (data.clients % allAudio.length) + 1;
             console.log(group);
             participantGroup = group;
         })
         .fail(function () {
             console.log("Request failed: /clients");
             console.log("Assigning group randomly")
-            participantGroup = Math.ceil(Math.random() * 5)
+            participantGroup = Math.ceil(Math.random() * allAudio.length)
         });
     
     // get list of upcoming events from server
@@ -101,7 +101,7 @@ var GroupEnum = {
 var episodes = [
     {
         "name": "whiteLightParkette",
-        "displayName": "White Light Parkette (pentatrack)"
+        "displayName": "White Light Parkette (7-track)"
     }
 ];
 
@@ -145,69 +145,22 @@ var wlp5 = document.createElement('audio');
 wlp5.src = 'https://s3.amazonaws.com/lot-x/parkette-5.mp3';
 wlp5.preload = "none";
 
-// var test = document.createElement('audio');
-// test.src = 'https://s3.amazonaws.com/fluxdelux.org/test.mp3';
-// test.preload = "none";
+var wlp5 = document.createElement('audio');
+wlp5.src = 'https://s3.amazonaws.com/lot-x/parkette-5.mp3';
+wlp5.preload = "none";
 
-// var simpleFluxB = document.createElement('audio');
-// simpleFluxB.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
-// simpleFluxB.preload = "none";
-// var simpleFluxR = document.createElement('audio');
-// simpleFluxR.src = 'https://s3.amazonaws.com/fluxdelux.org/simpleflux.mp3';
-// simpleFluxR.preload = "none";
+var wlp6 = document.createElement('audio');
+wlp6.src = 'https://s3.amazonaws.com/lot-x/parkette-6.mp3';
+wlp6.preload = "none";
 
-// var cornersB = document.createElement('audio');
-// cornersB.src = 'https://s3.amazonaws.com/fluxdelux.org/corners-blue.mp3';
-// cornersB.preload = "none";
-// var cornersR = document.createElement('audio');
-// cornersR.src = 'https://s3.amazonaws.com/fluxdelux.org/corners-red.mp3';
-// cornersR.preload = "none";
+var wlp7 = document.createElement('audio');
+wlp7.src = 'https://s3.amazonaws.com/lot-x/parkette-7.mp3';
+wlp7.preload = "none";
 
-// var chipmeltB = document.createElement('audio');
-// chipmeltB.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-blue.mp3';
-// chipmeltB.preload = "none";
-// var chipmeltR = document.createElement('audio');
-// chipmeltR.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-red.mp3';
-// chipmeltR.preload = "none";
-
-// var hulaB = document.createElement('audio');
-// hulaB.src = 'https://s3.amazonaws.com/fluxdelux.org/hula-lasso-blue.mp3';
-// hulaB.preload = "none";
-// var hulaR = document.createElement('audio');
-// hulaR.src = 'https://s3.amazonaws.com/fluxdelux.org/hula-lasso-red.mp3';
-// hulaR.preload = "none";
-
-// var shipB = document.createElement('audio');
-// shipB.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-blue.mp3';
-// shipB.preload = "none";
-// var shipR = document.createElement('audio');
-// shipR.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-red.mp3';
-// shipR.preload = "none";
-
-// var orbitalsB = document.createElement('audio');
-// orbitalsB.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-blue.mp3';
-// orbitalsB.preload = "none";
-// var orbitalsR = document.createElement('audio');
-// orbitalsR.src = 'https://s3.amazonaws.com/fluxdelux.org/orbitals-red.mp3';
-// orbitalsR.preload = "none";
-
-// var chipMeltTogetherB = document.createElement('audio');
-// chipMeltTogetherB.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
-// chipMeltTogetherB.preload = "none";
-// var chipMeltTogetherR = document.createElement('audio');
-// chipMeltTogetherR.src = 'https://s3.amazonaws.com/fluxdelux.org/chip-melt-together.mp3';
-// chipMeltTogetherR.preload = "none";
-
-// var shipTogetherB = document.createElement('audio');
-// shipTogetherB.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
-// shipTogetherB.preload = "none";
-// var shipTogetherR = document.createElement('audio');
-// shipTogetherR.src = 'https://s3.amazonaws.com/fluxdelux.org/ship-together.mp3';
-// shipTogetherR.preload = "none";
 
 //SETTING UP ARRAY OF ALL THE AUDIO FILES FOR FUTUR FOR LOOPS
 
-var allAudio = [wlp1, wlp2, wlp3, wlp4, wlp5];
+var allAudio = [wlp1, wlp2, wlp3, wlp4, wlp5, wlp6, wlp7];
 
 //--setting up boolean to only have one audio playback at a time
 var audioIsPlaying = false;
@@ -239,6 +192,12 @@ var load = function () {
                 break;
             case 5:
                 wlp5.load();
+                break;
+            case 6:
+                wlp6.load();
+                break;
+            case 7:
+                wlp7.load();
                 break;
             default:
                 console.log("no track for participant " + participantGroup);
@@ -391,6 +350,14 @@ var subscribeToServerSentEvents = function () {
                                                 wlp5.play();
                                                 currentEpisodeAudio = wlp5;
                                                 break;
+                                            case 6:
+                                                wlp6.play();
+                                                currentEpisodeAudio = wlp6;
+                                                break;
+                                            case 7:
+                                                wlp7.play();
+                                                currentEpisodeAudio = wlp7;
+                                                break;
                                             default:
                                                 console.log("no music for participant " + participantGroup);
                                         }
@@ -487,31 +454,31 @@ $("#episode-confirm").on("click", function () {
 
 //GROUP() ASSIGNS A PERSON TO BE EITHER RED OR BLUE
 // NOPE we now have 1 episode with 5 tracks available
-function assignGroup() {
-    // var ranNum = Math.random() * (2 - 1) + 1;
+// function assignGroup() {
+//     // var ranNum = Math.random() * (2 - 1) + 1;
 
-    // if (ranNum > 1.5) {
-    //     return 2;
-    // } else {
-    //     return 1;
-    // }
+//     // if (ranNum > 1.5) {
+//     //     return 2;
+//     // } else {
+//     //     return 1;
+//     // }
 
-    var clients = $.get(baseUrl + "clients")
-        .done(function (data) {
-            console.log(data);
-        })
-        .fail(function () {
-            console.log("Request failed: /clients");
-            console.log("Assigning group randomly")
-            return Math.ceil(Math.random() * 5)
-        });
+//     var clients = $.get(baseUrl + "clients")
+//         .done(function (data) {
+//             console.log(data);
+//         })
+//         .fail(function () {
+//             console.log("Request failed: /clients");
+//             console.log("Assigning group randomly")
+//             return Math.ceil(Math.random() * allAudio)
+//         });
 
-    return clients.then(function (clients) {
-        var group = clients % 5;
-        console.log(group);
-        return group;
-    });
-}
+//     return clients.then(function (clients) {
+//         var group = clients % 5;
+//         console.log(group);
+//         return group;
+//     });
+// }
 
 
 
