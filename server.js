@@ -51,6 +51,7 @@ app.get('/listen', function(req, res){
     console.log('new client: ' + clientIndex);
     req.on("close", function(){
       clients[clientIndex] == null;
+      clients.splice(clientIndex, 1);
       console.log('removed client: ' + clientIndex);
     });  // <- Remove this client when they disconnect
 
