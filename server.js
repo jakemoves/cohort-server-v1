@@ -165,9 +165,12 @@ app.post('/events/create', jsonParser, function(req, res) {
       eventInfo.date &&
       eventInfo.startTime &&
       eventInfo.endTime &&
-      eventInfo.checkInCode) 
+      eventInfo.checkInCode &&
+      eventInfo.doorsOpenTime) 
     {
-      eventInfo.startDateAndTimeUTC = eventInfo.date + "T" + eventInfo.startTime;
+      eventInfo.startDateAndTimeEST = eventInfo.date + "T" + eventInfo.startTime + ":00-05:00";
+      eventInfo.doorsOpenDateAndTimeEST = eventInfo.date + "T" + eventInfo.doorsOpenTime + ":00-05:00";
+      eventInfo.endDateAndTimeEST = eventInfo.date + "T" + eventInfo.endTime + ":00-05:00";
       db.insert(eventInfo, function(err, newDoc){
         if(err){
           console.log(err);
